@@ -5,10 +5,9 @@ import numpy as np
 from random import choices
 
 def ant(nb_ant, nb_iteration, problem, rho, alpha, Q):
-    
+    liste, dico = initiate(problem)
     for j in range(nb_iteration):
         #initiate the problem
-        liste, dico = initiate(problem)
         ants = [[],[],[]]
         for i in range(nb_ant):
             choices_1 = choices(liste['liste1'], weights=dico['mat1'], k=1)[0]
