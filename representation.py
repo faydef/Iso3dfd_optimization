@@ -11,7 +11,7 @@ def initiate(problem):
     
     dico = dict()
     dico['mat1'] = np.array([1/len(liste['liste1']) for el in liste['liste1']])
-    for k in range(2,6):
+    for k in range(2,7):
         dico[f'mat{k}'] = np.array([[1/len(liste[f'liste{k}']) for el in liste[f'liste{k}']]for el in liste[f'liste{k-1}']])
     return liste, dico
     # mat2 = np.array([[1/len(liste2) for el in liste2]for el in liste1])

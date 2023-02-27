@@ -22,7 +22,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q):
             else:
                 ants[0].append(path)
                 ants[1].append(1)
-                ants[2].append(execute(command({'filename': '../iso3dfd-st7/compiled/bin_'path[0]+'_'+path[1]+'.exe', 'size1':512, 'size2': 512, 'size3':512, 'num_thread':path[2], 'dim1':path[3], 'dim2': path[4], 'dim3': path[5]})))
+                ants[2].append(execute(command({'filename': '../iso3dfd-st7/compiled/bin_'+path[0]+'_'+path[1]+'.exe', 'size1':512, 'size2': 512, 'size3':512, 'num_thread':path[2], 'dim1':path[3], 'dim2': path[4], 'dim3': path[5]})))
         #update the weight
         ants[0], ants[1], ants[2] = map(list, zip(*sorted(zip(ants[0], ants[1], ants[2]),key=itemgetter(2))))
         #update(routes= zip(ants[0][10], ants[1][10]), liste, dico, rho, alpha, Q)
