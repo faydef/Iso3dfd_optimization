@@ -19,4 +19,4 @@ def compile_all():
                 os.system("make Olevel=-{} simd={} last".format(olevel,simd))
                 os.system("mv bin/* compiled/bin_{}_{}.exe".format(olevel,simd))
 
-#compile_all()
+compile_all()
