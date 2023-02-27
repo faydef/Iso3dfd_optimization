@@ -29,6 +29,9 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q):
         #update(routes= zip(ants[0][10], ants[1][10]), liste, dico, rho, alpha, Q)
         routes = [(ants[0][i], ants[1][i]) for i in range(10)]
         update(routes, liste, dico, rho, alpha, Q)
+
+if __name__ == '__main__':
+    ant(10, 10, [16,2,2], 0.1, 0.5, 2)
         
         
         
