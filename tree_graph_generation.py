@@ -1,14 +1,13 @@
 
 
-
 def tree_generation(compil_flag_list, simd_list, num_threads_max, n1_size, n2_size, n3_size):
     """Returns a tree in the form of dictionnaries of dictionnaries of ... with branches for every choice of the following parameters:
     -Olevel -simd -num_threads -n1_block -n2_block -n3_block"""
     tree_graph = {"pheromone_rate": 0}
 
-    list_n1block = values_nblock(n1_size)
-    list_n2block = values_nblock(n2_size)
-    list_n3block = values_nblock(n3_size)
+    list_n1block = values_nblock(n1_size, first=True)
+    list_n2block = values_nblock(n2_size, first=False)
+    list_n3block = values_nblock(n3_size, first=False)
 
     list_num_thread = values_num_thread_power_of_2(num_threads_max)
 
@@ -21,7 +20,7 @@ def tree_generation(compil_flag_list, simd_list, num_threads_max, n1_size, n2_si
     return tree_graph
 
 
-def values_nblock(n_size):
+def values_nblock(n_size, first):
     """return list of integers corresponding to all the possibilities
     of nk_block corresponding to a certain nk size for the problem"""
     list_nblock = []
@@ -31,12 +30,14 @@ def values_nblock(n_size):
         list_nblock.append('4')
     if n_size >= 8:
         list_nblock.append('8')
-
-    i = 1
-    while n_size >= (16*i):  # add all multiples of 16 smaller than n_size
-        a = 16*i
-        list_nblock.append(str(a))
-        i += 1
+    if first:
+        i = 1
+        while n_size >= (16*i):  # add all multiples of 16 smaller than n_size
+            a = 16*i
+            list_nblock.append(str(a))
+            i += 1
+    else:
+        list_nblock = range(n_size)
 
     return list_nblock
 
