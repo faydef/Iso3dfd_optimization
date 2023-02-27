@@ -35,7 +35,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q):
     return best
 
 if __name__ == '__main__':
-    print(ant(10, 10, [32,32,32], 0.1, 0.5, 2))
+    print(ant(100, 10, [128,128,128], 0.1, 0.5, 2))
         
         
         
