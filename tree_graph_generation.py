@@ -1,4 +1,5 @@
-from igraph import Graph
+
+
 
 def tree_generation(compil_flag_list, simd_list, num_threads_max, n1_size, n2_size, n3_size):
     """Returns a tree in the form of dictionnaries of dictionnaries of ... with branches for every choice of the following parameters:
@@ -21,7 +22,7 @@ def tree_generation(compil_flag_list, simd_list, num_threads_max, n1_size, n2_si
 
 
 def values_nblock(n_size):
-    """return list of integers corresponding to all the possibilities 
+    """return list of integers corresponding to all the possibilities
     of nk_block corresponding to a certain nk size for the problem"""
     list_nblock = []
     if n_size >= 2:
@@ -41,7 +42,7 @@ def values_nblock(n_size):
 
 
 def values_num_thread_power_of_2(num_threads_max):
-    """return list of integers corresponding to all the possibilities 
+    """return list of integers corresponding to all the possibilities
     of num_threads based on the maximum number of threads.
     The list contains the powers of 2 dividing the num_threads_max"""
     list_num_thread = []
@@ -61,7 +62,7 @@ def list_of_parameters(compil_flag_list, simd_list, list_num_thread, list_n1bloc
 
 
 def add_children(parent_tree, list_ordered_of_parameters, depth, pheromone_rate_repartition_list=['even']):
-    """return parent tree with children tree added recursively for a certain list of parameters, 
+    """return parent tree with children tree added recursively for a certain list of parameters,
     can take a pheromone rate repartition by default evenly spread the pheromones on all children """
     if depth >= len(list_ordered_of_parameters):
         return parent_tree
@@ -80,19 +81,11 @@ def add_children(parent_tree, list_ordered_of_parameters, depth, pheromone_rate_
 
 
 def remove_pheromons(tree_graph):
-    """return tree without pheromone to enable it to be an Igraph graph enabling us to plot the tree"""
+    """return tree without pheromone to enable it to be a graph for any python library enabling us to plot the tree
+    we have yet to find a way to plot it"""
     del tree_graph["pheromone_rate"]
     if tree_graph == {}:
         return tree_graph
     for value in tree_graph.values():
         remove_pheromons(value)
     return tree_graph
-
-
-if __name__ == "__main__":
-    tree_graph = (tree_generation(["O3"], [
-        "avx512"], 4, 8, 2, 2))
-    tree_graph = remove_pheromons(tree_graph)
-    print(tree_graph)
-    tree_graph = Graph.DictDict(tree_graph)
-    tree_graph.__plot__
