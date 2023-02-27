@@ -26,7 +26,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q):
                 ants[1].append(1)
                 ants[2].append(execute(command({'filename': '../iso3dfd-st7/compiled/bin_'+path[0]+'_'+path[1]+'.exe', 'size1':str(problem[0]), 'size2': str(problem[1]), 'size3':str(problem[2]), 'num_thread':str(path[2]), 'dim1':str(path[3]), 'dim2': str(path[4]), 'dim3': str(path[5])}), 30))
         #update the weight
-        ants[0], ants[1], ants[2] = map(list, zip(*sorted(zip(ants[0], ants[1], ants[2]),key=itemgetter(2))))
+        ants[0], ants[1], ants[2] = map(list, zip(*sorted(zip(ants[0], ants[1], ants[2]),key=itemgetter(2), reverse=True)))
         #update(routes= zip(ants[0][10], ants[1][10]), liste, dico, rho, alpha, Q)
         routes = [(ants[0][i], ants[1][i]) for i in range(min(10, len(ants[0])))]
         best = [ants[0][0], ants[2][0]]
