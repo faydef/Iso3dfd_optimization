@@ -3,6 +3,7 @@ from update import update
 from exec_algo import command,execute
 import numpy as np
 from random import choices
+from operator import itemgetter
 
 def ant(nb_ant, nb_iteration, problem, rho, alpha, Q):
     liste, dico = initiate(problem)
