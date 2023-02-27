@@ -4,7 +4,7 @@ import os
 
 
 def compile_all():
-    Olevels = ["01","02","03","0fast"]
+    Olevels = ["O1","O2","O3","Ofast"]
     Simds = ["sse","avx","avx2","avx512"]
 
 
