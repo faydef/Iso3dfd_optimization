@@ -66,3 +66,9 @@ def tree_generation(compil_flag_list, simd_list, num_threads_max, n1_size, n2_si
         tree_graph, list_ordered_of_parameters)
 
     return tree_graph
+
+
+if __file__ == "main":  # small tests
+    tree_graph = tree_generation(["O3", "O2", "Ofast"], [
+                                 "avx2", "avx512"], 16, 2, 2, 2)
+    print(tree_graph)
