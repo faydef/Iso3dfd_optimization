@@ -22,6 +22,7 @@ def exploration(tree,nb_ant):
     return ants
 
 
+
 def choose_child_node(parent):
     """Choose a child node depending on the parent node and thus, the pheromone
     return the under_tree taking the child choosen as the root"""
