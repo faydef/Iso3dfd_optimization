@@ -1,10 +1,11 @@
-def update_tree(tree,evaporation_rate,ants,ants_score,ranking_function):
+def update_tree(tree,evaporation_rate,ants,ants_score):
     """return the updated tree with the score of the previous ant, the decay of the present pheromone and
     the choice of the cost function"""
     
     pheromone_decay(tree,evaporation_rate) 
 
-    pheromone_added = ranking_function(ants,ants_score)
+    score_path = ants_ants_score_merge(ants,ants_score)
+    pheromone_added = ASrank(score_path,20,1) #Choose here which ranking function to use, at the end of the file
     add_pheromone(tree,pheromone_added)
 
 
@@ -32,6 +33,16 @@ def add_pheromone(tree,new_pheromone):
 
 
 
+def ants_ants_score_merge(ants,ants_score):
+    path_score=[]
+    for i in range(len(ants)):
+        try:
+            path_score.append([ants_score[i],ants[i]])
+        except IndexError:
+            print("Le nombre de score et de fourmis diffèrent")
+    return path_score
+
+
 def average_ranking_function(ants,ants_score,maybe_other_argument=None):
     """Must return a list of number corresponding to the amount of pheromone that have to be
        added to the tree and the corresponding path
@@ -42,18 +53,21 @@ def average_ranking_function(ants,ants_score,maybe_other_argument=None):
 
 
 
-def ASrank(ants,ants_scores, k):
+def ASrank(score_path, k, pheromone_added):
     """At the end of each iteration, all solutions are ranked and the first k ant add pheromone to their path"""
-    
-    return []
+    score_path.sort(key = lambda x : x[0], reversed=False) #Peut etre changer reverse en fonction du cout
+    k_best = score_path[:k]
+    pheromone_path = [[pheromone_added,k_best[i][1]] for i in range(len(k_best))]
+    return pheromone_path
 
 
-def ElitistAS(ant,ants_score):
+def ElitistAS(score_path,pheromone_added):
     """At the end of each iteration, the winner ant is rewarded"""
+    best_ant = max(score_path, key=lambda x : x[0]) #Peut etre min en fonction du cout
+    return [pheromone_added,best_ant[1]]
 
-    return []
 
-def MinMaxAS(ants,ants_score,min,max):
+def MinMaxAS(score_path,min,max):
     """At the end of each iteration, the winner ant is rewarded"""
 
     return []
