@@ -7,7 +7,7 @@ from operator import itemgetter
 
 def ant(nb_ant, nb_iteration, problem, rho, alpha, Q):
     liste, dico = initiate(problem)
-    best = 0
+    best = [[],0]
     for j in range(nb_iteration):
         #initiate the problem
         ants = [[],[],[]]
@@ -29,12 +29,13 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q):
         ants[0], ants[1], ants[2] = map(list, zip(*sorted(zip(ants[0], ants[1], ants[2]),key=itemgetter(2), reverse=True)))
         #update(routes= zip(ants[0][10], ants[1][10]), liste, dico, rho, alpha, Q)
         routes = [(ants[0][i], ants[1][i]) for i in range(min(10, len(ants[0])))]
-        best = [ants[0][0], ants[2][0]]
+        if ants[2][0] > best[1]:
+            best = [ants[0][0], ants[2][0]]
         update(routes, liste, dico, rho, alpha, Q)
     return best
 
 if __name__ == '__main__':
-    ant(10, 10, [32,32,32], 0.1, 0.5, 2)
+    print(ant(10, 10, [32,32,32], 0.1, 0.5, 2))
         
         
         
