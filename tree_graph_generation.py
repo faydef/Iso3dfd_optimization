@@ -1,3 +1,6 @@
+from igraph import Graph
+
+
 def values_nblock(n_size):
     """return list of integers corresponding to all the possibilities 
     of nk_block corresponding to a certain nk size for the problem"""
@@ -23,8 +26,8 @@ def values_num_thread_power_of_2(num_threads_max):
     The list contains the powers of 2 dividing the num_threads_max"""
     list_num_thread = []
     i = 1
-    while num_threads_max//(2 ^ i) != 0:
-        list_num_thread.append(2 ^ i)
+    while num_threads_max//(2 ** i) != 0:
+        list_num_thread.append(2**i)
         i += 1
     return list_num_thread
 
@@ -38,16 +41,20 @@ def list_of_parameters(compil_flag_list, simd_list, list_num_thread, list_n1bloc
 
 def add_child_dictionnaries(parent_dictionnary, list_ordered_of_parameters, pheromone_rate_repartition_list=['even']):
     """return parent dictionnary with child dictionnaries added recursively for a certain list of parameters, 
-    can take a pheromone rate repartition by default evenly spread the pheromons on all children """
+    can take a pheromone rate repartition by default evenly spread the pheromones on all children """
     if list_ordered_of_parameters == []:
         return parent_dictionnary
-    pheromone_rate_repartition = pheromone_rate_repartition_list.pop(0)
+    list_values_of_parameter = list_ordered_of_parameters.pop(0)
+
+    pheromone_rate_repartition = pheromone_rate_repartition_list[0]
     if pheromone_rate_repartition == 'even':
         pheromone_rate_value = 1/len(list_values_of_parameter)
-    list_values_of_parameter = list_ordered_of_parameters.pop(0)
+
     for value in list_values_of_parameter:
         parent_dictionnary[value] = {'pheromone_rate': pheromone_rate_value}
-    return add_child_dictionnaries(parent_dictionnary, list_ordered_of_parameters)
+        add_child_dictionnaries(
+            parent_dictionnary[value], list_ordered_of_parameters)
+    return parent_dictionnary
 
 
 def tree_generation(compil_flag_list, simd_list, num_threads_max, n1_size, n2_size, n3_size):
@@ -68,7 +75,21 @@ def tree_generation(compil_flag_list, simd_list, num_threads_max, n1_size, n2_si
     return tree_graph
 
 
-if __file__ == "main":  # small tests
-    tree_graph = tree_generation(["O3", "O2", "Ofast"], [
-                                 "avx2", "avx512"], 16, 2, 2, 2)
+def remove_pheromons(tree_graph):
+    """return tree without pheromone to enable it to be an Igraph graph enabling us to plot the tree"""
     print(tree_graph)
+    del tree_graph["pheromone_rate"]
+    if tree_graph == {}:
+        return tree_graph
+    for value in tree_graph.values():
+        remove_pheromons(tree_graph)
+    return tree_graph
+
+
+if __name__ == "__main__":
+    tree_graph = (tree_generation(["O3"], [
+        "avx512"], 2, 2, 2, 2))
+    tree_graph = remove_pheromons(tree_graph)
+
+    tree_graph = Graph.DictDict(tree_graph)
+    tree_graph.__plot__
