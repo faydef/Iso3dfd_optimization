@@ -12,12 +12,13 @@ def execute(bash_command, timeout):
     except Exception as e:
         print("#####algo stopped running: ",e)
         output = -99
-    print(output)
+    return output
 
 def command(options):
-    command = 'bin/'+options['filename']+' '+options['size1']+' '+options['size2']+' '+options['size3']+' '+options['num_thread']+'100'+' '+options['dim1']+' '+options['dim2']+' '+options['dim3']
+    command = options['filename']+' '+options['size1']+' '+options['size2']+' '+options['size3']+' '+options['num_thread']+' 100'+' '+options['dim1']+' '+options['dim2']+' '+options['dim3']
     command = command + ' | grep flops'
+    return command
 
-execute('cat test.txt | grep flops', 10)
+#execute('cat test.txt | grep flops', 10)
 
 
