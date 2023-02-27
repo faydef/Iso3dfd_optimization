@@ -17,6 +17,7 @@ def execute(bash_command, timeout):
 def command(options):
     command = options['filename']+' '+options['size1']+' '+options['size2']+' '+options['size3']+' '+options['num_thread']+'100'+' '+options['dim1']+' '+options['dim2']+' '+options['dim3']
     command = command + ' | grep flops'
+    return command
 
 #execute('cat test.txt | grep flops', 10)
 
