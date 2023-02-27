@@ -27,7 +27,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q):
         #update the weight
         ants[0], ants[1], ants[2] = map(list, zip(*sorted(zip(ants[0], ants[1], ants[2]),key=itemgetter(2))))
         #update(routes= zip(ants[0][10], ants[1][10]), liste, dico, rho, alpha, Q)
-        routes = [(ants[0][i], ants[1][i]) for i in range(max(10, len(ants[0])))]
+        routes = [(ants[0][i], ants[1][i]) for i in range(min(10, len(ants[0])))]
         update(routes, liste, dico, rho, alpha, Q)
 
 if __name__ == '__main__':
