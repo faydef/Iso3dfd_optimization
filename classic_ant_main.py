@@ -58,7 +58,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
     return best
 
 if __name__ == '__main__':
-    _,nb_ant, nb_iteration, problem_1, problem_2, problem_3, no_rho, no_alpha, no_Q, timeout = sys.argv
+    _,nb_ant, nb_iteration, problem_1, problem_2, problem_3, rho, alpha, Q, timeout = sys.argv
     # alpha_list = [0.25, 0.5, 0.75, 1, 1.25, 1.5,1.75]
     # rho_list = [0.2, 0.4, 0.6, 0.8]
     # Q_list = [0.25, 0.5, 0.75, 1]
@@ -77,11 +77,11 @@ if __name__ == '__main__':
     # print([(result[0][i], result[1][i], result[2][i]) for i in range(10)])
 
     filename = 'results.txt'
+    if os.path.exists(filename):
+        os.remove(filename)
     with open(filename, 'w') as f:
         for i in range(2):
             print('step '+str(i+1)+'/2')
-            if os.path.exists(filename):
-                os.remove(filename)
             L = ant(int(nb_ant), int(nb_iteration), [int(problem_1), int(problem_2), int(problem_3)], float(rho), float(alpha), float(Q), int(timeout))
             f.write(str(L) + '\n')
             f.flush()  # flush the buffer to ensure data is written to file
