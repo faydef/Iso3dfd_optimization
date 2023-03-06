@@ -37,8 +37,8 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
     return best
 
 if __name__ == '__main__':
-    _,nb_ant, nb_iteration, problem, rho, alpha, Q, timeout = sys.argv
-    print(ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout))
+    _,nb_ant, nb_iteration, problem_1, problem_2, problem_3, rho, alpha, Q, timeout = sys.argv
+    print(ant(nb_ant, nb_iteration, [problem_1, problem_2, problem_3], rho, alpha, Q, timeout))
         
         
         
