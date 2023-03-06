@@ -5,13 +5,14 @@ import numpy as np
 from random import choices
 from operator import itemgetter
 import sys
+import time
 
 def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
     liste, dico = initiate(problem)
     best = [[],0]
     for j in range(nb_iteration):
         #initiate the problem
-        ants = [[],[],[]]
+        ants = [[],[],[],[]]
         for i in range(nb_ant):
             choices_1 = choices(liste['liste1'], weights=dico['mat1'], k=1)[0]
             choices_2 = choices(liste['liste2'], weights=dico['mat2'][liste['liste1'].index(choices_1)], k=1)[0]
@@ -25,7 +26,16 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
             else:
                 ants[0].append(path)
                 ants[1].append(1)
+                start_time = time()
                 ants[2].append(execute(command({'filename': '../iso3dfd-st7/compiled/bin_'+path[0]+'_'+path[1]+'.exe', 'size1':str(problem[0]), 'size2': str(problem[1]), 'size3':str(problem[2]), 'num_thread':str(path[2]), 'dim1':str(path[3]), 'dim2': str(path[4]), 'dim3': str(path[5])}), timeout))
+                end_time = time()
+                ants[3].append(end_time-start_time)
+                timeout = 0
+                sum = 0
+                for i in range(len(ants[3])):
+                    timeout += ants[1]*ants[3]
+                    sum += ants[1]
+                timeout = int(timeout/sum)
         print(ants[2])
         #update the weight
         ants[0], ants[1], ants[2] = map(list, zip(*sorted(zip(ants[0], ants[1], ants[2]),key=itemgetter(2), reverse=True)))
