@@ -55,13 +55,14 @@ if type_algo == 1:
     for i in range(nb_iter):
         print("generation number {}".format(i))
         ants_int = exploration(tree_graph, nb_ants)
-        ants = []
-        for k in range(nb_ants):
-            ant_int_path = ants_int[k]
-            ant_path = []
-            for j in range(len(ant_int_path)):
-                ant_path.append(list_dict_parameters[j][ant_int_path[j]])
-            ants.append(ant_path)
+        ants = [[list_dict_parameters[j][ants_int[k][j]]
+                 for j in range(len(ants_int[k]))] for k in range(nb_ants)]
+        # for k in range(nb_ants):
+        #    ant_int_path = ants_int[k]
+        #    ant_path = []
+        #    for j in range(len(ant_int_path)):
+        #        ant_path.append(list_dict_parameters[j][ant_int_path[j]])
+        #    ants.append(ant_path)
 
         ants_score = []
         for ant in ants:
