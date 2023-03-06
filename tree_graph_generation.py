@@ -9,7 +9,7 @@ def tree_generation(compil_flag_list, simd_list, num_threads_max, n1_size, n2_si
     list_n2block = values_nblock(n2_size, first=False)
     list_n3block = values_nblock(n3_size, first=False)
 
-    list_num_thread = values_num_thread_power_of_2(num_threads_max)
+    list_num_thread = values_num_thread(num_threads_max)
 
     list_ordered_of_parameters = list_of_parameters(
         compil_flag_list, simd_list, list_num_thread, list_n1block, list_n2block, list_n3block)
@@ -22,36 +22,41 @@ def tree_generation(compil_flag_list, simd_list, num_threads_max, n1_size, n2_si
 
 def values_nblock(n_size, first):
     """return list of integers corresponding to all the possibilities
-    of nk_block corresponding to a certain nk size for the problem"""
+    of nk_block corresponding to a certain nk size for the problem
+    if using for n1block then set first = True else set first = False"""
     list_nblock = []
-    if n_size >= 2:
-        list_nblock.append('2')
-    if n_size >= 4:
-        list_nblock.append('4')
-    if n_size >= 8:
-        list_nblock.append('8')
     if first:
+        if n_size >= 2:
+            list_nblock.append('2')
+        if n_size >= 4:
+            list_nblock.append('4')
+        if n_size >= 8:
+            list_nblock.append('8')
         i = 1
         while n_size >= (16*i):  # add all multiples of 16 smaller than n_size
             a = 16*i
             list_nblock.append(str(a))
             i += 1
     else:
-        list_nblock = range(n_size)
+        list_nblock = range(1, n_size+1)
 
     return list_nblock
 
 
-def values_num_thread_power_of_2(num_threads_max):
+def values_num_thread(num_threads_max, type='power_of_2'):
     """return list of integers corresponding to all the possibilities
     of num_threads based on the maximum number of threads.
-    The list contains the powers of 2 dividing the num_threads_max"""
+    The list contains the powers of 2 dividing the num_threads_max if type = str(power_of_2) and by default,
+    can also contain all the numbers under the maximum number of threads if type = str(all)"""
     list_num_thread = []
-    i = 1
-    while num_threads_max//(2 ** i) != 0:
-        a = 2**i
-        list_num_thread.append(str(a))
-        i += 1
+    if type == 'power_of_2':
+        i = 1
+        while num_threads_max//(2 ** i) != 0:
+            a = 2**i
+            list_num_thread.append(str(a))
+            i += 1
+    if type == 'all':
+        list_num_thread = range(1, num_threads_max + 1)
     return list_num_thread
 
 
