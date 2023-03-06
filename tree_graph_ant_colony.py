@@ -1,6 +1,6 @@
 import random
 
-def exploration(tree,nb_ant,list_dict_parameters):
+def exploration(tree,nb_ant):
     """Take a tree and the number of ant that will explore the tree
     Return a list of ant path in the form of list of list, each list being the different argument for the execution of the program
     Tree Form : {parent1 : {child1 : {pheromone_rate : int, grandchild1 : {}, grandchild2...}, 
@@ -17,13 +17,13 @@ def exploration(tree,nb_ant,list_dict_parameters):
 
     #For each ant, we choose a path
     for ant in range(nb_ant):
-        ants.append(choose_path(tree,list_dict_parameters))
+        ants.append(choose_path(tree))
 
     return ants
 
 
 
-def choose_child_node(parent,list_dict_parameters,depth):
+def choose_child_node(parent):
     """Choose a child node depending on the parent node and thus, the pheromone
     return the under_tree taking the child choosen as the root"""
 
@@ -33,17 +33,17 @@ def choose_child_node(parent,list_dict_parameters,depth):
     
     child_name = random.choices(children, weights=child_weight, k=1)[0]
 
-    return parent[child_name],list_dict_parameters[depth][child_name]
+    return parent[child_name],child_name
 
 
-def choose_path(tree,list_dict_parameters):
+def choose_path(tree):
     """return a list corresponding the the path taken by an ant"""
 
     current_parent=tree.copy()
     path=[]
     depth = 0
     while len(current_parent)>1:
-        current_parent,child_name=choose_child_node(current_parent,list_dict_parameters,depth)
+        current_parent,child_name=choose_child_node(current_parent,depth)
         path.append(child_name)
         depth+=1
 

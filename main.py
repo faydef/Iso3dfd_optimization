@@ -54,7 +54,9 @@ if type_algo == 1:
     print("exécution de l'algo...")
     for i in range(nb_iter):
         print("generation number {}".format(i))
-        ants = exploration(tree_graph, nb_ants, list_dict_parameters)
+        ants_int = exploration(tree_graph, nb_ants)
+        ants = [[list_dict_parameters[i] for i in ants_int[k]]
+                for k in range(len(ants_int))]
         ants_score = []
         for ant in ants:
             olevel = ant[0]
@@ -74,7 +76,7 @@ if type_algo == 1:
             ants_score.append(score)
         if i < nb_iter - 1:
             # sinon update_tree cleanerait les listes ants et ants_score
-            update_tree(tree_graph, evaporation_rate, ants, ants_score)
+            update_tree(tree_graph, evaporation_rate, ants_int, ants_score)
     print(ants)
     print(ants_score)
     last_ants = list(zip(ants_score, ants))
