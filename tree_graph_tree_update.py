@@ -60,7 +60,7 @@ def ASrank(score_path, k, pheromone_added):
     return pheromone_path
 
 
-def BestAnt(score_path,pheromone_added):
-    """At the end of each iteration, the winner ant is rewarded"""
+def BestAnt(score_path):
+    """Return the best ant of the iteration"""
     best_ant = max(score_path, key=lambda x : x[0]) #Peut etre min en fonction du cout
-    return [pheromone_added,best_ant[1]]
+    return best_ant[1]
