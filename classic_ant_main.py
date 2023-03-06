@@ -13,7 +13,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
     for j in range(nb_iteration):
         #initiate the problem
         ants = [[],[],[]]
-        time = []
+        timer = []
         for i in range(nb_ant):
             choices_1 = choices(liste['liste1'], weights=dico['mat1'], k=1)[0]
             choices_2 = choices(liste['liste2'], weights=dico['mat2'][liste['liste1'].index(choices_1)], k=1)[0]
@@ -30,10 +30,10 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
                 start_time = time.time()
                 ants[2].append(execute(command({'filename': '../iso3dfd-st7/compiled/bin_'+path[0]+'_'+path[1]+'.exe', 'size1':str(problem[0]), 'size2': str(problem[1]), 'size3':str(problem[2]), 'num_thread':str(path[2]), 'dim1':str(path[3]), 'dim2': str(path[4]), 'dim3': str(path[5])}), timeout))
                 end_time = time.time()
-                time.append(end_time-start_time)
+                timer.append(end_time-start_time)
         timeout = 0
-        for i in range(len(time)):
-            timeout += ants[1][i]*time[i]
+        for i in range(len(timer)):
+            timeout += ants[1][i]*timer[i]
         timeout = int(timeout/nb_ant) + 1
         print(ants[2])
         print(timeout)
