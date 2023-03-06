@@ -4,7 +4,7 @@ import os
 
 
 def compile_all():
-    Olevels = ["01","02","03","0fast"]
+    Olevels = ["O1","O2","O3","Ofast"]
     Simds = ["sse","avx","avx2","avx512"]
 
 
@@ -19,4 +19,4 @@ def compile_all():
                 os.system("make Olevel=-{} simd={} last".format(olevel,simd))
                 os.system("mv bin/* compiled/bin_{}_{}.exe".format(olevel,simd))
 
-#compile_all()
+compile_all()
