@@ -52,7 +52,7 @@ if type_algo == 1 :
     tree_graph = tree_generation(compil_flag_list,simd_list,n_threads_max,n1_size,n2_size,n3_size)
     print("exécution de l'algo...")
     for i in range(nb_iter):    
-        print(i)
+        print("generation number {}".format(i))
         ants = exploration(tree_graph,nb_ants)
         ants_score = []
         for ant in ants :
@@ -71,4 +71,8 @@ if type_algo == 1 :
             ants_score.append(score)
 
         update_tree(tree_graph,evaporation_rate,ants,ants_score)
-    
+
+    last_ants = list(zip(ants,ants_score))
+    best_ant = BestAnt(score_path)
+    print("best score : {}".format(best_ant[0]))
+    print("best ant : {}".format(best_ant[1]))
