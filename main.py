@@ -57,8 +57,10 @@ if type_algo == 1:
         ants_int = exploration(tree_graph, nb_ants)
         print(list_dict_parameters)
         print(ants_int)
-        ants = [[list_dict_parameters[k][i] for i in ants_int[k]]
-                for k in range(len(ants_int))]
+        ants = []
+        for k in range(nb_ants):
+            print('k:', k, 'i:', i)
+            ants.append([list_dict_parameters[k][i] for i in ants_int[k]])
         ants_score = []
         for ant in ants:
             olevel = ant[0]
