@@ -33,7 +33,7 @@ if type_algo == 1:
 
 nb_iter = ask_for("number of iterations : ",10)
 nb_ants = ask_for("number of ants per iteration : ",10)
-evaporation_rate = ask_for("evaporation_rate : ",0)
+evaporation_rate = ask_for("evaporation_rate : ",0.2)
 n1_size = ask_for("size of the problem x : ",256)
 n2_size = ask_for("size of the problem y : ",256)
 n3_size = ask_for("size of the problem z : ",256)
@@ -66,12 +66,15 @@ if type_algo == 1 :
             options = {"filename" : filename, "size1":str(n1_size),"size2":str(n2_size),"size3":str(n3_size),\
                     "num_thread" : str(num_threads), "dim1":str(dim1), "dim2":str(dim2),"dim3":str(dim3)}
             bash_command = command(options)
-            timeout = 60.
+            timeout = 60
             score = execute(bash_command,timeout)
+            print(score)
             ants_score.append(score)
-
-        update_tree(tree_graph,evaporation_rate,ants,ants_score)
-
+        if i < nb_iter -1 :
+            #sinon update_tree cleanerait les listes ants et ants_score 
+            update_tree(tree_graph,evaporation_rate,ants,ants_score)
+    print(ants)
+    print(ants_score)
     last_ants = list(zip(ants_score,ants))
     best_ant = BestAnt(last_ants)
     print("best score : {}".format(best_ant[0]))
