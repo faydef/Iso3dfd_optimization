@@ -48,8 +48,12 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
 
 if __name__ == '__main__':
     _,nb_ant, nb_iteration, problem_1, problem_2, problem_3, rho, alpha, Q, timeout = sys.argv
-    print(ant(int(nb_ant), int(nb_iteration), [int(problem_1), int(problem_2), int(problem_3)], float(rho), float(alpha), float(Q), int(timeout)))
-        
+    alpha_list = np.linspace(0.1,1,8)
+    result = []
+    for elem in alpha_list:
+        result.append(ant(int(nb_ant), int(nb_iteration), [int(problem_1), int(problem_2), int(problem_3)], float(rho), elem, float(Q), int(timeout)))
+    print(result)
+    
         
         
         
