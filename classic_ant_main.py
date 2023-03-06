@@ -4,6 +4,7 @@ from exec_algo import command,execute
 import numpy as np
 from random import choices
 from operator import itemgetter
+import sys
 
 def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
     liste, dico = initiate(problem)
@@ -35,7 +36,8 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
     return best
 
 if __name__ == '__main__':
-    print(ant(100, 10, [128,128,128], 0.1, 0.5, 2, 30))
+    _,nb_ant, nb_iteration, problem, rho, alpha, Q, timeout = sys.argv
+    print(ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout))
         
         
         
