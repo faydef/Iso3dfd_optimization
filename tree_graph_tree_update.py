@@ -51,6 +51,7 @@ def ants_ants_score_merge(ants,ants_score):
     return path_score
 
 
+
 def ASrank(score_path, k, pheromone_added):
     """At the end of each iteration, all solutions are ranked and the first k ant add pheromone to their path"""
     score_path.sort(key = lambda x : x[0], reverse=False) #Peut etre changer reverse en fonction du cout
@@ -59,15 +60,7 @@ def ASrank(score_path, k, pheromone_added):
     return pheromone_path
 
 
-def ElitistAS(score_path,pheromone_added):
+def BestAnt(score_path,pheromone_added):
     """At the end of each iteration, the winner ant is rewarded"""
     best_ant = max(score_path, key=lambda x : x[0]) #Peut etre min en fonction du cout
     return [pheromone_added,best_ant[1]]
-
-
-def MinMaxAS(score_path,tree,min,max,pheromone_added):
-    """At the end of each iteration, the winner ant is rewarded"""
-
-    return []
-
-
