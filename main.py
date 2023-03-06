@@ -11,7 +11,7 @@ def ask_for(question,default_value):
     if res == "" :
         return default_value
     else :
-        return res
+        return int(res)
 
 
 compil_flag_list = ["01","02","03","0fast"]
@@ -48,9 +48,9 @@ list_num_thread = values_num_thread(n_threads_max)
 
 
 if type_algo == 1 :
-    print("génération de l'arbre")
+    print("génération de l'arbre...")
     tree_graph = tree_generation(compil_flag_list,simd_list,n_threads_max,n1_size,n2_size,n3_size)
-    print("exécution de l'algo")
+    print("exécution de l'algo...")
     for i in range(nb_iter):    
         print(i)
         ants = exploration(tree_graph,nb_ants)
@@ -66,9 +66,9 @@ if type_algo == 1 :
             options = {"filename" : filename, "size1":str(n1_size),"size2":str(n2_size),"size3":str(n3_size),\
                     "num_thread" : str(num_threads), "dim1":str(dim1), "dim2":str(dim2),"dim3":str(dim3)}
             bash_command = command(options)
-            timeout = 30.
+            timeout = 60.
             score = execute(bash_command,timeout)
             ants_score.append(score)
 
         update_tree(tree_graph,evaporation_rate,ants,ants_score)
-
+    
