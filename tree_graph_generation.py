@@ -13,7 +13,6 @@ def tree_generation(compil_flag_list, simd_list, num_threads_max, n1_size, n2_si
 
     list_ordered_of_parameters = list_of_parameters(
         compil_flag_list, simd_list, list_num_thread, list_n1block, list_n2block, list_n3block)
-    print(list_ordered_of_parameters)
     tree_graph = add_children(
         tree_graph, list_ordered_of_parameters, 0)
 
@@ -97,5 +96,4 @@ def remove_pheromons(tree_graph):
     return tree_graph
 
 
-print(remove_pheromons(tree_generation(
-    ['O3', '02', 'Ofast'], ['avx2', 'avx512'], 32, 16, 4, 4)))
+
