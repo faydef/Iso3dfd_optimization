@@ -2,10 +2,7 @@
 
 from tree_graph_generation import *
 from tree_graph_ant_colony import *
-<<<<<<< HEAD
 from tree_graph_tree_update import *
-=======
->>>>>>> main
 from exec_algo import *
 
 
@@ -35,24 +32,15 @@ if type_algo == 1:
 
 
 nb_iter = ask_for("number of iterations : ",10)
-<<<<<<< HEAD
 nb_ants = ask_for("number of ants per iteration : ",10)
 evaporation_rate = ask_for("evaporation_rate : ",0)
-=======
-nb_ant = ask_for("number of ants per iteration : ",10)
-evaporation_rate = ask_for("evaporation_rate",0)
->>>>>>> main
 n1_size = ask_for("size of the problem x : ",256)
 n2_size = ask_for("size of the problem y : ",256)
 n3_size = ask_for("size of the problem z : ",256)
 n_threads_max = ask_for("maximum number of threads : ",32)
 
 
-<<<<<<< HEAD
 list_num_thread = values_num_thread(n_threads_max)
-=======
-list_num_thread = values_num_thread_power_of_2(n_threads_max)
->>>>>>> main
 
 
 #print(n_size)
@@ -60,20 +48,21 @@ list_num_thread = values_num_thread_power_of_2(n_threads_max)
 
 
 if type_algo == 1 :
+    print("génération de l'arbre")
     tree_graph = tree_generation(compil_flag_list,simd_list,n_threads_max,n1_size,n2_size,n3_size)
-
-    for _ in range(nb_iter):    
+    print("exécution de l'algo")
+    for i in range(nb_iter):    
+        print(i)
         ants = exploration(tree_graph,nb_ants)
         ants_score = []
         for ant in ants :
-<<<<<<< HEAD
             olevel = ant[0]
             simd = ant[1]
             num_threads = str(ant[2])
             dim1 = str(ant[3])
             dim2 = str(ant[4])
             dim3 = str(ant[5])
-            filename = "bin_{}_{}.exe".format(simd,olevel)
+            filename = "../iso3dfd-st7/compiled/bin_{}_{}.exe".format(olevel,simd)
             options = {"filename" : filename, "size1":str(n1_size),"size2":str(n2_size),"size3":str(n3_size),\
                     "num_thread" : str(num_threads), "dim1":str(dim1), "dim2":str(dim2),"dim3":str(dim3)}
             bash_command = command(options)
@@ -82,12 +71,4 @@ if type_algo == 1 :
             ants_score.append(score)
 
         update_tree(tree_graph,evaporation_rate,ants,ants_score)
-=======
-            options = {"filename" : filename, "size1":n1_size,"size2":n2_size,"size3":n3_size,\
-                    "num_thread" : }
-            bash_commande = command(options)
-            timeout = 1.
-            execute(bash_command,timeout)
-        ants_score = [score() for ant in ants] 
-        update_tree(tree_graph,evaporation_rate,ants,ants_score,ranking_function)
->>>>>>> main
+

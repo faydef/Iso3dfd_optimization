@@ -69,9 +69,4 @@ def ElitistAS(score_path,pheromone_added):
 
 def MinMaxAS(score_path,min,max):
     """At the end of each iteration, the winner ant is rewarded"""
-
-<<<<<<< HEAD
     return []
-=======
-    return []
->>>>>>> main
