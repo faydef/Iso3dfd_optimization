@@ -27,12 +27,11 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
             else:
                 ants[0].append(path)
                 ants[1].append(1)
-                start_time = time()
+                start_time = time.time()
                 ants[2].append(execute(command({'filename': '../iso3dfd-st7/compiled/bin_'+path[0]+'_'+path[1]+'.exe', 'size1':str(problem[0]), 'size2': str(problem[1]), 'size3':str(problem[2]), 'num_thread':str(path[2]), 'dim1':str(path[3]), 'dim2': str(path[4]), 'dim3': str(path[5])}), timeout))
-                end_time = time()
+                end_time = time.time()
                 time.append(end_time-start_time)
         timeout = 0
-        sum = 0
         for i in range(len(time)):
             timeout += ants[1][i]*time[i]
         timeout = int(timeout/nb_ant) + 1
