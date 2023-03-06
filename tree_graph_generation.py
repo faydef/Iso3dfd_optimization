@@ -25,12 +25,6 @@ def values_nblock(n_size, first):
     if using for n1block then set first = True else set first = False"""
     list_nblock = []
     if first:
-        if n_size >= 2:
-            list_nblock.append('2')
-        if n_size >= 4:
-            list_nblock.append('4')
-        if n_size >= 8:
-            list_nblock.append('8')
         i = 1
         while n_size >= (16*i):  # add all multiples of 16 smaller than n_size
             a = 16*i
@@ -94,6 +88,3 @@ def remove_pheromons(tree_graph):
     for value in tree_graph.values():
         remove_pheromons(value)
     return tree_graph
-
-
-
