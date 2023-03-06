@@ -51,7 +51,7 @@ if __name__ == '__main__':
     alpha_list = np.linspace(0.1,1,8)
     result = []
     for elem in alpha_list:
-        result.append(ant(int(nb_ant), int(nb_iteration), [int(problem_1), int(problem_2), int(problem_3)], float(rho), float(alpha), float(Q), int(timeout)))
+        result.append(ant(int(nb_ant), int(nb_iteration), [int(problem_1), int(problem_2), int(problem_3)], float(rho), elem, float(Q), int(timeout)))
     print(result)
     
         
