@@ -59,15 +59,30 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
 
 if __name__ == '__main__':
     _,nb_ant, nb_iteration, problem_1, problem_2, problem_3, no_rho, no_alpha, no_Q, timeout = sys.argv
-    alpha_list = [0.25, 0.5, 0.75, 1, 1.25, 1.5,1.75]
+    alpha_list = [0.5, 0.75, 1, 1.25, 1.5,1.75]
     rho_list = [0.2, 0.4, 0.6, 0.8]
     Q_list = [0.25, 0.5, 0.75, 1]
     result = [[],[],[]]
-    i = 1
+    i = 8
     filename = 'results.txt'
-    if os.path.exists(filename):
-        os.remove(filename)
     with open(filename, 'w') as f:
+        L = ant(int(nb_ant), int(nb_iteration), [int(problem_1), int(problem_2), int(problem_3)], 0.4, 0.25, 1, int(timeout))
+        result[0].append((0.4, 0.25, 1))
+        result[1].append(L[0])
+        result[2].append(L[1])
+        f.write(str([(0.4, 0.25, 1), L[0], L[1]]) + '\n')
+        f.flush()  # flush the buffer to ensure data is written to file
+        i+=1
+        for rho in [0.6,0.8]:
+            for Q in Q_list:
+                print('step '+str(i)+'/112')
+                L = ant(int(nb_ant), int(nb_iteration), [int(problem_1), int(problem_2), int(problem_3)], rho, 0.25, Q, int(timeout))
+                result[0].append((rho, 0.25, Q))
+                result[1].append(L[0])
+                result[2].append(L[1])
+                f.write(str([(rho, 0.25, Q), L[0], L[1]]) + '\n')
+                f.flush()
+                i+=1
         for alpha in alpha_list:
             for rho in rho_list:
                 for Q in Q_list:
