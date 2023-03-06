@@ -55,6 +55,8 @@ if type_algo == 1:
     for i in range(nb_iter):
         print("generation number {}".format(i))
         ants_int = exploration(tree_graph, nb_ants)
+        print(list_dict_parameters)
+        print(ants_int)
         ants = [[list_dict_parameters[k][i] for i in ants_int[k]]
                 for k in range(len(ants_int))]
         ants_score = []
