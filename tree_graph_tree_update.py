@@ -6,7 +6,7 @@ def update_tree(tree,evaporation_rate,ants,ants_score, minMax=False, max_pheromo
     """
     
     pheromone_decay(tree,evaporation_rate,minMax,min_pheromone)
-    score_path=zip(ants,ants_score)
+    score_path=list(zip(ants_score,ants))
     pheromone_added = ASrank(score_path,20,1) #Choose here which ranking function to use, the one that exist are are the end of the file
     add_pheromone(tree,pheromone_added, minMax, max_pheromone)
 
@@ -19,7 +19,7 @@ def pheromone_decay(tree,evaporation_rate,minMax,min_pheromone):
             tree[key] = (1-evaporation_rate)*value
             if minMax and tree[key]<min_pheromone :
                 tree[key]=min_pheromone
-        else : pheromone_decay(tree[key],evaporation_rate)
+        else : pheromone_decay(tree[key],evaporation_rate,minMax,min_pheromone)
 
 
 def add_pheromone(tree,new_pheromone, minMax, max_pheromone):

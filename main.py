@@ -72,7 +72,7 @@ if type_algo == 1 :
 
         update_tree(tree_graph,evaporation_rate,ants,ants_score)
 
-    last_ants = list(zip(ants,ants_score))
-    best_ant = BestAnt(score_path)
+    last_ants = list(zip(ants_score,ants))
+    best_ant = BestAnt(last_ants)
     print("best score : {}".format(best_ant[0]))
     print("best ant : {}".format(best_ant[1]))
