@@ -2,7 +2,7 @@ def update_tree(tree,evaporation_rate,ants,ants_score):
     """return the updated tree with the score of the previous ant, the decay of the present pheromone and
     the choice of the cost function"""
     
-    pheromone_decay(tree,evaporation_rate) 
+    pheromone_decay(tree,evaporation_rate)
 
     score_path = ants_ants_score_merge(ants,ants_score)
     pheromone_added = ASrank(score_path,20,1) #Choose here which ranking function to use, at the end of the file
@@ -55,7 +55,7 @@ def average_ranking_function(ants,ants_score,maybe_other_argument=None):
 
 def ASrank(score_path, k, pheromone_added):
     """At the end of each iteration, all solutions are ranked and the first k ant add pheromone to their path"""
-    score_path.sort(key = lambda x : x[0], reversed=False) #Peut etre changer reverse en fonction du cout
+    score_path.sort(key = lambda x : x[0], reverse=False) #Peut etre changer reverse en fonction du cout
     k_best = score_path[:k]
     pheromone_path = [[pheromone_added,k_best[i][1]] for i in range(len(k_best))]
     return pheromone_path
@@ -71,3 +71,5 @@ def MinMaxAS(score_path,min,max):
     """At the end of each iteration, the winner ant is rewarded"""
 
     return []
+
+
