@@ -38,7 +38,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
 
 if __name__ == '__main__':
     _,nb_ant, nb_iteration, problem_1, problem_2, problem_3, rho, alpha, Q, timeout = sys.argv
-    print(ant(nb_ant, nb_iteration, [problem_1, problem_2, problem_3], rho, alpha, Q, timeout))
+    print(ant(int(nb_ant), int(nb_iteration), [int(problem_1), int(problem_2), int(problem_3)], float(rho), float(alpha), float(Q), int(timeout)))
         
         
         
