@@ -125,11 +125,10 @@ if __name__ == "__main__":
         timeout,
         w,
     ) = [int(el) for el in sys.argv[1:-1]] + [float(sys.argv[-1])]
-    liste, dico = initiate([problem_1, problem_2, problem_3])
     # Define the boundaries of the search space
     bounds = [(0, 2), (0, 2), (0, 32), (0, problem_1), (0, problem_2), (0, problem_3)]
     optimizer = ParticleSwarmOptimization(
-        objective_function, bounds, num_particles, max_iterations
+        objective_function, bounds, num_particles, max_iterations, c1, c2, w
     )
     solution = optimizer.optimize()
     print("Solution: ", solution[0])
