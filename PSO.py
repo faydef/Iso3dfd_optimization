@@ -54,7 +54,11 @@ class Particle:
             self.velocity.append(random.uniform(-1, 1))
 
     def evaluate(self, objective_function):
+        start = time.time()
         self.fitness = objective_function(self.position, self.problem, self.timeout)
+        end = time.time()
+
+        self.timeout = int(end - start)
 
         if self.fitness > self.best_fitness or self.best_fitness == -1:
             self.best_position = self.position
@@ -131,7 +135,7 @@ class ParticleSwarmOptimization:
                     self.global_best_fitness = self.swarm[j].fitness
 
                 if (
-                    self.swarm[j].timeout > self.timeout_global
+                    self.swarm[j].timeout < self.timeout_global
                     or self.timeout_global == -1
                 ):
                     self.timeout_global = self.swarm[j].timeout
@@ -139,7 +143,7 @@ class ParticleSwarmOptimization:
             for j in range(self.num_particles):
                 self.swarm[j].update_velocity(self.global_best_position)
                 self.swarm[j].update_position(self.bounds)
-                self.swarm[j].timeout = self.timeout_global
+                self.swarm[j].update_timeout(self.timeout_global)
 
             print(self.global_best_position, self.global_best_fitness)
 
