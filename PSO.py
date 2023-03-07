@@ -4,8 +4,8 @@ import sys
 from exec_algo import command, execute
 from representation import initiate
 
-speed = ['O2', 'O3', 'Ofast']
-avx = ['avx', 'avx2', 'avx512']
+speed = ["O2", "O3", "Ofast"]
+avx = ["avx", "avx2", "avx512"]
 # Define the objective function to optimize
 def objective_function(path, problem, timeout):
     return execute(
@@ -44,15 +44,16 @@ class Particle:
         self.timeout = timeout
 
         for i in range(len(bounds)):
-            self.position.append(random.randint(bounds[i][0], bounds[i][1]))
+            if i != 3:
+                self.position.append(random.randint(bounds[i][0], bounds[i][1]))
+            else:
+                self.position[-1] = (self.position[-1] // 16) * 16
             self.velocity.append(random.uniform(-1, 1))
-            if i ==3:
-                self.position[-1] = (self.position[-1]//16)*16
 
     def evaluate(self, objective_function):
         self.fitness = objective_function(self.position, self.problem, self.timeout)
 
-        if self.fitness < self.best_fitness or self.best_fitness == -1:
+        if self.fitness > self.best_fitness or self.best_fitness == -1:
             self.best_position = self.position
             self.best_fitness = self.fitness
 
@@ -73,9 +74,12 @@ class Particle:
 
     def update_position(self, bounds):
         for i in range(len(self.position)):
-            self.position[i] = round(self.position[i] + self.velocity[i])
-            if i ==3:
-                self.position[-1] = (self.position[-1]//16)*16
+            if i != 3:
+                self.position[i] = round(self.position[i] + self.velocity[i])
+            else:
+                self.position[-1] = (
+                    round(self.position[i] + self.velocity[i]) // 16
+                ) * 16
             if self.position[i] < bounds[i][0]:
                 self.position[i] = bounds[i][0]
             elif self.position[i] > bounds[i][1]:
@@ -116,7 +120,7 @@ class ParticleSwarmOptimization:
                 self.swarm[j].evaluate(self.objective_function)
 
                 if (
-                    self.swarm[j].fitness < self.global_best_fitness
+                    self.swarm[j].fitness > self.global_best_fitness
                     or self.global_best_fitness == -1
                 ):
                     self.global_best_position = self.swarm[j].position
@@ -125,7 +129,7 @@ class ParticleSwarmOptimization:
             for j in range(self.num_particles):
                 self.swarm[j].update_velocity(self.global_best_position)
                 self.swarm[j].update_position(self.bounds)
-            
+
             print(self.global_best_position, self.global_best_fitness)
 
         return (self.global_best_position, self.global_best_fitness)
@@ -145,7 +149,7 @@ if __name__ == "__main__":
         w,
     ) = [int(el) for el in sys.argv[1:-1]] + [float(sys.argv[-1])]
     # Define the boundaries of the search space
-    bounds = [(0, 2), (0, 2), (0, 32), (16, problem_1), (1, problem_2), (1, problem_3)]
+    bounds = [(0, 2), (0, 2), (1, 32), (16, problem_1), (1, problem_2), (1, problem_3)]
     optimizer = ParticleSwarmOptimization(
         objective_function,
         bounds,
