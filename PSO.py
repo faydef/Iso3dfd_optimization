@@ -77,7 +77,7 @@ class Particle:
             if i != 3:
                 self.position[i] = round(self.position[i] + self.velocity[i])
             else:
-                self.position[-1] = (
+                self.position[i] = (
                     round(self.position[i] + self.velocity[i]) // 16
                 ) * 16
             if self.position[i] < bounds[i][0]:
