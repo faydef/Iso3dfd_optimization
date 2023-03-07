@@ -24,7 +24,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
             choices_5 = choices(liste['liste5'], weights=dico['mat5'][liste['liste4'].index(choices_4)], k=1)[0]
             choices_6 = choices(liste['liste6'], weights=dico['mat6'][liste['liste5'].index(choices_5)], k=1)[0]
             path = [choices_1, choices_2, choices_3, choices_4, choices_5, choices_6]
-            while path in worst:
+            while tuple(path) in worst:
                 choices_1 = choices(liste['liste1'], weights=dico['mat1'], k=1)[0]
                 choices_2 = choices(liste['liste2'], weights=dico['mat2'][liste['liste1'].index(choices_1)], k=1)[0]
                 choices_3 = choices(liste['liste3'], weights=dico['mat3'][liste['liste2'].index(choices_2)], k=1)[0]
@@ -52,10 +52,10 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
         routes = [(ants[0][i], ants[1][i]) for i in range(min(10, len(ants[0])))]
         if len(ants[0]) > 20:
             for i in range(len(ants[0])-1, len(ants[0])-10,-1):
-                worst.add(ants[0][i]) 
+                worst.add(tuple(ants[0][i])) 
             for i in range(len(ants[0])-10,0,-1):
                 if ants[2][i] == -99:
-                    worst.add(ants[0][i])
+                    worst.add(tuple(ants[0][i]))
         if ants[2][0] > best[1]:
             best = [ants[0][0], ants[2][0]]
         update(routes, liste, dico, rho, alpha, Q)
