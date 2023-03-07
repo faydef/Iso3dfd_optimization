@@ -1,6 +1,7 @@
 import random
 import math
 import sys
+import time
 from exec_algo import command, execute
 from representation import initiate
 
@@ -112,6 +113,7 @@ class ParticleSwarmOptimization:
         self.global_best_position = []
         self.global_best_fitness = -1
         self.swarm = []
+        self.timeout_global = timeout
 
         for i in range(num_particles):
             self.swarm.append(Particle(bounds, c1, c2, w, problem, timeout))
@@ -128,9 +130,16 @@ class ParticleSwarmOptimization:
                     self.global_best_position = self.swarm[j].position
                     self.global_best_fitness = self.swarm[j].fitness
 
+                if (
+                    self.swarm[j].timeout > self.timeout_global
+                    or self.timeout_global == -1
+                ):
+                    self.timeout_global = self.swarm[j].timeout
+
             for j in range(self.num_particles):
                 self.swarm[j].update_velocity(self.global_best_position)
                 self.swarm[j].update_position(self.bounds)
+                self.swarm[j].timeout = self.timeout_global
 
             print(self.global_best_position, self.global_best_fitness)
 
