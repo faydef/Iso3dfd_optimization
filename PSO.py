@@ -143,7 +143,7 @@ class ParticleSwarmOptimization:
             for j in range(self.num_particles):
                 self.swarm[j].update_velocity(self.global_best_position)
                 self.swarm[j].update_position(self.bounds)
-                self.swarm[j].update_timeout(self.timeout_global)
+                self.swarm[j].timeout = self.timeout_global
 
             print(self.global_best_position, self.global_best_fitness)
 
