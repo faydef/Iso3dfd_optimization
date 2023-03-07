@@ -47,7 +47,7 @@ class Particle:
             if i != 3:
                 self.position.append(random.randint(bounds[i][0], bounds[i][1]))
             else:
-                self.position[-1] = (self.position[-1] // 16) * 16
+                self.position.append(random.randint(bounds[i][0], bounds[i][1]) // 16) * 16
             self.velocity.append(random.uniform(-1, 1))
 
     def evaluate(self, objective_function):
