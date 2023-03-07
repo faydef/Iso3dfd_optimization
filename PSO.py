@@ -145,7 +145,7 @@ if __name__ == "__main__":
         w,
     ) = [int(el) for el in sys.argv[1:-1]] + [float(sys.argv[-1])]
     # Define the boundaries of the search space
-    bounds = [(0, 2), (0, 2), (0, 32), (16, problem_1), (0, problem_2), (0, problem_3)]
+    bounds = [(0, 2), (0, 2), (0, 32), (16, problem_1), (1, problem_2), (1, problem_3)]
     optimizer = ParticleSwarmOptimization(
         objective_function,
         bounds,
