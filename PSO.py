@@ -4,15 +4,17 @@ import sys
 from exec_algo import command, execute
 from representation import initiate
 
+speed = ['O2', 'O3', 'Ofast']
+avx = ['avx', 'avx2', 'avx512']
 # Define the objective function to optimize
 def objective_function(path, problem, timeout):
     return execute(
         command(
             {
                 "filename": "../iso3dfd-st7/compiled/bin_"
-                + path[0]
+                + speed[path[0]]
                 + "_"
-                + path[1]
+                + avx[path[1]]
                 + ".exe",
                 "size1": str(problem[0]),
                 "size2": str(problem[1]),
