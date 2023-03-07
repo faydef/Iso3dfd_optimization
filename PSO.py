@@ -29,7 +29,7 @@ def objective_function(path, problem, timeout):
 
 # Define the Particle class
 class Particle:
-    def __init__(self, bounds, c1, c2, w):
+    def __init__(self, bounds, c1, c2, w, problem, timeout):
         self.c1 = c1
         self.c2 = c2
         self.w = w
@@ -38,13 +38,14 @@ class Particle:
         self.best_position = []
         self.fitness = -1
         self.best_fitness = -1
+        self.problem = problemself;timeout = timeout
 
         for i in range(len(bounds)):
             self.position.append(random.randint(bounds[i][0], bounds[i][1]))
             self.velocity.append(random.uniform(-1, 1))
 
     def evaluate(self, objective_function):
-        self.fitness = objective_function(*self.position)
+        self.fitness = objective_function(self.position, self.problem, self.timeout )
 
         if self.fitness < self.best_fitness or self.best_fitness == -1:
             self.best_position = self.position
@@ -77,7 +78,7 @@ class Particle:
 # Define the ParticleSwarmOptimization class
 class ParticleSwarmOptimization:
     def __init__(
-        self, objective_function, bounds, num_particles, max_iterations, c1, c2, w
+        self, objective_function, bounds, num_particles, max_iterations, c1, c2, w, problem, timeout
     ):
         self.objective_function = objective_function
         self.bounds = bounds
@@ -91,7 +92,7 @@ class ParticleSwarmOptimization:
         self.swarm = []
 
         for i in range(num_particles):
-            self.swarm.append(Particle(bounds, c1, c2, w))
+            self.swarm.append(Particle(bounds, c1, c2, w, problem, timeout))
 
     def optimize(self):
         for i in range(self.max_iterations):
@@ -128,7 +129,7 @@ if __name__ == "__main__":
     # Define the boundaries of the search space
     bounds = [(0, 2), (0, 2), (0, 32), (0, problem_1), (0, problem_2), (0, problem_3)]
     optimizer = ParticleSwarmOptimization(
-        objective_function, bounds, num_particles, max_iterations, c1, c2, w
+        objective_function, bounds, num_particles, max_iterations, c1, c2, w, [problem_1, problem_2, problem_3], timeout
     )
     solution = optimizer.optimize()
     print("Solution: ", solution[0])
