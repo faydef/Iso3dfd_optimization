@@ -11,7 +11,7 @@ import os
 def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
     liste, dico = initiate(problem)
     best = [[],0]
-    worst = []
+    worst = set()
     for j in range(nb_iteration):
         #initiate the problem
         ants = [[],[],[]]
@@ -51,8 +51,11 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
         ants[0], ants[1], ants[2] = map(list, zip(*sorted(zip(ants[0], ants[1], ants[2]),key=itemgetter(2), reverse=True)))
         routes = [(ants[0][i], ants[1][i]) for i in range(min(10, len(ants[0])))]
         if len(ants[0]) > 20:
-            for i in range(len(ants[0])-1, max(-1, len(ants[0])-10),-1):
-                worst.append(ants[0][i]) 
+            for i in range(len(ants[0])-1, len(ants[0])-10,-1):
+                worst.add(ants[0][i]) 
+            for i in range(len(ants[0])-10,0,-1):
+                if ants[2][i] == -99:
+                    worst.add(ants[0][i])
         if ants[2][0] > best[1]:
             best = [ants[0][0], ants[2][0]]
         update(routes, liste, dico, rho, alpha, Q)
