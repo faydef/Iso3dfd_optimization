@@ -9,7 +9,6 @@ def compile_all():
 
 
     os.chdir("../iso3dfd-st7")
-    print(os.listdir())
     if "compiled" not in os.listdir():
         print("creation du repertoire compiled...")
         os.system("rm bin/*")
@@ -18,5 +17,6 @@ def compile_all():
             for simd in Simds: 
                 os.system("make Olevel=-{} simd={} last".format(olevel,simd))
                 os.system("mv bin/* compiled/bin_{}_{}.exe".format(olevel,simd))
+    print("compilation of the code ...")
 
 compile_all()
