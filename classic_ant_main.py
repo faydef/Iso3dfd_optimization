@@ -49,7 +49,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
         print(timeout)
         #update the weight
         ants[0], ants[1], ants[2] = map(list, zip(*sorted(zip(ants[0], ants[1], ants[2]),key=itemgetter(2), reverse=True)))
-        routes = [(ants[0][i], ants[1][i]) for i in range(min(10, len(ants[0])))]
+        routes = [(ants[0][i], ants[1][i], ants[2][i]) for i in range(min(10, len(ants[0])))]
         if len(ants[0]) > 20:
             for i in range(len(ants[0])-1, len(ants[0])-10,-1):
                 worst.add(tuple(ants[0][i])) 
