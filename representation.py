@@ -5,7 +5,7 @@ def initiate(problem):
     liste = dict()
     liste['liste1'] = ['O2', 'O3', 'Ofast']
     liste['liste2'] = ['avx', 'avx2', 'avx512']
-    liste['liste3'] = [16, 32]
+    liste['liste3'] = [16, 18, 20, 22, 24, 26, 28, 30, 32]
     liste['liste4'] = [problem[0]]
     liste['liste5'] = [2*k for k in range(1, ((problem[1])//2)+1)]
     liste['liste6'] = [2*k for k in range(1, ((problem[2])//2)+1)]
