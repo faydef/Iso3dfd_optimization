@@ -1,4 +1,6 @@
-
+import os
+import sys
+sys.path.append("..")
 
 
 import mpi4py
@@ -17,10 +19,11 @@ from exec_algo import command, execute
 import numpy as np
 from random import choices
 from operator import itemgetter
-import sys
 import time
 
 # import os
+
+nb_machines = 4
 
 
 def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
@@ -49,7 +52,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
             [],
         ]  # liste of paths, number of ants that choosed this path and their score
         timer = []  # liste of execution time in order to update the timeout
-        for i in range(nb_ant):
+        for i in range(int(nb_ant/nb_machines)):
             ######################################choose randomly a path to explore based on probability weights##############################
             safe_path = True
             while safe_path:
@@ -102,7 +105,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
                     execute(
                         command(
                             {
-                                "filename": "../iso3dfd-st7/compiled/bin_"
+                                "filename": "../../iso3dfd-st7/compiled/bin_"
                                 + path[0]
                                 + "_"
                                 + path[1]
@@ -138,7 +141,14 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
         routes = [
             (ants[0][i], ants[1][i], ants[2][i]) for i in range(min(10, len(ants[0])))
         ]
-        update(routes, liste, dico, rho, alpha, Q)
+        
+        comm.barrier()
+        all_routes_raw = comm.gather(routes)
+        all_routes = []
+        for x in all_routes_raw:
+            all_routes = all_routes + x 
+
+        update(all_routes, liste, dico, rho, alpha, Q)
         # store the worst path to avoid them
         if len(ants[0]) > 20:
             for i in range(len(ants[0]) - 1, len(ants[0]) - 10, -1):
@@ -149,6 +159,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
         # update the best solution
         if ants[2][0] > best[1]:
             best = [ants[0][0], ants[2][0]]
+        
     return best
 
 
