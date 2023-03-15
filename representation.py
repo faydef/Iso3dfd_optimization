@@ -7,8 +7,8 @@ def initiate(problem):
     liste['liste2'] = ['avx', 'avx2', 'avx512']
     liste['liste3'] = [16, 32]
     liste['liste4'] = [problem[0]]
-    liste['liste5'] = [2*k for k in range(1, ((problem[1])/2)+1)]
-    liste['liste6'] = [2*k for k in range(1, ((problem[2])/2)+1)]
+    liste['liste5'] = [2*k for k in range(1, ((problem[1])//2)+1)]
+    liste['liste6'] = [2*k for k in range(1, ((problem[2])//2)+1)]
 
     dico = dict()
     dico['mat1'] = np.array([1/len(liste['liste1']) for el in liste['liste1']])
