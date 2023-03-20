@@ -1,3 +1,6 @@
 .main.*
 .tree*
 parallel/.*
+__pycache__
+parallel/scipts/*.sh
+
