@@ -147,7 +147,7 @@ def get_spark_score(sparks):
     compteur=0
     for s in sparks :
         att_val=loc_to_attribut(s)
-        if ''.join(att_val) not in saved_config:
+        if ''.join(att_val) not in saved_config.keys():
             score=execute(
                                 command(
                                     {
