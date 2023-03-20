@@ -15,7 +15,7 @@ def ask_for(question, default_value):
 
 
 
-compil_flag_list = ["O1", "O2", "O3", "0fast"]
+compil_flag_list = ["O1", "O2", "O3", "Ofast"]
 simd_list = ["sse", "avx", "avx2", "avx512"]
 output_value = 'points'
 
