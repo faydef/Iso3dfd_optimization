@@ -194,7 +194,10 @@ def euclide(loc1,loc2):
 
 
 def best_loc(loc_score):
-    return max(loc_score, key=lambda item:item[1])
+    print([i[1] for i in loc_score])
+    best= max(loc_score, key=lambda item:item[1])
+    print(best)
+    return best
 
 def worst_loc(loc_score):
     return min(loc_score, key=lambda item:item[1])
