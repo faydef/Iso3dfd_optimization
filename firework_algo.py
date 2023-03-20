@@ -140,7 +140,7 @@ def gaussian_spark(firework_scores,m_gauss):
     return sparks
 
 
-def get_spark_score(sparks):
+def get_spark_score(sparks,):
     score_sparks=[]
     n_spark=len(sparks)
     print(f"Nombre de sparks dans cette generation : {n_spark}")
@@ -170,7 +170,7 @@ def get_spark_score(sparks):
             score_sparks.append((s,score))
             saved_config[''.join(str(e) for e in att_val)]=score
         else:
-            eco+=1
+            eco = eco +1
         compteur+=1
         print(compteur)
     return score_sparks
