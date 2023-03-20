@@ -137,21 +137,22 @@ def gaussian_spark(firework_scores,m_gauss):
 def get_spark_score(sparks):
     score_sparks=[]
     for s in sparks :
+        att_val=loc_to_attribut(s)
         score=execute(
                             command(
                                 {
                                     "filename": "../iso3dfd-st7/compiled/bin_"
-                                    + s[0]
+                                    + att_val[0]
                                     + "_"
-                                    + s[1]
+                                    + att_val[1]
                                     + ".exe",
                                     "size1": str(problem[0]),
                                     "size2": str(problem[1]),
                                     "size3": str(problem[2]),
-                                    "num_thread": str(s[2]),
-                                    "dim1": str(s[3]),
-                                    "dim2": str(s[4]),
-                                    "dim3": str(s[5]),
+                                    "num_thread": str(att_val[2]),
+                                    "dim1": str(att_val[3]),
+                                    "dim2": str(att_val[4]),
+                                    "dim3": str(att_val[5]),
                                 }
                             ),
                             timeout,
@@ -192,3 +193,5 @@ def best_loc(loc_score):
 def worst_loc(loc_score):
     return min(loc_score, key=lambda item:item[1])
 
+
+main(5,0.04,0.8,euclide,50,5,40)
