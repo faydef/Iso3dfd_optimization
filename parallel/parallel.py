@@ -143,7 +143,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
         ]
         
         comm.barrier()
-        all_routes_raw = comm.gather(routes)
+        all_routes_raw = comm.allgather(routes)
         all_routes = []
         for x in all_routes_raw:
             all_routes = all_routes + x 
@@ -189,17 +189,19 @@ if __name__ == "__main__":
             rho,
             alpha,
             Q,
+        ) = sys.argv
 
+if Me == 0 : #Only the 'root' node prints the solution
 
-   print(
-        ant(
-            int(nb_ant),
-            int(nb_iteration),
-            [int(problem_1), int(problem_2), int(problem_3)],
-            float(rho),
-            float(alpha),
-            float(Q),
-            int(timeout),
+    print(
+            ant(
+                int(nb_ant),
+                int(nb_iteration),
+                [int(problem_1), int(problem_2), int(problem_3)],
+                float(rho),
+                float(alpha),
+                float(Q),
+                int(timeout),
+            )
         )
-    )
 
