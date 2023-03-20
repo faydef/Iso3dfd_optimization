@@ -12,9 +12,9 @@ problem=[128,128,128]
 attributs=[["O1","O2","O3","Ofast"],
        ["sse","avx","avx2","avx512"],
        [i for i in range(1,33)],
-       [16*i for i in range(1,round(512/16))],
-       [i for i in range(1,513)],
-       [i for i in range(1,513)]
+       [16*i for i in range(1,round(problem[0]/16))],
+       [i for i in range(1,problem[1]+1)],
+       [i for i in range(1,problem[2]+1)]
        ]
 
 dim=6
@@ -68,7 +68,7 @@ def initiate(n):
     for i in range(n):
         f=[]
         for d in range(dim):
-            f.append(random.uniform(0,512))
+            f.append(random.uniform(0,problem[0]))
         fireworks.append(f)
     return fireworks
 
@@ -105,8 +105,8 @@ def explosion(fireworks_score,a,b,m,A,n):
             deplacement = amplitude_per_firework[f]*random.uniform(-1,1)
             for att in attribute_indexes:
                 s[att]=s[att]+deplacement
-                if 0>s[att] or s[att]>512:
-                    s[att]=s[att]%512
+                if 0>s[att] or s[att]>problem[0]:
+                    s[att]=s[att]%problem[0]
             sparks.append(s)
 
     return sparks
@@ -122,8 +122,8 @@ def gaussian_spark(firework_scores,m_gauss):
         g=random.gauss(1,1)
         for a in attribute_indexes:
             s[a]=s[a]*g
-            if 0>s[a] or s[a]>512:
-                s[a]=s[a]%512
+            if 0>s[a] or s[a]>problem[0]:
+                s[a]=s[a]%problem[0]
         sparks.append(s)
     return sparks
 
