@@ -1,5 +1,11 @@
 import random
 import numpy as np
+from exec_algo import command, execute
+import time
+
+timeout = 30
+
+problem=[512,512,512]
 
 "parametre : Olevel, avx, nb thread, n1,n2,n3"
 
@@ -129,26 +135,29 @@ def gaussian_spark(firework_scores,m_gauss):
 
 
 def get_spark_score(sparks):
-    execute(
-                        command(
-                            {
-                                "filename": "../iso3dfd-st7/compiled/bin_"
-                                + path[0]
-                                + "_"
-                                + path[1]
-                                + ".exe",
-                                "size1": str(problem[0]),
-                                "size2": str(problem[1]),
-                                "size3": str(problem[2]),
-                                "num_thread": str(path[2]),
-                                "dim1": str(path[3]),
-                                "dim2": str(path[4]),
-                                "dim3": str(path[5]),
-                            }
-                        ),
-                        timeout,
-                    )
-    return 
+    score_sparks=[]
+    for s in sparks :
+        score=execute(
+                            command(
+                                {
+                                    "filename": "../iso3dfd-st7/compiled/bin_"
+                                    + s[0]
+                                    + "_"
+                                    + s[1]
+                                    + ".exe",
+                                    "size1": str(problem[0]),
+                                    "size2": str(problem[1]),
+                                    "size3": str(problem[2]),
+                                    "num_thread": str(s[2]),
+                                    "dim1": str(s[3]),
+                                    "dim2": str(s[4]),
+                                    "dim3": str(s[5]),
+                                }
+                            ),
+                            timeout,
+                        )
+        score_sparks.append((s,score))
+    return score_sparks
 
 
 def new_fireworks(sparks_score,n,distance):
