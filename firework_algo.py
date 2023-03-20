@@ -55,7 +55,7 @@ def main(n,a,b,distance,m,m_gauss,A):
     count=0
     fireworks=initiate(n)
     fireworks_score=get_spark_score(fireworks)
-    while count < 10: #stop criteria, here, the loop went through 5 times
+    while count < 5: #stop criteria, here, the loop went through 5 times
         sparks_exp=explosion(fireworks_score,a,b,m,A,n)
         sparks_gauss=gaussian_spark(fireworks_score,m_gauss)
         sparks=sparks_exp+sparks_gauss
