@@ -29,6 +29,10 @@ def loc_to_attribut(loc):
         att.append(attributs[i][att_indexe])
     return att
 
+
+saved_config={}
+eco=0
+
 eps=1
 
 def main(n,a,b,distance,m,m_gauss,A):
@@ -66,6 +70,7 @@ def main(n,a,b,distance,m,m_gauss,A):
 
     print(bests)
     best=best_loc(sparks_score)
+    print(f"nb calcul economiser : {eco}")
     return loc_to_attribut(best[0]),best[1]
 
 
@@ -142,26 +147,30 @@ def get_spark_score(sparks):
     compteur=0
     for s in sparks :
         att_val=loc_to_attribut(s)
-        score=execute(
-                            command(
-                                {
-                                    "filename": "../iso3dfd-st7/compiled/bin_"
-                                    + att_val[0]
-                                    + "_"
-                                    + att_val[1]
-                                    + ".exe",
-                                    "size1": str(problem[0]),
-                                    "size2": str(problem[1]),
-                                    "size3": str(problem[2]),
-                                    "num_thread": str(att_val[2]),
-                                    "dim1": str(att_val[3]),
-                                    "dim2": str(att_val[4]),
-                                    "dim3": str(att_val[5]),
-                                }
-                            ),
-                            timeout,
-                        )
-        score_sparks.append((s,score))
+        if att_val not in saved_config:
+            score=execute(
+                                command(
+                                    {
+                                        "filename": "../iso3dfd-st7/compiled/bin_"
+                                        + att_val[0]
+                                        + "_"
+                                        + att_val[1]
+                                        + ".exe",
+                                        "size1": str(problem[0]),
+                                        "size2": str(problem[1]),
+                                        "size3": str(problem[2]),
+                                        "num_thread": str(att_val[2]),
+                                        "dim1": str(att_val[3]),
+                                        "dim2": str(att_val[4]),
+                                        "dim3": str(att_val[5]),
+                                    }
+                                ),
+                                timeout,
+                            )
+            score_sparks.append((s,score))
+            saved_config[att_val]=score
+        else:
+            eco+=1
         compteur+=1
         print(compteur)
     return score_sparks
