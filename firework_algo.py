@@ -70,7 +70,7 @@ def main(n,a,b,distance,m,m_gauss,A):
 
     print(bests)
     best=best_loc(sparks_score)
-    print(f"nb calcul economiser : {eco}")
+    print(f"nb calcul economiser : {len(saved_config.keys())}")
     return loc_to_attribut(best[0]),best[1]
 
 
@@ -169,8 +169,6 @@ def get_spark_score(sparks,):
                             )
             score_sparks.append((s,score))
             saved_config[''.join(str(e) for e in att_val)]=score
-        else:
-            eco = eco +1
         compteur+=1
         print(compteur)
     return score_sparks
