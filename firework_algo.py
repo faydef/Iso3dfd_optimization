@@ -3,9 +3,9 @@ import numpy as np
 from exec_algo import command, execute
 import time
 
-timeout = 30
+timeout = 100
 
-problem=[512,512,512]
+problem=[128,128,128]
 
 "parametre : Olevel, avx, nb thread, n1,n2,n3"
 
@@ -55,15 +55,9 @@ def main(n,a,b,distance,m,m_gauss,A):
         sparks_score=get_spark_score(sparks)
         fireworks_score=new_fireworks(sparks_score,n,distance)
 
-        print("\n\n\n\n")
-        print(len(fireworks_score))
-        #print(fireworks_score)
-        print("\n")
-        print(len(sparks_exp))
-        #print(sparks_exp)
-
-
         count+=1
+        print(count)
+        print(best_loc(sparks_score))
 
     return best_loc(sparks_score)
 
