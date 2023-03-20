@@ -70,7 +70,6 @@ def main(n,a,b,distance,m,m_gauss,A):
 
     print(bests)
     best=best_loc(sparks_score)
-    print(f"nb calcul economiser : {len(saved_config.keys())}")
     return loc_to_attribut(best[0]),best[1]
 
 
@@ -210,4 +209,14 @@ def worst_loc(loc_score):
     return min(loc_score, key=lambda item:item[1])
 
 
-main(5,0.04,0.8,euclide,50,5,40)
+f1 = main(5,0.04,0.8,euclide,50,5,40)
+f2 = main(7,0.04,0.8,euclide,50,5,40) #plus fireworks
+f3 = main(5,0.04,0.8,euclide,50,5,60) #plus large 
+f4 = main(5,0.04,0.8,euclide,50,10,40) #plus gauss
+f5 = main(5,0.04,0.8,euclide,60,5,60) #plus sparks et plus etendu
+
+fs=[f1,f2,f3,f4,f5]
+
+for i in range(5):
+    print(f"-----f{i}-----")
+    print(fs[i])
