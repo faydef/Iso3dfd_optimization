@@ -4,7 +4,7 @@ from tree_graph_generation import *
 from tree_graph_ant_colony import *
 from tree_graph_tree_update import *
 from exec_algo import *
-
+from compile_all import *
 
 def ask_for(question, default_value):
     res = input(question)
@@ -14,9 +14,10 @@ def ask_for(question, default_value):
         return int(res)
 
 
+
 compil_flag_list = ["01", "02", "03", "0fast"]
 simd_list = ["sse", "avx", "avx2", "avx512"]
-
+output_value = 'points'
 
 type_algo = int(input(
     "Which algorithm would you want to execute ? classic ant colony (0) or tree ant colony (1) ? "))
@@ -79,7 +80,10 @@ if type_algo == 1:
             bash_command = command(options)
             timeout = 60
             score = execute(bash_command, timeout)
-            print(score)
+            if output_value == 'flops' :
+                print(str(score) + " GFlops")
+            elif output_value == 'points' :
+                print(str(score) + " MPoints/s")
             ants_score.append(score)
         if i < nb_iter - 1:
             # sinon update_tree cleanerait les listes ants et ants_score
@@ -88,5 +92,9 @@ if type_algo == 1:
     print(ants_score)
     last_ants = list(zip(ants_score, ants))
     best_ant = BestAnt(last_ants)
-    print("best score : {}".format(best_ant[0]))
-    print("best ant : {}".format(best_ant[1]))
+    if output_value == 'flops' :
+        print("best score : {} GFlops".format(best_ant[0]))
+ 
+    elif output_value == 'points':
+        print("best ant : {}".format(best_ant[1]))
+    print("best score : {} MPoints/s".format(best_ant[0]))
