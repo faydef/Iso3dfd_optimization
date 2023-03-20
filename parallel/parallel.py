@@ -13,6 +13,8 @@ NbP = comm.Get_size()
 Me  = comm.Get_rank()
 
 
+print("starting node no "+str(Me))
+
 from representation import initiate
 from update import update
 from exec_algo import command, execute
@@ -24,7 +26,7 @@ import time
 # import os
 
 nb_machines = 4
-
+timeout = 60
 
 def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
     """
@@ -45,6 +47,9 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
     best = [[], 0]  # store the best solution with its Gflops
     worst = set()  # set of worst path to avoid them
     for j in range(nb_iteration):
+        if Me == 0 :
+            print("iteration "+str(j))
+
         ##########################################initiate the ants###########################################
         ants = [
             [],
@@ -53,6 +58,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
         ]  # liste of paths, number of ants that choosed this path and their score
         timer = []  # liste of execution time in order to update the timeout
         for i in range(int(nb_ant/nb_machines)):
+            print("{} calculates ants {} of generation {}".format(Me,i,j))
             ######################################choose randomly a path to explore based on probability weights##############################
             safe_path = True
             while safe_path:
@@ -124,6 +130,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
                 )
                 end_time = time.time()
                 timer.append(end_time - start_time)
+            
         # update the timeout
         timeout = 0
         for i in range(len(timer)):
@@ -141,8 +148,9 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
         routes = [
             (ants[0][i], ants[1][i], ants[2][i]) for i in range(min(10, len(ants[0])))
         ]
-        
+        print("{} is before the barrier".format(Me)) 
         comm.barrier()
+        print("{} is after the barrier".format(Me))
         all_routes_raw = comm.allgather(routes)
         all_routes = []
         for x in all_routes_raw:
@@ -159,9 +167,8 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
         # update the best solution
         if ants[2][0] > best[1]:
             best = [ants[0][0], ants[2][0]]
-        
+    
     return best
-
 
 
 
@@ -177,8 +184,8 @@ if __name__ == "__main__":
         rho = 0.6
         alpha = 0.25
         Q = 1
-        timeout = 60
     else :
+        print(sys.argv)
         (
             _,
             nb_ant,
@@ -191,17 +198,17 @@ if __name__ == "__main__":
             Q,
         ) = sys.argv
 
-if Me == 0 : #Only the 'root' node prints the solution
 
-    print(
-            ant(
-                int(nb_ant),
-                int(nb_iteration),
-                [int(problem_1), int(problem_2), int(problem_3)],
-                float(rho),
-                float(alpha),
-                float(Q),
-                int(timeout),
-            )
+    res = ant(
+            int(nb_ant),
+            int(nb_iteration),
+            [int(problem_1), int(problem_2), int(problem_3)],
+            float(rho),
+            float(alpha),
+            float(Q),
+            int(timeout),
         )
+    if Me == 0 :
+        print("best solution : {}".format(best)) 
+
 
