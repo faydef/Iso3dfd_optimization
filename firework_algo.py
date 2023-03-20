@@ -9,7 +9,7 @@ problem=[128,128,128]
 
 "parametre : Olevel, avx, nb thread, n1,n2,n3"
 
-attributs=[["O2","O3","Ofast"],
+attributs=[["O1","O2","O3","Ofast"],
        ["sse","avx","avx2","avx512"],
        [i for i in range(1,33)],
        [16*i for i in range(1,round(problem[0]/16))],
@@ -25,7 +25,7 @@ def loc_to_attribut(loc):
     """parametre list of float in range 512, NO SCORE"""
     att=[]
     for i in range(len(loc)):
-        att_indexe=int(loc[i]//(512/len(attributs[i])))
+        att_indexe=int(loc[i]//(problem[0]/len(attributs[i])))
         att.append(attributs[i][att_indexe])
     return att
 
