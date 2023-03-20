@@ -205,7 +205,9 @@ def best_loc(loc_score):
 def worst_loc(loc_score):
     return min(loc_score, key=lambda item:item[1])
 
+
 print("\n\n\n Plus etendu, plus de sparks")
+print(main(5,0.04,0.8,euclide,60,5,60))
 
 """
 f1 = main(5,0.04,0.8,euclide,50,5,40)
