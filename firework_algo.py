@@ -62,7 +62,7 @@ def main(n,a,b,distance,m,m_gauss,A):
         print(count)
         best=best_loc(sparks_score)
         print(loc_to_attribut(best[0]),best[1])
-        bests.append(loc_to_attribut(best[0]),best[1])
+        bests.append((loc_to_attribut(best[0]),best[1]))
 
     print(bests)
     best=best_loc(sparks_score)
