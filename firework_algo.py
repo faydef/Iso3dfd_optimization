@@ -3,7 +3,7 @@ import numpy as np
 from exec_algo import command, execute
 import time
 
-timeout = 100
+timeout = 35
 
 problem=[512,512,512]
 

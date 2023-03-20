@@ -14,7 +14,7 @@ def execute(bash_command, timeout,output_value='flops'):
 #    except subprocess.TimeoutExpired:
     except Exception as e:
         print("#####algo stopped running: ",e)
-        output = -99
+        output = 0
     return output
 
 def command(options,output_value='flops'):
