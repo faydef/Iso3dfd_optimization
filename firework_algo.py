@@ -63,9 +63,7 @@ def main(n,a,b,distance,m,m_gauss,A):
         fireworks_score=new_fireworks(sparks_score,n,distance)
 
         count+=1
-        print(count)
         best=best_loc(sparks_score)
-        print(loc_to_attribut(best[0]),best[1])
         bests.append((loc_to_attribut(best[0]),best[1]))
 
     print(bests)
@@ -169,7 +167,8 @@ def get_spark_score(sparks,):
             score_sparks.append((s,score))
             saved_config[''.join(str(e) for e in att_val)]=score
         compteur+=1
-        print(compteur)
+        if compteur%10==0:
+            print(compteur)
     return score_sparks
 
 
@@ -200,15 +199,15 @@ def euclide(loc1,loc2):
 
 
 def best_loc(loc_score):
-    print([i[1] for i in loc_score])
     best= max(loc_score, key=lambda item:item[1])
-    print(best)
     return best
 
 def worst_loc(loc_score):
     return min(loc_score, key=lambda item:item[1])
 
+print("\n\n\n Plus etendu, plus de sparks")
 
+"""
 f1 = main(5,0.04,0.8,euclide,50,5,40)
 f2 = main(7,0.04,0.8,euclide,50,5,40) #plus fireworks
 f3 = main(5,0.04,0.8,euclide,50,5,60) #plus large 
@@ -219,4 +218,4 @@ fs=[f1,f2,f3,f4,f5]
 
 for i in range(5):
     print(f"-----f{i}-----")
-    print(fs[i])
+    print(fs[i])"""
