@@ -147,7 +147,7 @@ def get_spark_score(sparks):
     compteur=0
     for s in sparks :
         att_val=loc_to_attribut(s)
-        if att_val not in saved_config:
+        if ''.join(att_val) not in saved_config:
             score=execute(
                                 command(
                                     {
@@ -168,7 +168,7 @@ def get_spark_score(sparks):
                                 timeout,
                             )
             score_sparks.append((s,score))
-            saved_config[att_val]=score
+            saved_config[''.join(att_val)]=score
         else:
             eco+=1
         compteur+=1
