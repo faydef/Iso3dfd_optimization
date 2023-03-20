@@ -9,7 +9,7 @@ problem=[128,128,128]
 
 "parametre : Olevel, avx, nb thread, n1,n2,n3"
 
-attributs=[["O1","O2","O3","Ofast"],
+attributs=[["O2","O3","Ofast"],
        ["sse","avx","avx2","avx512"],
        [i for i in range(1,33)],
        [16*i for i in range(1,round(problem[0]/16))],
