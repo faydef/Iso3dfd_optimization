@@ -143,8 +143,8 @@ class ParticleSwarmOptimization:
                 self.global_best_fitnesses += [self.swarm[j].fitness]
                 self.timeout_global += self.swarm[j].timeout
             self.timeout_global = self.timeout_global/self.num_particles
-            self.global_best_fitness = self.global_best_fitness.sort()[-self.k:]
-            self.global_best_position = Z = [x for _,x in sorted(zip(self.global_best_position,self.global_best_fitness))][-self.k:]
+            self.global_best_fitnesses = self.global_best_fitnesses.sort()[-self.k:]
+            self.global_best_positions = Z = [x for _,x in sorted(zip(self.global_best_positions,self.global_best_fitnesses))][-self.k:]
 
             for j in range(self.num_particles):
                 self.swarm[j].update_velocity(self.global_best_positions)
