@@ -137,8 +137,8 @@ class ParticleSwarmOptimization:
                     self.swarm[j].fitness > self.global_best_fitness
                     or self.global_best_fitness == -1
                 ):
-                    self.global_best_position = [self.swarm[j].position]
-                    self.global_best_fitness = [self.swarm[j].fitness]
+                    self.global_best_position = self.swarm[j].position
+                    self.global_best_fitness = self.swarm[j].fitness
                 self.global_best_positions += [self.swarm[j].position]
                 self.global_best_fitnesses += [self.swarm[j].fitness]
                 self.timeout_global += self.swarm[j].timeout
