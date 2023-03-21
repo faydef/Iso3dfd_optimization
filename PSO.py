@@ -64,7 +64,7 @@ class Particle:
             self.best_position = self.position
             self.best_fitness = self.fitness
 
-    def update_velocity(self, global_best_position):
+    def update_velocity(self, global_best_positions):
         for i in range(len(self.position)):
             r1 = random.random()
             r2 = random.random()
@@ -72,9 +72,11 @@ class Particle:
             cognitive_velocity = (
                 self.c1 * r1 * (self.best_position[i] - self.position[i])
             )
-            social_velocity = (
-                self.c2 * r2 * (global_best_position[i] - self.position[i])
-            )
+            k = len(global_best_positions)
+            for j in range(k):
+                social_velocity = (
+                    self.c2 * r2 * (global_best_positions[j][i] - self.position[i])
+                )/k
             self.velocity[i] = (
                 self.w * self.velocity[i] + cognitive_velocity + social_velocity
             )
@@ -106,6 +108,7 @@ class ParticleSwarmOptimization:
         w,
         problem,
         timeout,
+        k,
     ):
         self.objective_function = objective_function
         self.bounds = bounds
@@ -116,32 +119,35 @@ class ParticleSwarmOptimization:
         self.w = w
         self.global_best_position = []
         self.global_best_fitness = -1
+        self.global_best_positions = []
+        self.global_best_fitnesses = []
         self.swarm = []
         self.timeout_global = timeout
+        self.k = k
 
         for i in range(num_particles):
             self.swarm.append(Particle(bounds, c1, c2, w, problem, timeout))
 
     def optimize(self):
         for i in range(self.max_iterations):
+            self.timeout_global = 0
             for j in range(self.num_particles):
                 self.swarm[j].evaluate(self.objective_function)
-
                 if (
                     self.swarm[j].fitness > self.global_best_fitness
                     or self.global_best_fitness == -1
                 ):
-                    self.global_best_position = self.swarm[j].position
-                    self.global_best_fitness = self.swarm[j].fitness
-
-                if (
-                    self.swarm[j].timeout < self.timeout_global
-                    or self.timeout_global == -1
-                ):
-                    self.timeout_global = self.swarm[j].timeout
+                    self.global_best_position = [self.swarm[j].position]
+                    self.global_best_fitness = [self.swarm[j].fitness]
+                self.global_best_positions += [self.swarm[j].position]
+                self.global_best_fitnesses += [self.swarm[j].fitness]
+                self.timeout_global += self.swarm[j].timeout
+            self.timeout_global = self.timeout_global/self.num_particles
+            self.global_best_fitness = self.global_best_fitness.sort()[-self.k:]
+            self.global_best_position = Z = [x for _,x in sorted(zip(self.global_best_position,self.global_best_fitness))][-self.k:]
 
             for j in range(self.num_particles):
-                self.swarm[j].update_velocity(self.global_best_position)
+                self.swarm[j].update_velocity(self.global_best_positions)
                 self.swarm[j].update_position(self.bounds)
                 self.swarm[j].timeout = self.timeout_global
 
@@ -158,11 +164,12 @@ if __name__ == "__main__":
         problem_1,
         problem_2,
         problem_3,
+        timeout,
+        k,
         c1,
         c2,
-        timeout,
         w,
-    ) = [int(el) for el in sys.argv[1:-1]] + [float(sys.argv[-1])]
+    ) = [int(el) for el in sys.argv[1:-3]] + [float(sys.argv[-3:])]
     # Define the boundaries of the search space
     bounds = [(0, 2), (0, 2), (1, 32), (16, problem_1), (1, problem_2), (1, problem_3)]
     optimizer = ParticleSwarmOptimization(
@@ -175,6 +182,7 @@ if __name__ == "__main__":
         w,
         [problem_1, problem_2, problem_3],
         timeout,
+        k,
     )
     solution = optimizer.optimize()
     print("Solution: ", solution[0])
