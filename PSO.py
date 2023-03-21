@@ -76,7 +76,7 @@ class Particle:
             for j in range(k):
                 social_velocity = (
                     self.c2 * r2 * (global_best_positions[j][i] - self.position[i])
-                )/ks
+                )/k
             self.velocity[i] = (
                 self.w * self.velocity[i] + cognitive_velocity + social_velocity
             )
@@ -142,10 +142,10 @@ class ParticleSwarmOptimization:
                 self.global_best_positions += [self.swarm[j].position]
                 self.global_best_fitnesses += [self.swarm[j].fitness]
                 self.timeout_global += self.swarm[j].timeout
-            self.timeout_global = self.timeout_global/self.num_particles
+            self.timeout_global = int(self.timeout_global/self.num_particles)+1
             self.global_best_fitnesses.sort()
+            self.global_best_positions = [x for _,x in sorted(zip(self.global_best_fitnesses, self.global_best_positions))][-self.k:]
             self.global_best_fitnesses = self.global_best_fitnesses[-self.k:]
-            self.global_best_positions = Z = [x for _,x in sorted(zip(self.global_best_positions,self.global_best_fitnesses))][-self.k:]
 
             for j in range(self.num_particles):
                 self.swarm[j].update_velocity(self.global_best_positions)
