@@ -2,5 +2,4 @@
 .tree*
 parallel/.*
 __pycache__
-parallel/scipts/*.sh
-
+parallel/scripts/*.out
