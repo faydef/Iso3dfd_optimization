@@ -15,7 +15,7 @@ def ask_for(question, default_value):
 
 
 
-compil_flag_list = ["01", "02", "03", "0fast"]
+compil_flag_list = ["O1", "O2", "O3", "Ofast"]
 simd_list = ["sse", "avx", "avx2", "avx512"]
 output_value = 'points'
 
@@ -34,7 +34,7 @@ if type_algo == 1:
 
 nb_iter = ask_for("number of iterations : ", 10)
 nb_ants = ask_for("number of ants per iteration : ", 10)
-evaporation_rate = ask_for("evaporation_rate : ", 0.2)
+evaporation_rate = ask_for("evaporation_rate : ", 0.6)
 n1_size = ask_for("size of the problem x : ", 256)
 n2_size = ask_for("size of the problem y : ", 256)
 n3_size = ask_for("size of the problem z : ", 256)
