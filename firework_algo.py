@@ -5,7 +5,7 @@ import time
 
 timeout = 35
 
-problem=[512,512,512]
+problem=[256,256,256]
 
 "parametre : Olevel, avx, nb thread, n1,n2,n3"
 
