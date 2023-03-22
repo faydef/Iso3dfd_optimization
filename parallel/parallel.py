@@ -209,6 +209,6 @@ if __name__ == "__main__":
             int(timeout),
         )
     if Me == 0 :
-        print("best solution : {}".format(best)) 
+        print("best solution : {}".format(res)) 
 
 
