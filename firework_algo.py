@@ -208,7 +208,7 @@ def worst_loc(loc_score):
 
 
 print("\n\n\n Plus etendu, plus de sparks")
-print(main(5,0.04,0.8,euclide,40,5,60))
+print(main(5,0.04,0.8,euclide,50,5,60))
 
 """
 f1 = main(5,0.04,0.8,euclide,50,5,40)
