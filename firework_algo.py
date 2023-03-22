@@ -3,9 +3,9 @@ import numpy as np
 from exec_algo import command, execute
 import time
 
-timeout = 35
+timeout = 30
 
-problem=[256,256,256]
+problem=[128,128,128]
 
 "parametre : Olevel, avx, nb thread, n1,n2,n3"
 
