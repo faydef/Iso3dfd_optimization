@@ -5,7 +5,7 @@ import time
 
 timeout = 30
 
-problem=[128,128,128]
+problem=[512,512,512]
 
 "parametre : Olevel, avx, nb thread, n1,n2,n3"
 
@@ -208,7 +208,7 @@ def worst_loc(loc_score):
 
 
 print("\n\n\n Plus etendu, plus de sparks")
-print(main(5,0.04,0.8,euclide,50,5,60))
+print(main(5,0.04,0.8,euclide,40,5,60))
 
 """
 f1 = main(5,0.04,0.8,euclide,50,5,40)
