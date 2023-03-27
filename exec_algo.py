@@ -27,6 +27,8 @@ def command_nrj(options):
 def execute_nrj(bash_command, timeout):
     try:
         output = check_output(bash_command, timeout=timeout, shell=True)
+        parse_output = 'python my_algorithm.py $(ls -t1 /path/to/directory/*.csv | head -n1)'
+        output = check_output(parse_output, timeout=timeout, shell=True)
         output = output.decode('UTF-8')
         result = re.search('DRAM + PKG energy:', output)
         output = result.group(1)
