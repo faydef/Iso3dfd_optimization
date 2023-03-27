@@ -168,7 +168,7 @@ if __name__ == "__main__":
         c1,
         c2,
         w,
-    ) = [int(el) for el in sys.argv[1:-3]] + [float(sys.argv[-3:])]
+    ) = [int(el) for el in sys.argv[1:-3]] + [float(el) for el in sys.argv[-3:]]
     # Define the boundaries of the search space
     bounds = [(0, 2), (0, 2), (1, 32), (16, problem_1),
               (1, problem_2), (1, problem_3)]
