@@ -8,11 +8,10 @@ def paralel(l_para,comm, NbP,Me, prob, timeout):
     calcul le score de chaque chemin avec des calculs paralleles
     retourne une liste de tuple [(chemin,score)]"""
 
-    array_para=resize(l_para,NbP)
-    nbTot=array_para.size
-    nbLoc=nbTot//NbP
-
     if Me==0:
+        array_para=resize(l_para,NbP)
+        nbTot=array_para.size
+        nbLoc=nbTot//NbP
         data=array_para
     else :
         data=None
