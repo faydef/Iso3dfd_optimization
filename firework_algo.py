@@ -60,7 +60,7 @@ def firework(n,a,b,distance,m,m_gauss,A):
         sparks_gauss=gaussian_spark(fireworks_score,m_gauss)
         sparks=sparks_exp+sparks_gauss
         sparks_score=get_spark_score(sparks)
-        fireworks_score=new_fireworks(sparks_score,n,distance)
+        fireworks_score=new_fireworks(sparks_score,n,euclide)
 
         count+=1
         best=best_loc(sparks_score)
@@ -207,8 +207,8 @@ def worst_loc(loc_score):
     return min(loc_score, key=lambda item:item[1])
 
 
-print("\n\n\n Plus etendu, plus de sparks")
-print(firework(5,0.04,0.8,euclide,50,5,60))
+#print("\n\n\n Plus etendu, plus de sparks")
+#print(firework(5,0.04,0.8,euclide,50,5,60))
 
 """
 f1 = main(5,0.04,0.8,euclide,50,5,40)
