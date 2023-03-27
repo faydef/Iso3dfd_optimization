@@ -2,7 +2,7 @@ import random
 import math
 import sys
 import time
-from exec_algo import command, execute, execute_nrj
+from exec_algo import command, execute, execute_nrj, command_nrj
 from representation import initiate
 
 speed = ["O2", "O3", "Ofast"]
@@ -12,7 +12,7 @@ avx = ["avx", "avx2", "avx512"]
 
 def objective_function(path, problem, timeout):
     return execute_nrj(
-        command(
+        command_nrj(
             {
                 "filename": "../iso3dfd-st7/compiled/bin_"
                 + speed[path[0]]
