@@ -16,6 +16,7 @@ def paralel(l_para,comm, NbP,Me, prob, timeout):
         data=liste_para
     else :
         data=None
+    print(f"Machine : {Me}  data : {data}")
     data=comm.scatter(data,root=0)
 
     #Calcul
