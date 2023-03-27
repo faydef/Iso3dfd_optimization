@@ -1,6 +1,7 @@
 import numpy as np
 from mpi4py import MPI
 from exec_algo import command, execute
+import random
 
 
 def paralel(l_para,comm, NbP,Me, prob, timeout):
@@ -44,7 +45,11 @@ def resize(l_p,nb_part):
     resized_l=l.copy()
     for i in range(ajout):
         resized_l.append(None)
-    return resized_l
+    random.shuffle(resized_l)
+    l_sous_liste=len(resized_l)//nb_part
+    cut_l=[[resized_l[i*l_sous_liste:(i+1)*l_sous_liste-1] for i in range(nb_part)]]
+
+    return cut_l
 
 
 def get_score(l_param,prob,timeout):
