@@ -62,7 +62,7 @@ def firework(n,a,b,distance,m,m_gauss,A,NbP,Me,prob,timeout):
 
         count=0
         fireworks=initiate(n)
-        fireworks_score=get_spark_score(fireworks)
+        fireworks_score=get_spark_score(fireworks,NbP,Me,prob,timeout)
 
     while count < 5: #stop criteria, here, the loop go through 5 times
         if Me==0:
