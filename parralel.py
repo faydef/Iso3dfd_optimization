@@ -10,10 +10,10 @@ def paralel(l_para,comm, NbP,Me, prob, timeout):
 
     if Me==0:
         print(f"Nombre de sparks de la generation : {len(l_para)}")
-        array_para=resize(l_para,NbP)
-        nbTot=array_para.size
+        liste_para=resize(l_para,NbP)
+        nbTot=len(liste_para)
         nbLoc=nbTot//NbP
-        data=array_para
+        data=liste_para
     else :
         data=None
     data=comm.scatter(data,root=0)
