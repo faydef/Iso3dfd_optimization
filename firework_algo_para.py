@@ -3,6 +3,13 @@ import numpy as np
 from exec_algo import command, execute
 import time
 from parralel import paralel
+from mpi4py import MPI
+
+
+comm = MPI.COMM_WORLD
+NbP = comm.Get_size()
+Me = comm.Get_rank()
+
 
 timeout = 30
 
@@ -62,7 +69,7 @@ def firework(n,a,b,distance,m,m_gauss,A,NbP,Me,prob,timeout):
             sparks_exp=explosion(fireworks_score,a,b,m,A,n)
             sparks_gauss=gaussian_spark(fireworks_score,m_gauss)
             sparks=sparks_exp+sparks_gauss
-            sparks_score=get_spark_score(sparks)
+            sparks_score=get_spark_score(sparks,NbP,Me,prob,timeout)
             fireworks_score=new_fireworks(sparks_score,n,distance)
 
             count+=1
@@ -72,7 +79,7 @@ def firework(n,a,b,distance,m,m_gauss,A,NbP,Me,prob,timeout):
 
         else : 
             sparks=None
-            sparks_score=get_spark_score(sparks)
+            sparks_score=get_spark_score(sparks,NbP,Me,prob,timeout)
 
     if Me==0:
         print(bests)
@@ -219,8 +226,7 @@ def worst_loc(loc_score):
     return min(loc_score, key=lambda item:item[1])
 
 
-print("\n\n\n Plus etendu, plus de sparks")
-print(firework(5,0.04,0.8,euclide,50,5,60))
+print(firework(5,0.04,0.8,euclide,50,5,60, NbP,Me,problem,timeout))
 
 """
 f1 = main(5,0.04,0.8,euclide,50,5,40)
