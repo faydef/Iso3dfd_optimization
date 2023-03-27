@@ -35,6 +35,7 @@ def resize(l,nb_part):
     retourne un array"""
 
     #Suppression des doublons
+    print(l)
     l=list(set(l))
 
     r=len(l)%nb_part
