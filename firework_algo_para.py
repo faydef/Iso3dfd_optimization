@@ -6,7 +6,7 @@ from parralel import paralel
 
 timeout = 30
 
-problem=[512,512,512]
+problem=[128,128,128]
 
 "parametre : Olevel, avx, nb thread, n1,n2,n3"
 
@@ -36,7 +36,7 @@ eco=0
 
 eps=1
 
-def firework(n,a,b,distance,m,m_gauss,A):
+def firework(n,a,b,distance,m,m_gauss,A,NbP,Me,prob,timeout):
     """parametre : 
     n : number of initial fireworks
     a : minimum rate sparks/firework
@@ -50,26 +50,34 @@ def firework(n,a,b,distance,m,m_gauss,A):
     firework/spark = [Olevel, avx, nb thread, n1,n2,n3]
     """
 
-    bests=[]
+    if Me==0:
+        bests=[]
 
-    count=0
-    fireworks=initiate(n)
-    fireworks_score=get_spark_score(fireworks)
+        count=0
+        fireworks=initiate(n)
+        fireworks_score=get_spark_score(fireworks)
+
     while count < 5: #stop criteria, here, the loop go through 5 times
-        sparks_exp=explosion(fireworks_score,a,b,m,A,n)
-        sparks_gauss=gaussian_spark(fireworks_score,m_gauss)
-        sparks=sparks_exp+sparks_gauss
-        sparks_score=get_spark_score(sparks)
-        fireworks_score=new_fireworks(sparks_score,n,distance)
+        if Me==0:
+            sparks_exp=explosion(fireworks_score,a,b,m,A,n)
+            sparks_gauss=gaussian_spark(fireworks_score,m_gauss)
+            sparks=sparks_exp+sparks_gauss
+            sparks_score=get_spark_score(sparks)
+            fireworks_score=new_fireworks(sparks_score,n,distance)
 
-        count+=1
+            count+=1
+            best=best_loc(sparks_score)
+            print(loc_to_attribut(best[0]),best[1])
+            bests.append((loc_to_attribut(best[0]),best[1]))
+
+        else : 
+            sparks=None
+            sparks_score=get_spark_score(sparks)
+
+    if Me==0:
+        print(bests)
         best=best_loc(sparks_score)
-        print(loc_to_attribut(best[0]),best[1])
-        bests.append((loc_to_attribut(best[0]),best[1]))
-
-    print(bests)
-    best=best_loc(sparks_score)
-    return loc_to_attribut(best[0]),best[1]
+        return loc_to_attribut(best[0]),best[1]
 
 
 def initiate(n):
@@ -138,9 +146,9 @@ def gaussian_spark(firework_scores,m_gauss):
     return sparks
 
 
-def get_spark_score(sparks,):
+def get_spark_score(sparks,NbP,Me, prob, timeout):
 
-    
+    return paralel(sparks,NbP,Me,prob,timeout)
 
     """
     score_sparks=[]
