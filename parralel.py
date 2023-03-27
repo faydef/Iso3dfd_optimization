@@ -3,12 +3,12 @@ from mpi4py import MPI
 from exec_algo import command, execute
 
 
-def paralel(l_para, NbP,Me, prob, timeout):
+def paralel(l_para,comm, NbP,Me, prob, timeout):
     """argument : list de liste de parametre à tester, nb machine, machine rank, liste/tuple de trois entier representant la taille du problem
     calcul le score de chaque chemin avec des calculs paralleles
     retourne une liste de tuple [(chemin,score)]"""
 
-    array_para=resize(l_para)
+    array_para=resize(l_para,NbP)
     nbTot=array_para.size
     nbLoc=nbTot//NbP
 

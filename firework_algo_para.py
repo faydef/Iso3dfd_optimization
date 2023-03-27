@@ -157,7 +157,7 @@ def gaussian_spark(firework_scores,m_gauss):
 
 def get_spark_score(sparks,NbP,Me, prob, timeout):
 
-    return paralel(sparks,NbP,Me,prob,timeout)
+    return paralel(sparks,comm, NbP,Me,prob,timeout)
 
     """
     score_sparks=[]
