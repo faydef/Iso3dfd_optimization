@@ -9,6 +9,7 @@ def paralel(l_para,comm, NbP,Me, prob, timeout):
     retourne une liste de tuple [(chemin,score)]"""
 
     if Me==0:
+        print(f"Nombre de sparks de la generation : {len(array_para)}")
         array_para=resize(l_para,NbP)
         nbTot=array_para.size
         nbLoc=nbTot//NbP
@@ -35,7 +36,6 @@ def resize(l,nb_part):
     retourne un array"""
 
     #Suppression des doublons
-    print(l)
     l=list(set(l))
 
     r=len(l)%nb_part
