@@ -60,7 +60,8 @@ def firework(n,a,b,distance,m,m_gauss,A):
         sparks_gauss=gaussian_spark(fireworks_score,m_gauss)
         sparks=sparks_exp+sparks_gauss
         sparks_score=get_spark_score(sparks)
-        fireworks_score=new_fireworks(sparks_score,n,euclide)
+        if distance == "euclide":
+            fireworks_score=new_fireworks(sparks_score,n,euclide)
 
         count+=1
         best=best_loc(sparks_score)
@@ -208,15 +209,15 @@ def worst_loc(loc_score):
 
 
 #print("\n\n\n Plus etendu, plus de sparks")
-#print(firework(5,0.04,0.8,euclide,50,5,60))
+#print(firework(5,0.04,0.8,"euclide",50,5,60))
 
 """
-f1 = main(5,0.04,0.8,euclide,50,5,40)
-f2 = main(7,0.04,0.8,euclide,50,5,40) #plus fireworks
-f3 = main(5,0.04,0.8,euclide,50,5,60) #plus large 
-f4 = main(5,0.04,0.8,euclide,50,10,40) #plus gauss
-f5 = main(5,0.04,0.8,euclide,60,5,60) #plus sparks et plus etendu
-
+f1 = main(5,0.04,0.8,"euclide",50,5,40)
+f2 = main(7,0.04,0.8,"euclide",50,5,40) #plus fireworks
+f3 = main(5,0.04,0.8,"euclide",50,5,60) #plus large 
+f4 = main(5,0.04,0.8,"euclide",50,10,40) #plus gauss
+f5 = main(5,0.04,0.8,"euclide",60,5,60) #plus sparks et plus etendu
+"
 fs=[f1,f2,f3,f4,f5]
 
 for i in range(5):
