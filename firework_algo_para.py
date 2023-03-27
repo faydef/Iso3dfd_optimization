@@ -2,6 +2,7 @@ import random
 import numpy as np
 from exec_algo import command, execute
 import time
+from parralel import paralel
 
 timeout = 30
 
@@ -49,13 +50,12 @@ def firework(n,a,b,distance,m,m_gauss,A):
     firework/spark = [Olevel, avx, nb thread, n1,n2,n3]
     """
 
-
     bests=[]
 
     count=0
     fireworks=initiate(n)
     fireworks_score=get_spark_score(fireworks)
-    while count < 5: #stop criteria, here, the loop went through 5 times
+    while count < 5: #stop criteria, here, the loop go through 5 times
         sparks_exp=explosion(fireworks_score,a,b,m,A,n)
         sparks_gauss=gaussian_spark(fireworks_score,m_gauss)
         sparks=sparks_exp+sparks_gauss
@@ -139,6 +139,10 @@ def gaussian_spark(firework_scores,m_gauss):
 
 
 def get_spark_score(sparks,):
+
+    
+
+    """
     score_sparks=[]
     n_spark=len(sparks)
     print(f"Nombre de sparks dans cette generation : {n_spark}")
@@ -169,7 +173,7 @@ def get_spark_score(sparks,):
             saved_config[''.join(str(e) for e in att_val)]=score
         compteur+=1
         if compteur%10==0:
-            print(compteur)
+            print(compteur)"""
     return score_sparks
 
 

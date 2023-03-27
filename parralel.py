@@ -32,7 +32,6 @@ def paralel(l_para, NbP,Me, prob, timeout):
     
     data_score_tot=comm.gather(data_score,root=0)
 
-    print(data_score_tot)
     return data_score_tot
 
 
