@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import argparse
 
 
 def csv_to_energy(csv_path):
@@ -51,9 +52,14 @@ def csv_to_energy(csv_path):
                 pkg_energy += np.trapz(power_pkg_table.iloc[:,i].to_numpy().astype(float),t.astype(float))/1000.0
 
         return dram_energy,pkg_energy,dram_energy+pkg_energy
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='outputs the energy')
+    parser.add_argument('-f', '--file', help='Path to input file', required=True)
 
-dram_energy,pkg_energy,combined = csv_to_energy('cpu_monitor.1673355.csv') # 1664565
-print("DRAM energy: ",dram_energy)
-print("PKG energy: ",pkg_energy)
-print("DRAM + PKG energy: ", combined)
+    args = parser.parse_args()
+
+    dram_energy,pkg_energy,combined = csv_to_energy(args.file) # 1664565
+    print("DRAM energy: ",dram_energy)
+    print("PKG energy: ",pkg_energy)
+    print("DRAM + PKG energy: ", combined)
 
