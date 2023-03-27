@@ -71,7 +71,9 @@ def firework(n,a,b,distance,m,m_gauss,A,NbP,Me,prob,timeout):
             sparks_exp=explosion(fireworks_score,a,b,m,A,n)
             sparks_gauss=gaussian_spark(fireworks_score,m_gauss)
             sparks=sparks_exp+sparks_gauss
-            sparks_score=get_spark_score(sparks,NbP,Me,prob,timeout)
+            
+            sim_para=[loc_to_attribut(i) for i in sparks]
+            sparks_score=get_spark_score(sim_para,NbP,Me,prob,timeout)
             fireworks_score=new_fireworks(sparks_score,n,distance)
 
             count+=1
@@ -155,9 +157,7 @@ def gaussian_spark(firework_scores,m_gauss):
     return sparks
 
 
-def get_spark_score(sparks,NbP,Me, prob, timeout):
-
-    sim_para=[loc_to_attribut(i) for i in sparks]
+def get_spark_score(sim_para,NbP,Me, prob, timeout):
 
     return paralel(sim_para,comm, NbP,Me,prob,timeout)
 
