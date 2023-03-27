@@ -3,3 +3,5 @@
 parallel/.*
 __pycache__
 parallel/scripts/*.out
+parallel/scripts/.*
+*__pycache__

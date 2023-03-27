@@ -26,9 +26,9 @@ import time
 # import os
 
 nb_machines = 4
-timeout = 60
+timeout_computation = 60
 
-def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
+def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout_computation):
     """
     this function is the main function of the ant colony algorithm.
     parameters:
@@ -42,6 +42,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
     return:
         best: best solution found
     """
+    print("[beginning] executing ACO with rho={}, alpha={}, Q={}".format(rho,alpha,Q))
     ##########################################initiate the problem###########################################
     liste, dico = initiate(problem)  # list of choices and there probability
     best = [[], 0]  # store the best solution with its Gflops
@@ -125,7 +126,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
                                 "dim3": str(path[5]),
                             }
                         ),
-                        timeout,
+                        timeout_computation,
                     )
                 )
                 end_time = time.time()
@@ -136,8 +137,8 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
         for i in range(len(timer)):
             timeout += ants[1][i] * timer[i]
         timeout = int(timeout / nb_ant) + 1
-        print(ants[2])
-        print(timeout)
+        #print(ants[2])
+        #print(timeout)
         # update the probability weight for the best 10 solution
         ants[0], ants[1], ants[2] = map(
             list,
@@ -155,7 +156,9 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
         all_routes = []
         for x in all_routes_raw:
             all_routes = all_routes + x 
-
+        
+        routes_to_update = sorted(all_routes,key=itemgetter(2),reverse=True)[4:]
+        print("best restults : {}".format([ x for x in routes_to_update]))
         update(all_routes, liste, dico, rho, alpha, Q)
         # store the worst path to avoid them
         if len(ants[0]) > 20:
@@ -174,7 +177,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
 
 
 if __name__ == "__main__":
-    print(len(sys.argv))
+    #print(len(sys.argv))
     if len(sys.argv) == 1 :
         nb_ant = 10
         nb_iteration = 10
@@ -185,7 +188,7 @@ if __name__ == "__main__":
         alpha = 0.25
         Q = 1
     else :
-        print(sys.argv)
+        #print(sys.argv)
         (
             _,
             nb_ant,
@@ -206,7 +209,7 @@ if __name__ == "__main__":
             float(rho),
             float(alpha),
             float(Q),
-            int(timeout),
+            int(timeout_computation),
         )
     if Me == 0 :
         print("best solution : {}".format(res)) 

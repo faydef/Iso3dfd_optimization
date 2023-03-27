@@ -3,4 +3,5 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/intel/oneapi/compiler/2022.0.2/linu
 #if ls | grep "^slurm" >/dev/null; then
 #	rm slurm*
 #fi
-sbatch -N 4 -n 64 --exclusive --qos=16nodespu --reservation=st76intel8 -p cpu_prod run_parallel.sh
+sbatch -N 4 -n 64 --exclusive --qos=16nodespu --reservation=st76intel9 -p cpu_prod run_parallel.sh
+#sbatch -N 4 -n 64 --exclusive --qos=16nodespu -p cpu_prod run_parallel.sh
