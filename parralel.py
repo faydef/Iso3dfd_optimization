@@ -30,13 +30,13 @@ def paralel(l_para,comm, NbP,Me, prob, timeout):
 
 
 
-def resize(l,nb_part):
+def resize(l_p,nb_part):
     """ajoute un certain nombre de None dans la liste afin d'obtenir une taille de liste 
     multiple de nb_part
     retourne un array"""
 
     #Suppression des doublons
-    l=list(set(l))
+    l=unique(l_p)
 
     r=len(l)%nb_part
     ajout=nb_part-r
@@ -74,3 +74,11 @@ def get_score(l_param,prob,timeout):
                             )
         l_score.append((sim_para,score))
     return l_score
+
+
+def unique(l):
+    l_unique=[]
+    for i in l :
+        if i not in l_unique:
+            l_unique.append(i)
+    return l_unique
