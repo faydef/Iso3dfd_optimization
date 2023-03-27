@@ -57,14 +57,16 @@ def firework(n,a,b,distance,m,m_gauss,A,NbP,Me,prob,timeout):
     firework/spark = [Olevel, avx, nb thread, n1,n2,n3]
     """
 
+    count=0
+    
     if Me==0:
         bests=[]
 
-        count=0
         fireworks=initiate(n)
         fireworks_score=get_spark_score(fireworks,NbP,Me,prob,timeout)
 
     while count < 5: #stop criteria, here, the loop go through 5 times
+        print(f"Iteration num {count} sur la machine {Me}")
         if Me==0:
             sparks_exp=explosion(fireworks_score,a,b,m,A,n)
             sparks_gauss=gaussian_spark(fireworks_score,m_gauss)
