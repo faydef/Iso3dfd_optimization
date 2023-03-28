@@ -46,6 +46,7 @@ def cmdLineParsing():
         "--nt", help="maximum number of thread default:32", default=Defaultnthread, type=int)
     parser.add_argument(
         "--m", help="population based method (ACO, Tree_ACO, PSO,firework) default:ACO", default=DefaultMethod)
+    args = parser.parse_args()
     if args.m == "firework":
         parser.add_argument(
             "--n", help="number of particles/ants/fireworks on each iteration default:100 for population,5 for firework", default=Defaultnfirework, type=int)
