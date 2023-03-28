@@ -10,7 +10,36 @@ import mpi4py.MPI as MPI
 
 
 
-def ant(worst, liste, dico, nb_ant, rho, alpha, Q, timeout, size, rank):
+def execution(ants,problem,timeout):
+    timer = np.array([])
+    ants.append([])
+    for i in range(len(ants[0])):
+        path = ants[0][i]
+        execution = execute(
+                command(
+                    {
+                        "filename": "../iso3dfd-st7/compiled/bin_"
+                        + path[0]
+                        + "_"
+                        + path[1]
+                        + ".exe",
+                        "size1": str(problem[0]),
+                        "size2": str(problem[1]),
+                        "size3": str(problem[2]),
+                        "num_thread": str(path[2]),
+                        "dim1": str(path[3]),
+                        "dim2": str(path[4]),
+                        "dim3": str(path[5]),
+                    }
+                ),
+                timeout,
+            )
+        ants[2].append(execution[0])
+        timer = np.append(timer, execution[1])
+    return ants,timer
+
+
+def ant(worst, liste, dico, nb_ant, size, rank):
     """
     this function is the main function of the ant colony algorithm.
     parameters:
@@ -27,12 +56,11 @@ def ant(worst, liste, dico, nb_ant, rho, alpha, Q, timeout, size, rank):
     ##########################################initiate the ants###########################################
     ants = [
         [],
-        [],
-        [],
+        []
     ]  # liste of paths, number of ants that choosed this path and their score
-    timer = np.array([])  # liste of execution time in order to update the timeout
+    # timer = np.array([])  # liste of execution time in order to update the timeout
     
-    for i in range(nb_ant_per_node):
+    for i in range(nb_ant):
         
         
         ######################################choose randomly a path to explore based on probability weights##############################
@@ -87,29 +115,43 @@ def ant(worst, liste, dico, nb_ant, rho, alpha, Q, timeout, size, rank):
         else:
             ants[0].append(path)
             ants[1].append(1)
-            execution = execute(
-                    command(
-                        {
-                            "filename": "../iso3dfd-st7/compiled/bin_"
-                            + path[0]
-                            + "_"
-                            + path[1]
-                            + ".exe",
-                            "size1": str(problem[0]),
-                            "size2": str(problem[1]),
-                            "size3": str(problem[2]),
-                            "num_thread": str(path[2]),
-                            "dim1": str(path[3]),
-                            "dim2": str(path[4]),
-                            "dim3": str(path[5]),
-                        }
-                    ),
-                    timeout,
-                )
-            ants[2].append(execution[0])
-            timer = np.append(timer, execution[1])
-    return timer, ants
+            # execution = execute(
+            #         command(
+            #             {
+            #                 "filename": "../iso3dfd-st7/compiled/bin_"
+            #                 + path[0]
+            #                 + "_"
+            #                 + path[1]
+            #                 + ".exe",
+            #                 "size1": str(problem[0]),
+            #                 "size2": str(problem[1]),
+            #                 "size3": str(problem[2]),
+            #                 "num_thread": str(path[2]),
+            #                 "dim1": str(path[3]),
+            #                 "dim2": str(path[4]),
+            #                 "dim3": str(path[5]),
+            #             }
+            #         ),
+            #         timeout,
+            #     )
+            # ants[2].append(execution[0])
+            # timer = np.append(timer, execution[1])
+    return ants
 
+def divide_list_to_ranks(data, size):
+    chunk_size = len(data) // size
+    extra = len(data) % size
+    chunks = []
+
+    start = 0
+    for i in range(size):
+        end = start + chunk_size
+        if i < extra:
+            end += 1
+        chunks.append(data[start:end])
+        start = end
+
+    return chunks
 
 if __name__ == "__main__":
     # Initialize MPI
@@ -151,19 +193,35 @@ if __name__ == "__main__":
     ##########################################initiate the problem###########################################
     problem = input_args[2]
     liste, dico = initiate(problem)  # list of choices and there probability
-    if rank == 0 :
+    if rank == 0:
         best = [[], 0]  # store the best solution with its Gflops
     worst = set()  # set of worst path to avoid them
-    nb_ant_per_node = input_args[0] // size
+    # nb_ant_per_node = input_args[0] // size
     timeout = input_args[6]
 
-    if rank < input_args[0] % size:
-        nb_ant_per_node+=1
+    # if rank < input_args[0] % size:
+    #     nb_ant_per_node+=1
         
     for j in range(input_args[1]):
-        timer, ants = ant(worst, liste, dico, nb_ant_per_node, input_args[3], input_args[4], input_args[5], timeout, size, rank)
+        if rank == 0:
+            print("############interation "+str(j+1)+'/'+str(input_args[1])+'     Q='+Q)
+            ants = ant(worst, liste, dico, input_args[0], size, rank)
+            divided_paths = divide_list_to_ranks(ants[0],size)
+            divided_num = divide_list_to_ranks(ants[1],size)
+            divided_ants = [[divided_paths[i],divided_num[i]] for i in range(size)]
+        else:
+            divided_ants = None
+        
+        local_data = comm.scatter(divided_ants, root=0)
+        # print(f"Rank {rank} received {local_data}")
          
         # update the timeout
+        comm.Barrier()
+        
+        #execute line command
+        
+        ants, timer = execution(local_data,input_args[2], timeout)
+        
         comm.Barrier()
         
         # Calculate the total length of the timer list across all processes
@@ -183,8 +241,6 @@ if __name__ == "__main__":
         print(timer)
         print(gathered_timer,counts,displacements,MPI.DOUBLE)
         comm.Gatherv(timer,[gathered_timer,counts,displacements,MPI.DOUBLE], root=0)
-        if rank == 0:
-            print("P:",rank,":",gathered_timer)
 
         comm.Barrier()
 
@@ -204,29 +260,28 @@ if __name__ == "__main__":
             # Combine the concatenated lists into the final ants list
             all_ants = [all_paths, all_counts, all_scores]
         
-            # Initialize an empty dictionary to store the unique routes and their corresponding elements
-            unique_routes = {}
+            # # Initialize an empty dictionary to store the unique routes and their corresponding elements
+            # unique_routes = {}
 
-            for route, count, score in zip(all_ants[0], all_ants[1], all_ants[2]):
-                if tuple(route) in unique_routes:
-                    unique_routes[tuple(route)] = (
-                        unique_routes[tuple(route)][0] + count,
-                        max(unique_routes[tuple(route)][1], score),
-                    )
-                else:
-                    unique_routes[tuple(route)] = (count, score)
+            # for route, count, score in zip(all_ants[0], all_ants[1], all_ants[2]):
+            #     if tuple(route) in unique_routes:
+            #         unique_routes[tuple(route)] = (
+            #             unique_routes[tuple(route)][0] + count,
+            #             max(unique_routes[tuple(route)][1], score),
+            #         )
+            #     else:
+            #         unique_routes[tuple(route)] = (count, score)
 
-            # Convert the updated dictionary back to a list
-            updated_gathered_ants = [
-                [list(route) for route in unique_routes],
-                [count for count, _ in unique_routes.values()],
-                [score for _, score in unique_routes.values()],
-            ]
+            # # Convert the updated dictionary back to a list
+            # updated_gathered_ants = [
+            #     [list(route) for route in unique_routes],
+            #     [count for count, _ in unique_routes.values()],
+            #     [score for _, score in unique_routes.values()],
+            # ]
 
-            # Update the gathered_ants list
-            all_ants = updated_gathered_ants
-            
-            print(len(all_ants[0]))
+            # # Update the gathered_ants list
+            # all_ants = updated_gathered_ants
+            print("maximum :" + str(max(all_ants[1])))
             
         comm.Barrier()
         
@@ -237,16 +292,14 @@ if __name__ == "__main__":
             for i in range(len(gathered_timer)):
                 timeout += all_ants[1][i] * gathered_timer[i]
             timeout = int(timeout / int(nb_ant)) + 1
-            timeout_buffer[0] = timeout     
+            timeout_buffer[0] = timeout 
+            print('iteration '+str(j+1) +':'+str(timeout))    
         
         # Broadcast the timeout value from the root process
         comm.Bcast(timeout_buffer, root=0)
 
         # Extract the timeout value in all processes
         timeout = timeout_buffer[0]
-
-        # Print the timeout value to check if it has been correctly broadcasted
-        print("Rank", rank, "received timeout value:", timeout)
         comm.Barrier()
             
         if rank == 0:  
@@ -271,13 +324,7 @@ if __name__ == "__main__":
             # update the best solution
             if all_ants[2][0] > best[1]:
                 best = [all_ants[0][0], all_ants[2][0]]
-        
-        comm.Barrier()
-        
-        dico = comm.bcast(dico, root=0)
-        worst = comm.bcast(worst, root=0)
-        if rank == 0:
+            for elements in dico.keys():
+                print("max :"+str(np.max(dico[elements]))+", min:"+str(np.min(dico[elements])))
             print(best)
-        
-        comm.Barrier()
         
