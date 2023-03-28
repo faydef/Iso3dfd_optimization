@@ -48,7 +48,7 @@ def cmdLineParsing():
         "--m", help="population based method (ACO, Tree_ACO, PSO,firework) default:ACO", default=DefaultMethod)
     if args.m == "firework":
         parser.add_argument(
-            "--ts", help="number of particles/ants/fireworks on each iteration default:100 for population,5 for firework", default=Defaultnfirework, type=int)
+            "--n", help="number of particles/ants/fireworks on each iteration default:100 for population,5 for firework", default=Defaultnfirework, type=int)
     else:
         parser.add_argument(
             "--n", help="number of particles/ants/fireworks on each iteration default:100/5 for firework", default=Defaultnumberpopulation, type=int)
