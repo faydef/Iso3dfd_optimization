@@ -237,6 +237,9 @@ if __name__ == "__main__":
             displacements = np.zeros(size, dtype=int)
             np.cumsum(counts[:-1],out=displacements[1:])
         
+        
+        print(timer)
+        print(gathered_timer,counts,displacements,MPI.DOUBLE)
         comm.Gatherv(timer,[gathered_timer,counts,displacements,MPI.DOUBLE], root=0)
 
         comm.Barrier()

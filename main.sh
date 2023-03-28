@@ -1,15 +1,13 @@
-#!/bin/sh
-#SBATCH --time=12:00:00
-#SBATCH -N 16
-#SBATCH -n 512
-#SBATCH -p cpu_prod
-#SBATCH --exclusive
-#SBATCH --qos=16nodespu
+#!/bin/bash
 
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/intel/oneapi/compiler/2022.0.2/linux/compiler/lib/intel64_lin
+echo "La chaîne passée en argument est : $@"
 
-cd intel_ant_colony
-# Use the script to generate the hostfile
-./generate_hostfile.sh
 
-mpirun --hostfile hostfile --rank-by node --map-by ppr:1:node:PE=16 python3 parallel_ant_main.py 100 40 512 512 512 0.8 0.25 0.0001 30
+if [[ "$@" == *"--parallel"* ]]; then
+	echo "Execution of ACO in parallel"
+	sbatch run_parallel.sh
+else
+	srun -N 1 -n 32 --exclusive -p cpu_tp --pty python3 main.py $@
+	echo "non parallèle"
+fi
+
