@@ -151,7 +151,7 @@ if __name__ == "__main__":
     ##########################################initiate the problem###########################################
     problem = input_args[2]
     liste, dico = initiate(problem)  # list of choices and there probability
-    if rank == 0
+    if rank == 0 :
         best = [[], 0]  # store the best solution with its Gflops
     worst = set()  # set of worst path to avoid them
     nb_ant_per_node = input_args[0] // size
@@ -179,6 +179,9 @@ if __name__ == "__main__":
             displacements = np.zeros(size, dtype=int)
             np.cumsum(counts[:-1],out=displacements[1:])
         
+        
+        print(timer)
+        print(gathered_timer,counts,displacements,MPI.DOUBLE)
         comm.Gatherv(timer,[gathered_timer,counts,displacements,MPI.DOUBLE], root=0)
         if rank == 0:
             print("P:",rank,":",gathered_timer)
