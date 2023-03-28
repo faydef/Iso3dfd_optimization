@@ -8,6 +8,7 @@ def execute(bash_command, timeout,output_value='flops'):
             result = re.search('flops:(.*) GFlops', output)
         elif output_value == 'points' :
             result = re.seatch('flops:(.*) MPoints/s', output)
+        time = re.search('time:(.*) sec', output)
         output = result.group(1)
         output = float(output.strip())
 
@@ -15,7 +16,8 @@ def execute(bash_command, timeout,output_value='flops'):
     except Exception as e:
         print("#####algo stopped running: ",e)
         output = -99
-    return output
+        time = timeout
+    return output, time
 
 def command(options,output_value='flops'):
     command = options['filename']+' '+options['size1']+' '+options['size2']+' '+options['size3']+' '+options['num_thread']+' 100'+' '+options['dim1']+' '+options['dim2']+' '+options['dim3']

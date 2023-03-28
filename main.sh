@@ -1,8 +1,14 @@
 #!/bin/bash
 
-if [ -z "${1##*--parallel*}" ]; then
-  echo "exécution en parallèle"
+echo "La chaîne passée en argument est : $@"
+
+
+if [[ "$@" == *"--parallel"* ]]; then
+	echo "Execution of ACO in parallel"
+	sbatch run_parallel.sh
 else
-  python3 main.py "$@"
+	srun -N 1 -n 32 --exclusive -p cpu_tp --pty python3 main.py $@
+	echo "non parallèle"
 fi
+
 

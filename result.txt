@@ -1,0 +1,203 @@
+[6.01, 8.15, 2.64, 5.33, 15.89, 6.13, 14.78, 5.5, 24.45, 12.59, 9.21, 31.72, 2.43, 4.62, 23.87, 4.82, 23.41, 5.12, 9.21, 14.57, 5.05, 16.21, 4.61, 8.16, 25.66, 18.46, 11.36, 6.75, 13.49, 8.94, 40.56, 7.93, 2.83, 5.31, 11.04, 4.99, 24.3, 9.19, 15.97, 19.89, 5.92, 5.91, 8.56, 32.63, 12.86, 7.44, 12.73, 4.56, 25.96, 7.06, 18.67, 18.24, 5.58, 27.88, 7.87, 4.73, 20.44, 3.65, 5.02, 13.09, 7.06, 14.79, 26.79, 26.94, 6.42, 13.59, 13.51, 5.46, 24.34, 27.69, 14.85, 14.23, 3.5, 2.67, 6.34, 31.36, 10.12, 8.02, 4.32, 2.84, 4.87, 17.32, 8.95, 4.38, 16.65, 9.29, 3.72, 14.04, 3.81, 9.23, 6.57, 8.54, 8.77, 5.39, 9.43, 5.72, 4.9, 14.9, 3.28, 29.1]
+2
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 27 100 112 121 83 | grep flops' timed out after 2 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 6 100 80 122 113 | grep flops' timed out after 2 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 24 100 64 125 127 | grep flops' timed out after 2 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 24 100 96 95 91 | grep flops' timed out after 2 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 24 100 112 87 71 | grep flops' timed out after 2 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 18 100 112 128 121 | grep flops' timed out after 2 seconds
+[22.33, 36.5, 7.32, 34.66, 26.93, -99, 12.15, 12.61, 26.45, 37.4, 21.48, 28.24, 29.95, 29.57, 5.51, 8.75, 27.63, 18.4, 32.53, 18.5, 25.89, 26.74, 25.53, -99, -99, 14.93, 42.65, 17.77, 15.21, 28.85, 21.52, 5.4, 10.82, 29.64, 32.49, 5.08, 31.09, 24.36, 37.98, 7.86, 27.97, 21.51, 30.09, 9.39, 30.08, 38.57, 5.29, 16.56, 36.58, 36.38, 28.34, 17.54, 27.7, 22.7, -99, 10.54, 26.17, 16.62, 29.93, 27.99, 29.94, 35.08, 34.53, 32.31, 30.26, 14.21, 29.69, -99, 12.28, 33.2, 10.41, 33.61, 26.75, 4.99, 31.26, 29.29, 28.92, 7.21, 19.4, 34.01, 7.13, 7.36, 27.96, 17.69, 11.27, 8.94, 7.43, 14.07, 16.61, 30.28, 37.56, 34.0, 16.12, 30.11, -99, 8.13]
+1
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 17 100 112 68 88 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 30 100 80 115 76 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 21 100 16 41 120 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 30 100 64 106 113 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 30 100 64 119 54 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 18 100 64 85 104 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 17 100 80 109 128 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 4 100 48 102 12 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 30 100 80 57 120 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 25 100 16 8 89 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 27 100 48 126 49 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 27 100 48 95 100 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 24 100 96 42 27 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 13 100 96 120 73 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 1 100 96 38 46 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 29 100 80 57 101 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 27 100 80 115 121 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 29 100 16 54 92 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 25 100 48 49 92 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 21 100 96 41 99 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 27 100 32 99 100 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 4 100 64 95 54 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 1 100 16 54 17 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 17 100 112 118 36 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 15 100 64 128 99 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 29 100 80 115 46 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 1 100 80 15 115 | grep flops' timed out after 1 seconds
+[16.69, -99, -99, 10.94, -99, 27.0, 34.92, 20.35, -99, -99, 10.0, 10.69, -99, 22.09, 18.33, 12.28, 27.19, -99, 25.04, 16.75, 14.29, 9.97, -99, 43.73, 27.08, 42.2, -99, -99, -99, 17.3, 22.12, 38.76, 27.56, 28.59, 21.15, 33.06, 36.81, 39.01, 19.4, -99, -99, 35.02, -99, 19.33, -99, 27.57, 30.19, -99, 12.08, -99, 13.48, 14.35, -99, 14.46, 37.02, 26.61, 30.98, 17.91, -99, 31.82, 24.04, 39.15, 29.42, 20.71, 33.54, 33.92, 26.96, 15.84, 36.49, 28.66, 24.24, 18.29, 34.25, 32.46, -99, 16.34, -99, 13.37, 20.61, -99, 33.33, 30.4, -99, -99, 12.21, 22.88, 23.99, -99, -99, 9.68, 10.61, 19.66, -99, 35.97, 27.34, 25.38, 38.51, 16.64, 26.3, 18.01]
+1
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 21 100 80 63 80 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 17 100 80 57 65 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 29 100 80 57 62 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 21 100 80 115 122 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 18 100 96 42 34 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 15 100 64 99 55 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 17 100 80 86 101 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 21 100 80 57 58 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 29 100 112 74 78 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 30 100 112 38 90 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 29 100 16 54 100 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 30 100 16 55 104 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 30 100 80 115 4 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 24 100 112 75 83 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 15 100 64 59 114 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 30 100 80 116 110 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 24 100 32 14 67 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 27 100 96 48 31 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 30 100 112 68 37 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 3 100 96 9 13 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 2 100 80 6 108 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 1 100 112 68 1 | grep flops' timed out after 1 seconds
+[-99, -99, 24.39, 31.01, 21.59, -99, 12.69, -99, 14.05, -99, 12.47, 28.24, 28.18, 28.2, 37.79, 31.33, 32.22, 38.99, -99, 20.2, 35.08, 15.84, 14.07, 29.13, 31.65, 35.64, 30.47, 30.06, 20.14, 20.78, 34.95, 19.65, -99, 22.51, 21.62, 18.61, -99, 37.96, 33.3, 22.41, -99, -99, -99, -99, -99, 28.0, 16.15, -99, -99, 9.88, 23.85, 25.29, 28.81, 27.82, 28.93, 38.61, 36.51, 38.19, -99, -99, -99, -99, -99, 10.76, 8.94, 22.94, 35.5, 19.46, 33.35, 30.67, 16.11, -99, 22.4, 31.06, 15.05, 29.81, 27.16, 27.75, 23.66, 30.7, 33.78, 17.45, 10.75, 20.5, 33.06, 30.69, 20.42, 13.7, 37.97, 29.09, 37.53, 35.26, 15.69, 15.49, -99, 11.12, 27.94, 23.42, 33.33]
+1
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 15 100 64 126 120 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 21 100 112 68 26 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 25 100 64 114 63 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 17 100 80 57 119 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 15 100 48 41 123 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 15 100 64 126 49 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 30 100 112 122 95 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 15 100 64 47 35 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 17 100 80 115 43 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 19 100 112 68 85 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 18 100 64 45 112 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 21 100 80 115 89 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 29 100 112 101 60 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 1 100 32 33 77 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 21 100 112 68 62 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 21 100 80 115 46 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 15 100 64 81 43 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 24 100 80 107 88 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 17 100 80 73 60 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 27 100 48 23 59 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 9 100 32 87 118 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 2 100 112 3 53 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 29 100 112 58 65 | grep flops' timed out after 1 seconds
+[22.58, -99, -99, 20.89, 22.33, 27.89, 27.58, 27.86, 27.4, 41.78, 25.68, 33.86, 20.86, -99, -99, 15.36, 18.07, 23.28, 27.08, -99, 18.8, -99, 18.74, 38.21, 33.56, 25.14, 25.57, 10.67, 26.63, -99, 12.58, -99, 9.39, 26.39, 38.05, 28.87, 32.61, 41.55, 37.05, 38.15, 26.15, 26.07, 43.69, -99, 24.75, 20.25, 30.09, 18.56, 31.94, -99, -99, 12.17, 26.11, 29.25, 29.8, 27.82, 26.89, -99, 16.8, 11.74, 11.59, 15.42, 34.66, -99, 13.02, 12.0, -99, 32.4, 13.65, -99, 16.58, 26.03, 40.46, 10.64, 10.67, 28.07, 30.22, 35.93, 30.72, 35.69, -99, -99, -99, -99, -99, 16.49, 20.56, 41.04, 23.71, 18.52, 29.44, 24.03, 32.3, -99, -99, -99, 14.88, 42.98]
+1
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 30 100 80 113 51 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 24 100 96 30 60 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 21 100 112 68 128 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 15 100 64 112 95 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 15 100 64 45 94 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 25 100 32 98 126 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 27 100 48 92 80 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 18 100 96 42 79 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 21 100 80 111 98 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 29 100 48 33 103 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 16 100 80 10 32 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 18 100 96 42 117 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 30 100 80 115 14 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 17 100 80 115 73 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 30 100 112 64 37 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 27 100 80 115 128 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 25 100 32 43 63 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 4 100 32 121 46 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 24 100 48 120 86 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 29 100 112 30 86 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 27 100 64 81 60 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 30 100 112 68 92 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 27 100 64 46 119 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 25 100 32 40 111 | grep flops' timed out after 1 seconds
+[33.57, 32.92, 31.01, -99, -99, 18.25, -99, 21.05, 10.76, -99, 23.39, 24.07, 25.33, 26.4, 31.63, -99, 31.51, 39.01, 32.37, 15.34, 29.61, 26.86, 12.22, 22.14, 29.58, 17.95, 27.93, 26.76, 36.69, 27.9, 29.24, 31.62, 26.38, 9.6, -99, 14.1, 31.91, 31.76, 28.62, -99, 12.76, 35.01, -99, 19.84, 22.23, 37.31, 23.69, 31.84, 35.21, -99, -99, -99, -99, -99, 27.83, -99, -99, 10.59, 33.43, 34.69, 17.57, 35.08, -99, 13.74, -99, 12.47, 13.93, -99, -99, -99, 20.48, 26.25, 17.41, 26.22, 15.97, -99, 29.14, 16.27, 36.35, -99, 13.63, 12.58, 32.51, 18.38, 20.59, 47.61, 34.02, 25.69, 9.59, 10.2, 32.68, 34.4, 23.15, -99, -99, 29.01]
+1
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 18 100 96 86 85 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 23 100 48 80 105 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 29 100 80 30 36 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 9 100 64 113 63 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 24 100 96 125 59 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 21 100 48 91 94 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 17 100 96 113 124 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 25 100 32 40 91 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 18 100 80 115 119 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 24 100 96 117 54 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 17 100 64 11 65 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 27 100 80 57 68 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 21 100 16 125 98 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 30 100 96 84 40 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 19 100 96 72 101 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 27 100 96 90 123 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 2 100 48 23 27 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 20 100 96 41 127 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 29 100 80 57 116 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 21 100 80 71 14 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 27 100 80 101 52 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 30 100 80 57 103 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 30 100 80 115 19 | grep flops' timed out after 1 seconds
+[18.05, 25.71, 30.92, 34.77, 14.62, 31.9, 32.17, 19.24, 19.44, 29.28, -99, 19.3, 13.14, 26.37, 37.84, 39.87, 33.17, 36.05, 16.07, 36.99, 9.63, 35.79, 9.98, -99, -99, 25.01, 12.17, 29.23, 13.58, 32.32, -99, -99, 15.92, 18.2, 26.22, 35.95, 29.32, 26.46, 20.3, 14.38, 16.47, -99, 13.17, 41.14, -99, -99, -99, 13.69, -99, -99, 15.94, -99, -99, 17.85, -99, -99, -99, 10.59, 17.71, 11.74, 14.29, 15.04, 28.82, 30.75, 23.34, 36.9, -99, 21.46, 37.85, -99, 13.79, 24.61, 32.0, -99, -99, -99, 10.96, 18.7, 24.49, 27.19, 22.92, -99, -99, 10.76, 48.87, 14.67, 33.86, 24.04, 32.75, 31.49, 25.54, 32.63, 19.16, 25.91, 33.31, 34.04]
+1
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 17 100 80 115 100 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 29 100 112 90 82 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 29 100 80 101 80 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 17 100 80 115 4 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 29 100 64 11 24 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 6 100 80 10 16 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 32 100 80 115 50 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 3 100 48 23 101 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 21 100 112 62 42 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 18 100 96 50 59 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 22 100 32 125 120 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 1 100 80 2 72 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 15 100 64 59 80 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 30 100 80 50 91 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 15 100 96 42 112 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 29 100 80 124 59 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 32 100 64 77 82 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 17 100 80 44 124 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx2.exe 128 128 128 29 100 112 38 125 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 21 100 112 68 97 | grep flops' timed out after 1 seconds
+[21.71, 29.16, 9.7, 31.0, 32.62, 26.24, 19.88, 36.14, 28.76, -99, -99, -99, -99, -99, -99, 15.16, 26.5, -99, -99, 30.44, 33.33, 30.38, 42.52, -99, 43.73, 32.77, -99, 14.7, 28.18, 21.03, 27.25, 35.86, 32.12, 36.92, 38.86, 33.11, 23.91, 23.43, 18.92, 16.89, 18.59, 32.23, -99, -99, 30.73, 28.7, 32.04, 30.91, 33.14, 35.0, 37.38, 38.98, 9.12, 19.57, -99, 52.24, 28.89, 44.17, 25.98, 13.85, 33.54, 31.58, 31.57, 39.88, 15.95, 25.73, 16.53, -99, 17.48, 14.59, 24.98, -99, 19.2, -99, 10.86, 15.89, 20.39, 13.69, 18.7, 31.04, 27.2, 23.21, 31.57, 38.63, 27.56, 9.13, 29.69, -99, 12.12, 24.21, 31.63, 13.98, 23.0, 16.97, 33.99, -99, -99, 13.81, -99]
+1
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 32 100 64 11 118 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 30 100 32 109 77 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 25 100 64 62 76 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 23 100 80 57 110 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 29 100 96 9 102 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 29 100 112 70 85 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 18 100 96 42 73 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 24 100 112 68 61 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 25 100 80 115 93 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 27 100 64 121 31 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 21 100 112 111 39 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 18 100 96 42 109 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 29 100 80 115 85 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 18 100 64 47 67 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 25 100 32 3 46 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 25 100 32 76 92 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 24 100 48 61 91 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 21 100 64 28 119 | grep flops' timed out after 1 seconds
+[-99, 18.19, 14.62, 14.81, 26.86, 32.2, 31.55, 24.79, 26.31, -99, 13.42, -99, 18.31, 10.62, 31.51, -99, -99, 34.85, 27.85, 26.51, 28.15, 14.22, 36.79, 20.31, 36.29, 28.15, 29.21, 37.97, 29.0, 26.47, 14.74, -99, 12.68, 13.77, 28.93, 22.69, 32.84, -99, 35.79, 30.2, -99, 14.03, 36.28, 27.08, 32.05, 28.44, 34.24, 32.51, -99, -99, 9.95, 24.33, 40.93, 38.51, 34.5, 23.59, 28.98, 14.41, 30.02, 30.02, 33.39, 34.8, 27.73, 11.67, 21.52, -99, 17.25, 35.02, 31.34, 32.79, 23.71, -99, 19.97, 18.64, 31.3, 41.22, -99, -99, -99, 36.1, 35.24, 34.13, 26.34, -99, 29.25, 33.48, 25.45, 31.39, -99, -99, 30.84, 27.75, 27.13, 26.03, 37.39, 26.77, 20.69, 28.9, 19.66, 21.21]
+1
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 18 100 64 111 115 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 1 100 16 8 55 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 32 100 64 84 84 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx.exe 128 128 128 21 100 80 92 128 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 25 100 32 99 59 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx.exe 128 128 128 32 100 64 31 24 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx2.exe 128 128 128 4 100 48 81 45 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 17 100 80 57 95 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 3 100 112 70 122 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 29 100 112 78 86 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx512.exe 128 128 128 8 100 80 119 69 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 29 100 112 68 49 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 21 100 80 115 59 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 21 100 96 33 66 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O3_avx2.exe 128 128 128 29 100 80 57 56 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_Ofast_avx512.exe 128 128 128 29 100 80 58 106 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 21 100 16 38 34 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx.exe 128 128 128 24 100 96 42 119 | grep flops' timed out after 1 seconds
+#####algo stopped running:  Command '../iso3dfd-st7/compiled/bin_O2_avx512.exe 128 128 128 29 100 80 100 88 | grep flops' timed out after 1 seconds
+[34.47, 25.97, 43.44, 10.83, 33.22, -99, 24.85, 24.44, 22.77, -99, 32.47, 16.53, 31.71, -99, 9.72, 25.17, 13.48, -99, -99, -99, 10.83, 34.55, 26.78, 20.28, -99, 23.29, 32.27, 10.29, 31.93, 35.5, -99, 15.87, 29.22, -99, 9.71, 36.52, 27.66, 40.1, 34.39, 36.01, 19.83, -99, 14.4, 12.39, 22.2, 9.72, 16.14, 28.64, 36.09, 34.35, 28.72, 28.71, 33.56, 37.49, 9.81, -99, 18.47, -99, 18.67, 16.98, 28.07, 26.39, 29.32, 29.12, 9.51, 25.38, 42.45, 31.97, 27.31, -99, -99, 18.97, 25.13, 26.31, 28.73, 34.45, 35.26, 16.9, 33.45, 8.97, 37.19, -99, 38.01, -99, -99, 21.76, 31.29, 10.0, 35.28, 32.6, 33.34, 36.07, 26.63, 25.73, 11.69, 42.71, 33.06, 24.61, -99, -99]
+1
+[['Ofast', 'avx512', 29, 112, 3, 18], 52.24]
