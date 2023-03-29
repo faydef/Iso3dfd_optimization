@@ -109,7 +109,7 @@ def execute_all(bash_command, timeout):
         output = -99
     return output
 
-def mixed(options, timeout, alpha, output_value="flops"):
+def mixed(options, timeout, alpha, output_value="GFlops"):
     bash_perf = command(options, output_value)
     # Create a new file with the command
     with open("my_script.sh", "w") as f:
