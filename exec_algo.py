@@ -87,4 +87,10 @@ def execute_nrj(bash_command, timeout):
     return output
 
 
+def mixed_exec(bash_command, timeout, alpha, output_value="flops"):
+    perf = execute(bash_command, timeout, output_value)
+    nrj = execute_nrj(bash_command, timeout)
+    return alpha * perf + (1 - alpha) * nrj
+
+
 # execute('cat test.txt | grep flops', 10)
