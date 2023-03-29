@@ -27,11 +27,14 @@ def command_nrj(options):
 def execute_nrj(bash_command, timeout):
     try:
         output = check_output(bash_command, timeout=timeout, shell=True)
-        parse_output = 'python test_nrj.py -f $(ls -t1 ./*.csv | head -n1)'
+        parse_output = 'python test_nrj.py -f $(ls -t1 ./*.csv | head -n1) | grep all'
         output = check_output(parse_output, timeout=timeout, shell=True)
+        print(output)
         output = output.decode('UTF-8')
-        result = re.search('DRAM + PKG energy:', output)
+        result = re.search('all energy: (.*)', output)
+        print(result)
         output = result.group(1)
+        print(output)
         output = float(output.strip())
 
 #    except subprocess.TimeoutExpired:
