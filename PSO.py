@@ -27,7 +27,7 @@ def objective_function(path, problem, timeout):
             }
         ),
         timeout,
-    )
+    )[0]
 
 
 # Define the Particle class

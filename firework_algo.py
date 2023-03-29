@@ -167,7 +167,7 @@ def get_spark_score(sparks,):
                     }
                 ),
                 timeout,
-            )
+            )[0]
             score_sparks.append((s, score))
             saved_config["".join(str(e) for e in att_val)] = score
         compteur += 1

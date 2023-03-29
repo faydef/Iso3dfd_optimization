@@ -104,7 +104,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
                             }
                         ),
                         timeout,
-                    )
+                    )[0]
                 )
                 end_time = time.time()
                 timer.append(end_time - start_time)
