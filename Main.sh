@@ -34,12 +34,13 @@ if [ "$parallel" = true ]; then
     sbatch main.sh $i $n $n1 $n2 $n3 $rho $alpha $q 30 
 else 
     #echo "executing srun -N 1 --exclusive -p cpu_tp python3 main.py $total_argument"
-    echo "#/bin/bash" > tmp/script.sh
-    echo "cd ..">> tmp/script.sh
+    echo "#!/bin/bash" > tmp/script.sh
+    echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/intel/oneapi/compiler/2022.0.2/linux/compiler/lib/intel64_lin" >> tmp/script.sh
+    echo "cd .." >> tmp/script.sh
     echo "echo \"executing python3 main.py $total_argument\"" >> tmp/script.sh
-    echo "python3 main.py $total_argument" >> tmp/script.sh
+    echo "/opt/intel/oneapi/intelpython/latest/bin/python3 main.py $total_argument" >> tmp/script.sh
     cd tmp
-    srun -N 1 --exclusive -p cpu_tp --pty bash script.sh
+    srun -N 1 -n 32 --exclusive -p cpu_tp --pty bash script.sh
    
 fi
 
