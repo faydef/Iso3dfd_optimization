@@ -10,7 +10,7 @@ def tree_generation(compil_flag_list, simd_list, num_threads_max, n1_size, n2_si
     list_n2block = values_nblock(n2_size, first=False)
     list_n3block = values_nblock(n3_size, first=False)
 
-    list_num_thread = values_num_thread(num_threads_max)
+    list_num_thread = values_num_thread(num_threads_max,type="all")
 
     list_dict_parameters.append(
         {i: compil_flag_list[i-1] for i in range(1, 1+len(compil_flag_list))})
@@ -63,7 +63,7 @@ def values_num_thread(num_threads_max, type='power_of_2'):
             list_num_thread.append(str(a))
             i += 1
     if type == 'all':
-        list_num_thread = [i for i in range(1, num_threads_max + 1)]
+        list_num_thread = [i for i in range(4, num_threads_max + 1)]
     return list_num_thread
 
 
