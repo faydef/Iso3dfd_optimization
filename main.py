@@ -219,5 +219,5 @@ if len(sys.argv) > 1:
         print("Fitness value: ", solution[1])
     if method == "firework":
         res = firework(n, a, b, "euclide", max_number_sparks,
-                       gauss_sparks, amplitude, problem)
+                       gauss_sparks, amplitude, [n1,n2,n3],timeout)
         print(res)
