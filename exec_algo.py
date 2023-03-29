@@ -13,12 +13,18 @@ def execute(bash_command, timeout, output_value="flops"):
             result = re.seatch("flops:(.*) MPoints/s", output)
         output = result.group(1)
         output = float(output.strip())
+        time = re.search('time:(.*) sec', output)
+        tmp = time.group(1)
+        time = float(tmp.strip())
+
 
     #    except subprocess.TimeoutExpired:
     except Exception as e:
         print("#####algo stopped running: ", e)
         output = -99
-    return output
+        time = timeout
+
+    return output,time
 
 
 def command(options, output_value="flops"):
