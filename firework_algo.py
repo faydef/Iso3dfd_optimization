@@ -49,7 +49,7 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
 
     count = 0
     fireworks = initiate(n,problem)
-    fireworks_score = get_spark_score(fireworks,problem)
+    fireworks_score = get_spark_score(fireworks,problem, timeout)
     while count < 5:  # stop criteria, here, the loop went through 5 times
         sparks_exp = explosion(fireworks_score, a, b, m, A, n, problem)
         sparks_gauss = gaussian_spark(fireworks_score, m_gauss,problem)
