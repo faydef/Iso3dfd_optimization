@@ -20,3 +20,5 @@ __pycache__/PSO.cpython-39.pyc
 __pycache__/firework_algo.cpython-39.pyc
 __pycache__/*
 hostfile
+.*
+tmp/*
