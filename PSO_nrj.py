@@ -10,7 +10,7 @@ avx = ["avx", "avx2", "avx512"]
 # Define the objective function to optimize
 
 
-def objective_function(path, problem, timeout):
+def objective_function(path, problem, timeout, alpha):
     return mixed(
             {
                 "filename": "../iso3dfd-st7/compiled/bin_"
@@ -27,13 +27,13 @@ def objective_function(path, problem, timeout):
                 "dim3": str(path[5]),
             },
         timeout,
-        0.5,
+        alpha,
     )
 
 
 # Define the Particle class
 class Particle:
-    def __init__(self, bounds, c1, c2, w, problem, timeout):
+    def __init__(self, bounds, c1, c2, w, problem, timeout, alpha):
         self.c1 = c1
         self.c2 = c2
         self.w = w
@@ -44,6 +44,7 @@ class Particle:
         self.best_fitness = -1
         self.problem = problem
         self.timeout = timeout
+        self.alpha = alpha
 
         for i in range(len(bounds)):
             if i != 3:
@@ -56,7 +57,7 @@ class Particle:
 
     def evaluate(self, objective_function):
         start = time.time()
-        self.fitness = objective_function(self.position, self.problem, self.timeout)
+        self.fitness = objective_function(self.position, self.problem, self.timeout, self.alpha)
         end = time.time()
 
         self.timeout = int(end - start) + 1
@@ -107,6 +108,7 @@ class ParticleSwarmOptimization:
         w,
         problem,
         timeout,
+        alpha,
     ):
         self.objective_function = objective_function
         self.bounds = bounds
@@ -119,9 +121,10 @@ class ParticleSwarmOptimization:
         self.global_best_fitness = -1
         self.swarm = []
         self.timeout_global = timeout
+        self.alpha = alpha
 
         for i in range(num_particles):
-            self.swarm.append(Particle(bounds, c1, c2, w, problem, timeout))
+            self.swarm.append(Particle(bounds, c1, c2, w, problem, timeout, alpha))
 
     def optimize(self):
         for i in range(self.max_iterations):
@@ -172,7 +175,8 @@ if __name__ == "__main__":
         c1,
         c2,
         w,
-    ) = [int(el) for el in sys.argv[1:-3]] + [float(el) for el in sys.argv[-3:]]
+        alpha,
+    ) = [int(el) for el in sys.argv[1:-4]] + [float(el) for el in sys.argv[-4:]]
     # Define the boundaries of the search space
     bounds = [(0, 2), (0, 2), (1, 32), (16, problem_1), (1, problem_2), (1, problem_3)]
     optimizer = ParticleSwarmOptimization(
