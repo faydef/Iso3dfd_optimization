@@ -27,7 +27,7 @@ def loc_to_attribut(loc,problem):
 
 
 saved_config = {}
-eps = 1
+eps = 1E-4
 
 
 def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30):
