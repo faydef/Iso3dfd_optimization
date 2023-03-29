@@ -110,7 +110,7 @@ def execute_all(bash_command, timeout):
     return output
 
 def mixed(options, timeout, alpha, output_value="flops"):
-    bash_perf = command(options)
+    bash_perf = command(options, output_value)
     # Create a new file with the command
     with open("my_script.sh", "w") as f:
         f.write("#!/bin/bash\n")
@@ -127,7 +127,7 @@ def mixed(options, timeout, alpha, output_value="flops"):
         result = re.search("all energy: (.*)", output)
         output = result.group(1)
         output = float(output.strip())
-        with open('result.txt', 'r') as f:
+        with open('results/result.txt', 'r') as f:
             for line in f:
                 if 'GFlops' in line:
                     score =  line.rstrip('\n')
