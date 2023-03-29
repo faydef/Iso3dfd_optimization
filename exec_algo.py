@@ -118,7 +118,7 @@ def mixed(options, timeout, alpha, output_value="flops"):
 
     # Make the file executable
     os.chmod("my_script.sh", 0o755)
-    bash_command = 'cd results && /opt/cpu_monitor/cpu_monitor.x --csv --quiet --redirect -- ./my_script.sh && cd ..'
+    bash_command = 'cd results && /opt/cpu_monitor/cpu_monitor.x --csv --quiet --redirect -- ../my_script.sh && cd ..'
     try:
         _ = check_output(bash_command, timeout=timeout, shell=True)
         parse_output = "python test_nrj.py -f $(ls -t1 results/*.csv | head -n1) | grep all"
