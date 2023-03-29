@@ -30,7 +30,7 @@ saved_config = {}
 eps = 1E-4
 
 
-def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30):
+def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30,iteration = 5):
     """parametre : 
     n : number of initial fireworks
     a : minimum rate sparks/firework
@@ -45,7 +45,7 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
     firework/spark = [Olevel, avx, nb thread, n1,n2,n3]
     """
 
-    file_name=f"{problem[0]}_cube_result.txt" #A modifier à chaque exec
+    file_name=f"{problem[0]}_cube_{iteration}_iteration_result.txt" #A modifier à chaque exec
 
     file=open(file_name,"w")
 
@@ -57,7 +57,7 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
     fireworks_score = get_spark_score(fireworks,problem, timeout)
     end_time=time.time()
     save_result(file,fireworks_score,end_time-start_time,0,problem)
-    while count < 5:  # stop criteria, here, the loop went through 5 times
+    while count < iteration:  # stop criteria, here, the loop went through 5 times
         start_time=time.time()
         sparks_exp = explosion(fireworks_score, a, b, m, A, n, problem)
         sparks_gauss = gaussian_spark(fireworks_score, m_gauss,problem)
@@ -236,5 +236,6 @@ def save_result(file,loc_score,exec_time,iteration_number,prob):
 
 # Best config firework(5,0.04,0.8,"euclide",50,5,60)
 
-firework(5,0.04,0.8,"euclide",50,5,60, problem=[128,128,128],timeout=30)
+firework(5,0.04,0.8,"euclide",50,5,60, problem=[128,128,128],timeout=30,iteration=10)
+firework(5,0.04,0.8,"euclide",50,5,60, problem=[256,256,256],timeout=30,iteration = 7)
 
