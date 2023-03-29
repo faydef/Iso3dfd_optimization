@@ -189,6 +189,7 @@ if __name__ == "__main__":
         w,
         [problem_1, problem_2, problem_3],
         timeout,
+        alpha,
     )
     solution = optimizer.optimize()
     print("Solution: ", solution[0])
