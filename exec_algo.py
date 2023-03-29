@@ -84,9 +84,11 @@ def execute_nrj(bash_command, timeout):
     return 1/(output+1)
 
 
-def mixed_exec(bash_command, timeout, alpha, output_value="flops"):
-    perf = execute(bash_command, timeout, output_value)
-    nrj = execute_nrj(bash_command, timeout)
+def mixed_exec(options, timeout, alpha, output_value="flops"):
+    bash_perf = command(options)
+    bash_nrj = command_nrj(options)
+    perf = execute(bash_perf, timeout, output_value)
+    nrj = execute_nrj(bash_nrj, timeout)
     return alpha * perf + (1 - alpha) * nrj
 
 
