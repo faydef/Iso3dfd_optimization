@@ -1,4 +1,12 @@
-def update_tree(tree, evaporation_rate, ants, ants_score, minMax=False, max_pheromone=100, min_pheromone=0):
+def update_tree(
+    tree,
+    evaporation_rate,
+    ants,
+    ants_score,
+    minMax=False,
+    max_pheromone=100,
+    min_pheromone=0,
+):
     """return the updated tree with the score of the previous ant, the decay of the present pheromone and
     the choice of the cost function
     If minMax = False, will not use the minmax pheromone attribution method, if true, take care to tune
@@ -17,7 +25,7 @@ def pheromone_decay(tree, evaporation_rate, minMax, min_pheromone):
 
     for key, value in tree.items():
         if key == 0:
-            tree[key] = (1-evaporation_rate)*value
+            tree[key] = (1 - evaporation_rate) * value
             if minMax and tree[key] < min_pheromone:
                 tree[key] = min_pheromone
         else:
@@ -52,15 +60,14 @@ def ants_ants_score_merge(ants, ants_score):
 def ASrank(score_path, k, pheromone_added):
     """At the end of each iteration, all solutions are ranked and the first k ant add pheromone to their path"""
     score_path.sort(
-        key=lambda x: x[0], reverse=False)  # Peut etre changer reverse en fonction du cout
+        key=lambda x: x[0], reverse=False
+    )  # Peut etre changer reverse en fonction du cout
     k_best = score_path[:k]
-    pheromone_path = [[pheromone_added, k_best[i][1]]
-                      for i in range(len(k_best))]
+    pheromone_path = [[pheromone_added, k_best[i][1]] for i in range(len(k_best))]
     return pheromone_path
 
 
 def BestAnt(score_path):
     """Return the best ant of the iteration"""
-    best_ant = max(
-        score_path, key=lambda x: x[0])  # Peut etre min en fonction du cout
+    best_ant = max(score_path, key=lambda x: x[0])  # Peut etre min en fonction du cout
     return best_ant
