@@ -3,28 +3,22 @@ import numpy as np
 from exec_algo import command, execute
 import time
 
-timeout = 30
-
-problem = [512, 512, 512]
 
 "parametre : Olevel, avx, nb thread, n1,n2,n3"
+"""On utlise un espace continue de dimension 512^6 que l'on va découper"""
 
-attributs = [
+
+def loc_to_attribut(loc,problem):
+    """parametre list of float in range 512, NO SCORE"""
+
+    attributs = [
     ["O1", "O2", "O3", "Ofast"],
     ["sse", "avx", "avx2", "avx512"],
     [i for i in range(1, 33)],
     [16 * i for i in range(1, round(problem[0] / 16))],
     [i for i in range(1, problem[1] + 1)],
     [i for i in range(1, problem[2] + 1)],
-]
-
-dim = 6
-
-"""On utlise un espace continue de dimension 512^6 que l'on va découper"""
-
-
-def loc_to_attribut(loc):
-    """parametre list of float in range 512, NO SCORE"""
+    ]
     att = []
     for i in range(len(loc)):
         att_indexe = int(loc[i] // (problem[0] / len(attributs[i])))
@@ -33,12 +27,10 @@ def loc_to_attribut(loc):
 
 
 saved_config = {}
-eco = 0
-
 eps = 1
 
 
-def firework(n, a, b, distance, m, m_gauss, A):
+def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30):
     """parametre : 
     n : number of initial fireworks
     a : minimum rate sparks/firework
@@ -56,40 +48,40 @@ def firework(n, a, b, distance, m, m_gauss, A):
     bests = []
 
     count = 0
-    fireworks = initiate(n)
-    fireworks_score = get_spark_score(fireworks)
+    fireworks = initiate(n,problem)
+    fireworks_score = get_spark_score(fireworks,problem)
     while count < 5:  # stop criteria, here, the loop went through 5 times
-        sparks_exp = explosion(fireworks_score, a, b, m, A, n)
-        sparks_gauss = gaussian_spark(fireworks_score, m_gauss)
+        sparks_exp = explosion(fireworks_score, a, b, m, A, n, problem)
+        sparks_gauss = gaussian_spark(fireworks_score, m_gauss,problem)
         sparks = sparks_exp + sparks_gauss
-        sparks_score = get_spark_score(sparks)
+        sparks_score = get_spark_score(sparks,problem,timeout)
         if distance == "euclide":
             fireworks_score = new_fireworks(sparks_score, n, euclide)
 
         count += 1
         best = best_loc(sparks_score)
-        print(loc_to_attribut(best[0]), best[1])
-        bests.append((loc_to_attribut(best[0]), best[1]))
+        print(loc_to_attribut(best[0],problem), best[1])
+        bests.append((loc_to_attribut(best[0],problem), best[1]))
 
     print(bests)
     best = best_loc(sparks_score)
-    return loc_to_attribut(best[0]), best[1]
+    return loc_to_attribut(best[0],problem), best[1]
 
 
-def initiate(n):
+def initiate(n,problem):
     """Select n random point"""
     fireworks = []
     for i in range(n):
         f = []
-        for d in range(dim):
+        for d in range(6):
             f.append(random.uniform(0, problem[0]))
         fireworks.append(f)
     return fireworks
 
 
-def explosion(fireworks_score, a, b, m, A, n):
+def explosion(fireworks_score, a, b, m, A, n,problem):
     """return a list of spark"""
-    indexes = [i for i in range(dim)]
+    indexes = [i for i in range(6)]
     number_spark_per_firework = []
     amplitude_per_firework = []
 
@@ -113,7 +105,7 @@ def explosion(fireworks_score, a, b, m, A, n):
     for f in range(len(fireworks_score)):
         for i in range(number_spark_per_firework[f]):
             s = fireworks_score[f][0].copy()
-            z = random.randrange(dim)
+            z = random.randrange(6)
             attribute_indexes = random.choices(indexes, k=z)
             deplacement = amplitude_per_firework[f] * random.uniform(-1, 1)
             for att in attribute_indexes:
@@ -125,12 +117,12 @@ def explosion(fireworks_score, a, b, m, A, n):
     return sparks
 
 
-def gaussian_spark(firework_scores, m_gauss):
-    indexes = [i for i in range(dim)]
+def gaussian_spark(firework_scores, m_gauss, problem):
+    indexes = [i for i in range(6)]
     sparks = []
     for m in range(m_gauss):
         s = random.choice(firework_scores)[0].copy()
-        z = random.randrange(dim)
+        z = random.randrange(6)
         attribute_indexes = random.choices(indexes, k=z)
         g = random.gauss(1, 1)
         for a in attribute_indexes:
@@ -141,13 +133,13 @@ def gaussian_spark(firework_scores, m_gauss):
     return sparks
 
 
-def get_spark_score(sparks,):
+def get_spark_score(sparks,problem,timeout):
     score_sparks = []
     n_spark = len(sparks)
     print(f"Nombre de sparks dans cette generation : {n_spark}")
     compteur = 0
     for s in sparks:
-        att_val = loc_to_attribut(s)
+        att_val = loc_to_attribut(s,problem)
         if "".join(str(e) for e in att_val) not in saved_config.keys():
             score = execute(
                 command(
