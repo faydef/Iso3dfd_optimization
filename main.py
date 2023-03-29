@@ -89,7 +89,7 @@ def cmdLineParsing():
 
     if args.m not in ("ACO", "Tree_ACO", "PSO", "firework"):
         sys.exit(
-            "Error: local method must be in: [ACO, Tree_ACO, PSO,firework]!")
+            "Error: local method must be in: [ACO, Tree_ACO, PSO, firework]!")
 
     return args.i, args.n1, args.n2, args.n3, args.m, args.n, args.nt, args.alpha, args.rho, args.q, args.c1, args.c2, args.w,  args.t, args.a, args.b, args.mns, args.amp, args.ngs
 
