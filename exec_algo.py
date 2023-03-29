@@ -11,14 +11,20 @@ def execute(bash_command, timeout, output_value="flops"):
             result = re.search("flops:(.*) GFlops", output)
         elif output_value == "points":
             result = re.seatch("flops:(.*) MPoints/s", output)
-        output = result.group(1)
-        output = float(output.strip())
+        result = result.group(1)
+        result = float(result.strip())
+        time = re.search('time:(.*) sec', output)
+        tmp = time.group(1)
+        time = float(tmp.strip())
+
 
     #    except subprocess.TimeoutExpired:
     except Exception as e:
         print("#####algo stopped running: ", e)
-        output = -99
-    return output
+        result = -99
+        time = timeout
+
+    return result,time
 
 
 def command(options, output_value="flops"):
@@ -40,7 +46,7 @@ def command(options, output_value="flops"):
         + " "
         + options["dim3"]
     )
-    command = command + " | grep " + output_value
+    #command = command + " | grep " + output_value
     return command
 
 
