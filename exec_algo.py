@@ -84,7 +84,7 @@ def execute_nrj(bash_command, timeout):
     except Exception as e:
         print("#####algo stopped running: ", e)
         output = 1000
-    return output
+    return 1/(output+1)
 
 
 def mixed_exec(bash_command, timeout, alpha, output_value="flops"):
