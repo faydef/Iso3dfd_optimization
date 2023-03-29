@@ -114,14 +114,14 @@ def mixed(options, timeout, alpha, output_value="flops"):
     # Create a new file with the command
     with open("my_script.sh", "w") as f:
         f.write("#!/bin/bash\n")
-        f.write(bash_perf)
+        f.write('../'+bash_perf)
 
     # Make the file executable
     os.chmod("my_script.sh", 0o755)
-    bash_command = '/opt/cpu_monitor/cpu_monitor.x --csv --quiet --redirect -- ./my_script.sh > result.txt'
+    bash_command = 'cd results && /opt/cpu_monitor/cpu_monitor.x --csv --quiet --redirect -- ./my_script.sh > result.txt && cd ..'
     try:
         _ = check_output(bash_command, timeout=timeout, shell=True)
-        parse_output = "python test_nrj.py -f $(ls -t1 ./*.csv | head -n1) | grep all"
+        parse_output = "python test_nrj.py -f $(ls -t1 results/*.csv | head -n1) | grep all"
         output = check_output(parse_output, timeout=timeout, shell=True)
         output = output.decode("UTF-8")
         result = re.search("all energy: (.*)", output)
