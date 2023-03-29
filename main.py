@@ -51,7 +51,7 @@ def cmdLineParsing():
     )
     try:
         index_method = sys.argv.index("--m") + 1
-        bool = sys.argv[index_method+1] == "firework"
+        bool = sys.argv[index_method] == "firework"
     except ValueError:
         bool = False
     if bool:
