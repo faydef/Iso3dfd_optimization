@@ -231,6 +231,7 @@ def save_result(file,loc_score,exec_time,iteration_number,prob):
     best=best_loc(loc_score)
     file.write(f"Meilleur Gflops sur l'iteration : {best[1]}\n")
     file.write(f"Parametre du meilleur résultat : {loc_to_attribut(best[0],prob)}\n")
+    file.write(f"iteration executé en {exec_time}s\n")
 
 
 # Best config firework(5,0.04,0.8,"euclide",50,5,60)
