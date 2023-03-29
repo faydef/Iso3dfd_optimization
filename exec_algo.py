@@ -134,7 +134,7 @@ def mixed(options, timeout, alpha, output_value="GFlops"):
                     score = re.search(f"flops:(.*) {output_value}", score)
                     score = score.group(1)
                     score = float(score.strip())
-        output = alpha*output + (1-alpha)*(1/score+1)
+        output = alpha*score + (1-alpha)*(1/output+1)
 
     #    except subprocess.TimeoutExpired:
     except Exception as e:
