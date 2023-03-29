@@ -63,6 +63,7 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
         sparks_gauss = gaussian_spark(fireworks_score, m_gauss,problem)
         sparks = sparks_exp + sparks_gauss
         sparks_score = get_spark_score(sparks,problem,timeout)
+        sparks_score.append(best_loc(fireworks_score))
         if distance == "euclide":
             fireworks_score = new_fireworks(sparks_score, n, euclide)
 
