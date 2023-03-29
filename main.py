@@ -8,7 +8,7 @@ import sys
 
 compil_flag_list = ["O2", "O3", "Ofast"]
 simd_list = ["avx", "avx2", "avx512"]
-output_value = 'points'
+output_value = "points"
 
 DefaultIterMax = 10
 DefaultMethod = "ACO"
@@ -84,8 +84,7 @@ def cmdLineParsing():
 
     args = parser.parse_args()
     if args.i <= 0:
-        sys.exit(
-            "Error: maximum nb of iterations must be an integer greater than 0!")
+        sys.exit("Error: maximum nb of iterations must be an integer greater than 0!")
 
     if args.m not in ("ACO", "Tree_ACO", "PSO", "firework"):
         sys.exit(
@@ -105,33 +104,34 @@ def ask_for(question, default_value):
 i, n1, n2, n3, method, n, n_threads_max, alpha, rho, Q, c1, c2, w,  timeout, a, b, max_number_sparks, amplitude, gauss_sparks = cmdLineParsing()
 
 if not len(sys.argv) > 1:
-    type_algo = int(input(
-        "Which algorithm would you want to execute ? classic ant colony (0) or tree ant colony (1) or particle swarm (2)? "))
+    type_algo = int(
+        input(
+            "Which algorithm would you want to execute ? classic ant colony (0) or tree ant colony (1) or particle swarm (2)? "
+        )
+    )
     while type_algo not in [0, 1, 2]:
         print("please enter a valid algorithm")
-        type_algo = int(input(
-            "Which algorithm would you want to execute ? classic ant colony (0) or tree ant colony (1) or particle swarm (2)? "))
+        type_algo = int(
+            input(
+                "Which algorithm would you want to execute ? classic ant colony (0) or tree ant colony (1) or particle swarm (2)? "
+            )
+        )
 
     if type_algo == 0 or type_algo == 1:
-        nb_iter = ask_for(
-            "number of iterations (10 by default) : ", DefaultIterMax)
+        nb_iter = ask_for("number of iterations (10 by default) : ", DefaultIterMax)
         nb_ants = ask_for(
-            "number of ants per iteration (100 by default) : ", Defaultnumberpopulation)
-        evaporation_rate = input(
-            "evaporation_rate (0.8 by default) : ") or Defaultalpha
-        n1_size = ask_for(
-            "size of the problem x (default size 256) : ", Defaultn1)
-        n2_size = ask_for(
-            "size of the problem y (default size 256) : ", Defaultn2)
-        n3_size = ask_for(
-            "size of the problem z (default size 256) : ", Defaultn3)
-        n_threads_max = ask_for(
-            "maximum number of threads (32 by default): ", 32)
+            "number of ants per iteration (100 by default) : ", Defaultnumberpopulation
+        )
+        evaporation_rate = input("evaporation_rate (0.8 by default) : ") or Defaultalpha
+        n1_size = ask_for("size of the problem x (default size 256) : ", Defaultn1)
+        n2_size = ask_for("size of the problem y (default size 256) : ", Defaultn2)
+        n3_size = ask_for("size of the problem z (default size 256) : ", Defaultn3)
+        n_threads_max = ask_for("maximum number of threads (32 by default): ", 32)
 
     if type_algo == 0:
         print("executing classic ant colony optimization...")
         problem = [n1_size, n2_size, n3_size]
-        ant(nb_ants, nb_iter, problem, rho,  evaporation_rate, Q, timeout)
+        ant(nb_ants, nb_iter, problem, rho, evaporation_rate, Q, timeout)
     if type_algo == 1:
         print("executing ant colony optimization on a tree...")
         tree_ant(compil_flag_list, simd_list, n_threads_max, n1_size,
@@ -139,24 +139,26 @@ if not len(sys.argv) > 1:
     if type_algo == 2:
         max_iterations = ask_for("number of iterations (10 by default) : ", 10)
         num_particles = ask_for(
-            "number of particles per iteration (100 by default) : ", 100)
+            "number of particles per iteration (100 by default) : ", 100
+        )
         c1 = input("particle speed (1.5 by default) : ") or 1.5
         c2 = input("group_speed (1.5 by default) : ") or 1.5
         w = input("inertia (0.5 by default) : ") or Defaultw
-        problem_1 = ask_for(
-            "size of the problem x (default size 256) : ", Defaultn1)
-        problem_2 = ask_for(
-            "size of the problem y (default size 256) : ", Defaultn2)
-        problem_3 = ask_for(
-            "size of the problem z (default size 256) : ", Defaultn3)
-        n_threads_max = ask_for(
-            "maximum number of threads (32 by default) : ", 32)
-        timeout = ask_for(
-            "duration before timeout (30 by default) : ", 30)
+        problem_1 = ask_for("size of the problem x (default size 256) : ", Defaultn1)
+        problem_2 = ask_for("size of the problem y (default size 256) : ", Defaultn2)
+        problem_3 = ask_for("size of the problem z (default size 256) : ", Defaultn3)
+        n_threads_max = ask_for("maximum number of threads (32 by default) : ", 32)
+        timeout = ask_for("duration before timeout (30 by default) : ", 30)
         print("executing particle swarm optimization...")
 
-        bounds = [(0, 2), (0, 2), (1, n_threads_max), (16, problem_1),
-                  (1, problem_2), (1, problem_3)]
+        bounds = [
+            (0, 2),
+            (0, 2),
+            (1, n_threads_max),
+            (16, problem_1),
+            (1, problem_2),
+            (1, problem_3),
+        ]
         optimizer = ParticleSwarmOptimization(
             objective_function,
             bounds,
@@ -183,25 +185,22 @@ if len(sys.argv) > 1:
         problem = [n1, n2, n3]
         ant(n, i, problem, rho, alpha, Q, timeout)
     if method == "Tree_ACO":
-        tree_ant(compil_flag_list, simd_list, n_threads_max, n1,
-                 n2, n3, alpha, i, n, timeout)
+        tree_ant(
+            compil_flag_list, simd_list, n_threads_max, n1, n2, n3, alpha, i, n, timeout
+        )
     if method == "PSO":
-        bounds = [(0, 2), (0, 2), (1, n_threads_max), (16, n1),
-                  (1, n2), (1, n3)]
+        bounds = [(0, 2), (0, 2), (1, n_threads_max), (16, n1), (1, n2), (1, n3)]
         optimizer = ParticleSwarmOptimization(
-            objective_function,
-            bounds,
-            n,
-            i,
-            c1,
-            c2,
-            w,
-            [n1, n2, n3],
-            timeout,
+            objective_function, bounds, n, i, c1, c2, w, [n1, n2, n3], timeout,
         )
         solution = optimizer.optimize()
-        solution_parameters = [compil_flag_list[solution[0][0]],
-                               simd_list[solution[0][1]], solution[0][2], solution[0][3], solution[0][4]]
+        solution_parameters = [
+            compil_flag_list[solution[0][0]],
+            simd_list[solution[0][1]],
+            solution[0][2],
+            solution[0][3],
+            solution[0][4],
+        ]
         print("Solution: ", solution_parameters)
         print("Fitness value: ", solution[1])
     if method == "firework":

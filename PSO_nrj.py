@@ -2,15 +2,17 @@ import random
 import math
 import sys
 import time
-from exec_algo import command, execute
+from exec_algo import command, execute, execute_nrj, command_nrj
 from representation import initiate
 
 speed = ["O2", "O3", "Ofast"]
 avx = ["avx", "avx2", "avx512"]
 # Define the objective function to optimize
+
+
 def objective_function(path, problem, timeout):
-    return execute(
-        command(
+    return execute_nrj(
+        command_nrj(
             {
                 "filename": "../iso3dfd-st7/compiled/bin_"
                 + speed[path[0]]
@@ -145,7 +147,16 @@ class ParticleSwarmOptimization:
                 self.swarm[j].update_position(self.bounds)
                 self.swarm[j].timeout = self.timeout_global
 
-            print(self.global_best_position, self.global_best_fitness)
+            print(
+                [
+                    speed[self.global_best_position[0]],
+                    avx[self.global_best_position[1]],
+                    self.global_best_position[2],
+                    self.global_best_position[3],
+                    self.global_best_position[4],
+                ],
+                self.global_best_fitness,
+            )
 
         return (self.global_best_position, self.global_best_fitness)
 
