@@ -25,7 +25,7 @@ done
 # Afficher "lili" si l'option --parallel a été passée
 if [ "$parallel" = true ]; then
     echo "executing /usr/bin/mpirun --hostfile hostfile --rank-by node --map-by ppr:1:node:PE=16 python3 parallel_ant_main.py $i $n $n1 $n2 $n3 $rho $alpha $q 30 "
-    /usr/bin/mpirun --hostfile hostfile --rank-by node --map-by ppr:1:node:PE=16 python3 parallel_ant_main.py $i $n $n1 $n2 $n3 $rho $alpha $q 30 
+    sbatch main.sh $i $n $n1 $n2 $n3 $rho $alpha $q 30 
 else 
     echo "executing python3 main.py $@"
     srun -N 1 -n 32 --exclusive -p cpu_tp python3 main.py "$@"
