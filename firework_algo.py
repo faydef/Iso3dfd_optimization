@@ -49,16 +49,16 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
 
     file=open(file_name,"w")
 
-    start_time_init=time.time()
+    start_time=time.time()
     bests = []
 
     count = 0
     fireworks = initiate(n,problem)
     fireworks_score = get_spark_score(fireworks,problem, timeout)
-    end_time_init=time.time()
-    save_result(file,fireworks_score,end_time_init-start_iteration_time,0)
+    end_time=time.time()
+    save_result(file,fireworks_score,end_time-start_time,0)
     while count < 5:  # stop criteria, here, the loop went through 5 times
-        start_iteration_time=time.time()
+        start_time=time.time()
         sparks_exp = explosion(fireworks_score, a, b, m, A, n, problem)
         sparks_gauss = gaussian_spark(fireworks_score, m_gauss,problem)
         sparks = sparks_exp + sparks_gauss
@@ -71,8 +71,8 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
         print(loc_to_attribut(best[0],problem), best[1])
         bests.append((loc_to_attribut(best[0],problem), best[1]))
 
-        finish_iteratin_time=time.time()
-        save_result(file,sparks_score,finish_iteratin_time-start_iteration_time,count)
+        end_time=time.time()
+        save_result(file,sparks_score,end_time-start_time,count)
 
     print(bests)
     best = best_loc(sparks_score)
