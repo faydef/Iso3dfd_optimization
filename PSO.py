@@ -2,17 +2,15 @@ import random
 import math
 import sys
 import time
-from exec_algo import command, execute, execute_nrj, command_nrj
+from exec_algo import command, execute
 from representation import initiate
 
 speed = ["O2", "O3", "Ofast"]
 avx = ["avx", "avx2", "avx512"]
 # Define the objective function to optimize
-
-
 def objective_function(path, problem, timeout):
-    return execute_nrj(
-        command_nrj(
+    return execute(
+        command(
             {
                 "filename": "../iso3dfd-st7/compiled/bin_"
                 + speed[path[0]]
@@ -48,8 +46,7 @@ class Particle:
 
         for i in range(len(bounds)):
             if i != 3:
-                self.position.append(random.randint(
-                    bounds[i][0], bounds[i][1]))
+                self.position.append(random.randint(bounds[i][0], bounds[i][1]))
             else:
                 self.position.append(
                     (random.randint(bounds[i][0], bounds[i][1]) // 16) * 16
@@ -58,8 +55,7 @@ class Particle:
 
     def evaluate(self, objective_function):
         start = time.time()
-        self.fitness = objective_function(
-            self.position, self.problem, self.timeout)
+        self.fitness = objective_function(self.position, self.problem, self.timeout)
         end = time.time()
 
         self.timeout = int(end - start)+1
@@ -80,8 +76,7 @@ class Particle:
                 self.c2 * r2 * (global_best_position[i] - self.position[i])
             )
             self.velocity[i] = (
-                self.w * self.velocity[i] +
-                cognitive_velocity + social_velocity
+                self.w * self.velocity[i] + cognitive_velocity + social_velocity
             )
 
     def update_position(self, bounds):
@@ -150,8 +145,7 @@ class ParticleSwarmOptimization:
                 self.swarm[j].update_position(self.bounds)
                 self.swarm[j].timeout = self.timeout_global
 
-            print([speed[self.global_best_position[0]], avx[self.global_best_position[1]], self.global_best_position[2],
-                  self.global_best_position[3], self.global_best_position[4]], self.global_best_fitness)
+            print(self.global_best_position, self.global_best_fitness)
 
         return (self.global_best_position, self.global_best_fitness)
 
@@ -170,8 +164,7 @@ if __name__ == "__main__":
         w,
     ) = [int(el) for el in sys.argv[1:-3]] + [float(el) for el in sys.argv[-3:]]
     # Define the boundaries of the search space
-    bounds = [(0, 2), (0, 2), (1, 32), (16, problem_1),
-              (1, problem_2), (1, problem_3)]
+    bounds = [(0, 2), (0, 2), (1, 32), (16, problem_1), (1, problem_2), (1, problem_3)]
     optimizer = ParticleSwarmOptimization(
         objective_function,
         bounds,
