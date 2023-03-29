@@ -204,8 +204,6 @@ def worst_loc(loc_score):
 
 
 
-firework(5,0.04,0.8,euclide,50,5,40,[128,128,128],30)
-
 # print("\n\n\n Plus etendu, plus de sparks")
 # print(firework(5,0.04,0.8,"euclide",50,5,60))
 
