@@ -3,6 +3,9 @@
 # Définir la variable qui indique si l'option --parallel a été passée
 parallel=false
 
+
+total_argument="$@"
+
 # Récupérer les arguments
 while [[ "$#" -gt 0 ]]; do
   case $1 in
@@ -22,13 +25,22 @@ while [[ "$#" -gt 0 ]]; do
   shift
 done
 
+
+#echo "total argument : "$total_argument
+
 # Afficher "lili" si l'option --parallel a été passée
 if [ "$parallel" = true ]; then
     echo "executing /usr/bin/mpirun --hostfile hostfile --rank-by node --map-by ppr:1:node:PE=16 python3 parallel_ant_main.py $i $n $n1 $n2 $n3 $rho $alpha $q 30 "
     sbatch main.sh $i $n $n1 $n2 $n3 $rho $alpha $q 30 
 else 
-    echo "executing python3 main.py $@"
-    srun -N 1 -n 32 --exclusive -p cpu_tp python3 main.py "$@"
+    #echo "executing srun -N 1 --exclusive -p cpu_tp python3 main.py $total_argument"
+    echo "#/bin/bash" > tmp/script.sh
+    echo "cd ..">> tmp/script.sh
+    echo "echo \"executing python3 main.py $total_argument\"" >> tmp/script.sh
+    echo "python3 main.py $total_argument" >> tmp/script.sh
+    cd tmp
+    srun -N 1 --exclusive -p cpu_tp --pty bash script.sh
+   
 fi
 
 
