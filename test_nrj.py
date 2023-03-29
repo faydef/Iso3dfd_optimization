@@ -73,4 +73,4 @@ if __name__ == "__main__":
     dram_energy, pkg_energy, combined = csv_to_energy(args.file)  # 1664565
     print("DRAM energy: ", dram_energy)
     print("PKG energy: ", pkg_energy)
-    print("DRAM + PKG energy: ", combined)
+    print("all energy: ", combined)
