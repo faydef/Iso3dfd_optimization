@@ -104,7 +104,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
                             }
                         ),
                         timeout,
-                    )
+                    )[0]
                 )
                 end_time = time.time()
                 timer.append(end_time - start_time)
@@ -142,15 +142,15 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
 if __name__ == "__main__":
     (
         _,
-        nb_ant,
-        nb_iteration,
-        problem_1,
-        problem_2,
-        problem_3,
-        rho,
-        alpha,
-        Q,
-        timeout,
+        nb_ant, #default 16 
+        nb_iteration, #default 10
+        problem_1, #default 256
+        problem_2, #default 256
+        problem_3, #default 256
+        rho, #default 0.6
+        alpha, #default 0.25
+        Q, #default 1
+        timeout, #default 60
     ) = sys.argv
     print(
         ant(

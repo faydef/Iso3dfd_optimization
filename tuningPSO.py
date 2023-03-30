@@ -1,9 +1,11 @@
 import random
 import math
+from operator import itemgetter
 import sys
 import time
 from exec_algo import command, execute
 from representation import initiate
+import os
 
 speed = ["O2", "O3", "Ofast"]
 avx = ["avx", "avx2", "avx512"]
@@ -27,7 +29,7 @@ def objective_function(path, problem, timeout):
             }
         ),
         timeout,
-    )[0]
+    )
 
 
 # Define the Particle class
@@ -58,7 +60,7 @@ class Particle:
         self.fitness = objective_function(self.position, self.problem, self.timeout)
         end = time.time()
 
-        self.timeout = int(end - start) + 1
+        self.timeout = int(end - start)+1
 
         if self.fitness > self.best_fitness or self.best_fitness == -1:
             self.best_position = self.position
@@ -152,6 +154,31 @@ class ParticleSwarmOptimization:
 
 # Example usage:
 if __name__ == "__main__":
+    parameter_combinations = [
+    (1.5, 1.5, 0.9),
+    (1.5, 1.5, 0.7),
+    (1.5, 1.5, 0.5),
+    (1.5, 2.5, 0.9),
+    (1.5, 2.5, 0.7),
+    (1.5, 2.5, 0.5),
+    (2.5, 1.5, 0.9),
+    (2.5, 1.5, 0.7),
+    (2.5, 1.5, 0.5),
+    (2.5, 2.5, 0.9),
+    (2.5, 2.5, 0.7),
+    (2.5, 2.5, 0.5),
+    (3.0, 1.5, 0.9),
+    (3.0, 1.5, 0.7),
+    (3.0, 1.5, 0.5),
+    (1.5, 3.0, 0.9),
+    (1.5, 3.0, 0.7),
+    (1.5, 3.0, 0.5),
+    (3.0, 3.0, 0.9),
+    (3.0, 3.0, 0.7),
+    (3.0, 3.0, 0.5),
+    ]
+
+
     (
         num_particles,
         max_iterations,
@@ -159,23 +186,34 @@ if __name__ == "__main__":
         problem_2,
         problem_3,
         timeout,
-        c1,
-        c2,
-        w,
-    ) = [int(el) for el in sys.argv[1:-3]] + [float(el) for el in sys.argv[-3:]]
+    ) = [int(el) for el in sys.argv[1:]]
     # Define the boundaries of the search space
     bounds = [(0, 2), (0, 2), (1, 32), (16, problem_1), (1, problem_2), (1, problem_3)]
-    optimizer = ParticleSwarmOptimization(
-        objective_function,
-        bounds,
-        num_particles,
-        max_iterations,
-        c1,
-        c2,
-        w,
-        [problem_1, problem_2, problem_3],
-        timeout,
-    )
-    solution = optimizer.optimize()
-    print("Solution: ", solution[0])
-    print("Fitness value: ", solution[1])
+    result = [[],[]]
+    i = 1
+    filename = 'result_PSO.txt'
+    if os.path.exists(filename):
+        os.remove(filename)
+    with open(filename, 'w') as f:
+       for elem in parameter_combinations:
+            print('step '+str(i)+'/'+str(len(parameter_combinations)))
+            i += 1
+            c1,c2,w = elem
+            optimizer = ParticleSwarmOptimization(
+                objective_function,
+                bounds,
+                num_particles,
+                max_iterations,
+                c1,
+                c2,
+                w,
+                [problem_1, problem_2, problem_3],
+                timeout,
+            )
+            solution = optimizer.optimize()
+            result[0].append(solution[0])
+            result[1].append(solution[1])
+            f.write(str([(c1, c2, w), solution[0], solution[1]]) + '\n')
+            f.flush()
+    result[0], result[1] = map(list, zip(*sorted(zip(result[0], result[1]),key=itemgetter(1), reverse=True)))
+    print([(result[0][i], result[1][i], result[2][i]) for i in range(10)])
