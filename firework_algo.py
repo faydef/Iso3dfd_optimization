@@ -240,8 +240,8 @@ def save_result(file_name,loc_score,exec_time,iteration_number,prob):
 #firework(5,0.04,0.8,"euclide",50,5,60, problem=[128,128,128],timeout=30,iteration=10)
 #firework(5,0.04,0.8,"euclide",50,5,60, problem=[256,256,256],timeout=30,iteration = 7)
 
-firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=30,iteration=10)
+firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=40,iteration=10)
 
-firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=30,iteration=9)
+firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=40,iteration=9)
 
-firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=30,iteration=8)
+firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=40,iteration=8)
