@@ -17,7 +17,7 @@ def loc_to_attribut(loc,problem):
     [i for i in range(1, 33)],
     [16 * i for i in range(1, round(problem[0] / 16))],
     [i for i in range(1, problem[1] + 1)],
-    [i for i in range(1, problem[2] + 1)],
+    [i for i in range(1, problem[2] + 1)]
     ]
     att = []
     for i in range(len(loc)):
@@ -55,7 +55,10 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
 
     count = 0
     fireworks = initiate(n,problem)
-    fireworks_score = get_spark_score(fireworks,problem, timeout)
+    if problem[0]==512:
+        fireworks_score = get_spark_score(fireworks,problem, 60)
+    else :
+        fireworks_score = get_spark_score(fireworks,problem, timeout)
     end_time=time.time()
     save_result(file_name,fireworks_score,end_time-start_time,0,problem)
     while count < iteration:  # stop criteria, here, the loop went through 5 times
@@ -101,8 +104,8 @@ def explosion(fireworks_score, a, b, m, A, n,problem):
     best_score = best_loc(fireworks_score)
     worst_score = worst_loc(fireworks_score)
 
-    denom_nb = n * best_score[1] - sum([i[1] for i in fireworks_score]) + eps
-    denom_A = sum([i[1] for i in fireworks_score]) - n * worst_score[1] + eps
+    denom_A = n * best_score[1] - sum([i[1] for i in fireworks_score]) + eps
+    denom_nb = sum([i[1] for i in fireworks_score]) - n * worst_score[1] + eps
     for fs in fireworks_score:
         uncapped_n_spark = m * (fs[1] - worst_score[1] + eps) / denom_nb
         if uncapped_n_spark < a * m:
@@ -112,7 +115,7 @@ def explosion(fireworks_score, a, b, m, A, n,problem):
         else:
             number_spark_per_firework.append(round(uncapped_n_spark))
 
-        amplitude_per_firework.append(A * (best_score[1] + fs[1] + eps) / denom_A)
+        amplitude_per_firework.append(A * (best_score[1] - fs[1] + eps) / denom_A)
 
     sparks = []
     for f in range(len(fireworks_score)):
