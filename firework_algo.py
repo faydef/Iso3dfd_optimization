@@ -45,7 +45,7 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
     firework/spark = [Olevel, avx, nb thread, n1,n2,n3]
     """
 
-    file_name=f"{problem[0]}_cube_{iteration}_iteration_result.txt" #A modifier à chaque exec
+    file_name=f"{problem[0]}_cube_{iteration}_iteration_result_corr.txt" #A modifier à chaque exec
 
     file=open(file_name,"w")
     file.close()
@@ -104,8 +104,8 @@ def explosion(fireworks_score, a, b, m, A, n,problem):
     best_score = best_loc(fireworks_score)
     worst_score = worst_loc(fireworks_score)
 
-    denom_A = n * best_score[1] - sum([i[1] for i in fireworks_score]) + eps
-    denom_nb = sum([i[1] for i in fireworks_score]) - n * worst_score[1] + eps
+    denom_A = sum([best_score[1]-i[1] for i in fireworks_score]) + eps
+    denom_nb = sum([i[1]-worst_score[1] for i in fireworks_score]) + eps
     for fs in fireworks_score:
         uncapped_n_spark = m * (fs[1] - worst_score[1] + eps) / denom_nb
         if uncapped_n_spark < a * m:
@@ -115,7 +115,8 @@ def explosion(fireworks_score, a, b, m, A, n,problem):
         else:
             number_spark_per_firework.append(round(uncapped_n_spark))
 
-        amplitude_per_firework.append(A * (best_score[1] - fs[1] + eps) / denom_A)
+        amplitude_per_firework.append(A     * (best_score[1] - fs[1] + eps) / denom_A)
+
 
     sparks = []
     for f in range(len(fireworks_score)):
@@ -240,11 +241,13 @@ def save_result(file_name,loc_score,exec_time,iteration_number,prob):
 
 # Best config firework(5,0.04,0.8,"euclide",50,5,60)
 
-#firework(5,0.04,0.8,"euclide",50,5,60, problem=[128,128,128],timeout=30,iteration=10)
+firework(5,0.04,0.8,"euclide",50,5,60, problem=[128,128,128],timeout=30,iteration=10)
+firework(5,0.04,0.8,"euclide",50,5,90, problem=[128,128,128],timeout=30,iteration=10)
+firework(5,0.04,0.8,"euclide",50,5,120, problem=[128,128,128],timeout=30,iteration=10)
 #firework(5,0.04,0.8,"euclide",50,5,60, problem=[256,256,256],timeout=30,iteration = 7)
 
-firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=40,iteration=10)
+#firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=40,iteration=10)
 
-firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=40,iteration=9)
+#firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=40,iteration=9)
 
-firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=40,iteration=8)
+#firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=40,iteration=8)
