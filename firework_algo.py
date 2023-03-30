@@ -115,7 +115,7 @@ def explosion(fireworks_score, a, b, m, A, n,problem):
         else:
             number_spark_per_firework.append(round(uncapped_n_spark))
 
-        amplitude_per_firework.append(A     * (best_score[1] - fs[1] + eps) / denom_A)
+        amplitude_per_firework.append(A *(best_score[1] - fs[1] + eps) / denom_A)
 
 
     sparks = []
