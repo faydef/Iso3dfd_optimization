@@ -48,6 +48,7 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
     file_name=f"{problem[0]}_cube_{iteration}_iteration_result.txt" #A modifier à chaque exec
 
     file=open(file_name,"w")
+    file.close()
 
     start_time=time.time()
     bests = []
@@ -56,7 +57,7 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
     fireworks = initiate(n,problem)
     fireworks_score = get_spark_score(fireworks,problem, timeout)
     end_time=time.time()
-    save_result(file,fireworks_score,end_time-start_time,0,problem)
+    save_result(file_name,fireworks_score,end_time-start_time,0,problem)
     while count < iteration:  # stop criteria, here, the loop went through 5 times
         start_time=time.time()
         sparks_exp = explosion(fireworks_score, a, b, m, A, n, problem)
@@ -73,11 +74,10 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
         bests.append((loc_to_attribut(best[0],problem), best[1]))
 
         end_time=time.time()
-        save_result(file,sparks_score,end_time-start_time,count,problem)
+        save_result(file_name,sparks_score,end_time-start_time,count,problem)
 
     print(bests)
     best = best_loc(sparks_score)
-    file.close()
     return loc_to_attribut(best[0],problem), best[1]
 
 
@@ -219,19 +219,20 @@ def mean_loc(loc_score):
     scores=[i[1] for i in loc_score]
     return sum(scores)/len(scores)
 
-def save_result(file,loc_score,exec_time,iteration_number,prob):
+def save_result(file_name,loc_score,exec_time,iteration_number,prob):
     """write in a file file_name the results of the firework optimisation algo
     results are : for each iteration, best loc, Gflops of best, means of GFlops, execution time of the iteration
     Call this function at each iteration"""
-    if iteration_number==0:
-        file.write("\nInitialisation\n")
-    else :
-        file.write(f"\nIteration num : {iteration_number}\n")
-    file.write(f"Moyenne de Gflops sur l'iteration : {mean_loc(loc_score)}\n")
-    best=best_loc(loc_score)
-    file.write(f"Meilleur Gflops sur l'iteration : {best[1]}\n")
-    file.write(f"Parametre du meilleur résultat : {loc_to_attribut(best[0],prob)}\n")
-    file.write(f"iteration executé en {exec_time}s\n")
+    with open(file_name,"a") as file:
+        if iteration_number==0:
+            file.write("\nInitialisation\n")
+        else :
+            file.write(f"\nIteration num : {iteration_number}\n")
+        file.write(f"Moyenne de Gflops sur l'iteration : {mean_loc(loc_score)}\n")
+        best=best_loc(loc_score)
+        file.write(f"Meilleur Gflops sur l'iteration : {best[1]}\n")
+        file.write(f"Parametre du meilleur résultat : {loc_to_attribut(best[0],prob)}\n")
+        file.write(f"iteration executé en {exec_time}s\n")
 
 
 # Best config firework(5,0.04,0.8,"euclide",50,5,60)
