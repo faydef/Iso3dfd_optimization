@@ -1,3 +1,4 @@
+import numpy as np
 def update(routes, liste, dico, rho, alpha, Q):
     for route, number, scores in routes:
         if scores != -99:
