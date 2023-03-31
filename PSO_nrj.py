@@ -156,13 +156,20 @@ class ParticleSwarmOptimization:
                     self.global_best_position[2],
                     self.global_best_position[3],
                     self.global_best_position[4],
+                    self.global_best_position[5],
                 ],
                 self.global_best_fitness,
             )
 
-        return (self.global_best_position, self.global_best_fitness)
-
-
+        path = [
+                    speed[self.global_best_position[0]],
+                    avx[self.global_best_position[1]],
+                    self.global_best_position[2],
+                    self.global_best_position[3],
+                    self.global_best_position[4],
+                    self.global_best_position[5],
+                ]
+        return (path, self.global_best_fitness)
 # Example usage:
 if __name__ == "__main__":
     (
