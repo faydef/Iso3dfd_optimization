@@ -34,23 +34,26 @@ def main():
 
     if float(args.prop) < 1:
         if socket.gethostname() == 'john3':
-            output = subprocess.check_output(['python3', args.file_to_execute, str(nb_ants), str(nb_iteration), args.n1_value, args.n2_value, args.n3_value, str(timeout), str(Defaultc1), str(Defaultc2), str(Defaultw),args.prop])
-            output_string = output.decode('utf-8')
-            output_lines = output_string.split('\n')
-            solution_line = None
-            fitness_line = None
-            for line in output_lines:
-                if 'Solution:' in line:
-                    solution_line = line
-                if 'Fitness value:' in line:
-                    fitness_line = line
+            if args.file_to_execute == 'PSO_nrj':
+                output = subprocess.check_output(['python3', "PSO_nrj.py", str(nb_particles), str(nb_iteration), args.n1_value, args.n2_value, args.n3_value, str(timeout), str(Defaultc1), str(Defaultc2), str(Defaultw),args.prop])
+                output_string = output.decode('utf-8')
+                output_lines = output_string.split('\n')
+                solution_line = None
+                fitness_line = None
+                for line in output_lines:
+                    if 'Solution:' in line:
+                        solution_line = line
+                    if 'Fitness value:' in line:
+                        fitness_line = line
         
-            solution_str = solution_line.split(':')[1].strip()
-            solution = list(map(str, solution_str[1:-1].split(',')))
-            fitness_str = fitness_line.split(':')[1].strip()
-            fitness = float(fitness_str)
-            print(f"Fitness value: {fitness}")
-            print(f"Solution: {solution}")
+                solution_str = solution_line.split(':')[1].strip()
+                solution = list(map(str, solution_str[1:-1].split(',')))
+                fitness_str = fitness_line.split(':')[1].strip()
+                fitness = float(fitness_str)
+                print(f"Fitness value: {fitness}")
+                print(f"Solution: {solution}")
+            if args.file_to_execute == 'ACO_nrj':
+                subprocess.run(['python3', "ACO_nrj.py", str(nb_ants), str(nb_iteration), args.n1_value, args.n2_value, args.n3_value, str(timeout), str(Defaultc1), str(Defaultc2), str(Defaultw),args.prop])
     elif float(args.prop) == 1:
         if args.file_to_execute == 'ACO_par':
             filename = "my_script.sh"
