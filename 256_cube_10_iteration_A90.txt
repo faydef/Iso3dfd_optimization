@@ -1,0 +1,66 @@
+
+Initialisation
+Moyenne de Gflops sur l'iteration : 14.833333333333334
+Meilleur Gflops sur l'iteration : 23.05
+Parametre du meilleur résultat : ['O2', 'avx512', 13, 80, 122, 67]
+iteration executé en 39.14709734916687s
+
+Iteration num : 1
+Moyenne de Gflops sur l'iteration : 20.136511627906973
+Meilleur Gflops sur l'iteration : 48.78
+Parametre du meilleur résultat : ['O3', 'avx512', 20, 64, 20, 66]
+iteration executé en 244.39819836616516s
+
+Iteration num : 2
+Moyenne de Gflops sur l'iteration : 31.682499999999994
+Meilleur Gflops sur l'iteration : 67.94
+Parametre du meilleur résultat : ['O3', 'avx512', 20, 224, 20, 25]
+iteration executé en 166.37200236320496s
+
+Iteration num : 3
+Moyenne de Gflops sur l'iteration : 37.43209302325581
+Meilleur Gflops sur l'iteration : 74.22
+Parametre du meilleur résultat : ['O3', 'avx512', 20, 240, 20, 25]
+iteration executé en 155.83888030052185s
+
+Iteration num : 4
+Moyenne de Gflops sur l'iteration : 47.22073170731708
+Meilleur Gflops sur l'iteration : 79.41
+Parametre du meilleur résultat : ['O3', 'avx512', 23, 240, 20, 25]
+iteration executé en 106.89439535140991s
+
+Iteration num : 5
+Moyenne de Gflops sur l'iteration : 45.05714285714286
+Meilleur Gflops sur l'iteration : 85.99
+Parametre du meilleur résultat : ['O3', 'sse', 29, 240, 20, 28]
+iteration executé en 125.90038418769836s
+
+Iteration num : 6
+Moyenne de Gflops sur l'iteration : 42.35857142857143
+Meilleur Gflops sur l'iteration : 99.87
+Parametre du meilleur résultat : ['O3', 'sse', 29, 240, 12, 16]
+iteration executé en 101.49414801597595s
+
+Iteration num : 7
+Moyenne de Gflops sur l'iteration : 47.74977777777778
+Meilleur Gflops sur l'iteration : 104.23
+Parametre du meilleur résultat : ['O3', 'sse', 28, 240, 7, 11]
+iteration executé en 159.86362385749817s
+
+Iteration num : 8
+Moyenne de Gflops sur l'iteration : 57.48727272727273
+Meilleur Gflops sur l'iteration : 104.23
+Parametre du meilleur résultat : ['O3', 'sse', 28, 240, 7, 11]
+iteration executé en 101.1009874343872s
+
+Iteration num : 9
+Moyenne de Gflops sur l'iteration : 53.94511627906977
+Meilleur Gflops sur l'iteration : 104.23
+Parametre du meilleur résultat : ['O3', 'sse', 28, 240, 7, 11]
+iteration executé en 154.01390981674194s
+
+Iteration num : 10
+Moyenne de Gflops sur l'iteration : 51.47023255813954
+Meilleur Gflops sur l'iteration : 104.23
+Parametre du meilleur résultat : ['O3', 'sse', 28, 240, 7, 11]
+iteration executé en 106.24598860740662s

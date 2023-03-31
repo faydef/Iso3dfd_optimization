@@ -1,0 +1,18 @@
+
+Initialisation
+Moyenne de Gflops sur l'iteration : 38.25833333333333
+Meilleur Gflops sur l'iteration : 86.21
+Parametre du meilleur résultat : ['O1', 'avx2', 29, 256, 13, 236]
+iteration executé en 147.3248279094696s
+
+Iteration num : 1
+Moyenne de Gflops sur l'iteration : -7.11595744680851
+Meilleur Gflops sur l'iteration : 87.14
+Parametre du meilleur résultat : ['O1', 'sse', 21, 336, 13, 236]
+iteration executé en 1061.1858172416687s
+
+Iteration num : 2
+Moyenne de Gflops sur l'iteration : 30.39631578947369
+Meilleur Gflops sur l'iteration : 89.45
+Parametre du meilleur résultat : ['O1', 'sse', 21, 336, 13, 165]
+iteration executé en 729.0352458953857s

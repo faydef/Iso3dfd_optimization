@@ -1,0 +1,66 @@
+
+Initialisation
+Moyenne de Gflops sur l'iteration : 32.635
+Meilleur Gflops sur l'iteration : 56.51
+Parametre du meilleur résultat : ['O2', 'avx512', 24, 128, 18, 66]
+iteration executé en 27.762730360031128s
+
+Iteration num : 1
+Moyenne de Gflops sur l'iteration : 31.24413043478261
+Meilleur Gflops sur l'iteration : 61.54
+Parametre du meilleur résultat : ['O2', 'sse', 19, 128, 18, 29]
+iteration executé en 196.19377756118774s
+
+Iteration num : 2
+Moyenne de Gflops sur l'iteration : 39.004878048780476
+Meilleur Gflops sur l'iteration : 71.69
+Parametre du meilleur résultat : ['O2', 'sse', 29, 128, 18, 29]
+iteration executé en 141.78641772270203s
+
+Iteration num : 3
+Moyenne de Gflops sur l'iteration : 46.99227272727273
+Meilleur Gflops sur l'iteration : 89.23
+Parametre du meilleur résultat : ['O2', 'sse', 29, 128, 6, 29]
+iteration executé en 106.97404932975769s
+
+Iteration num : 4
+Moyenne de Gflops sur l'iteration : 51.005384615384614
+Meilleur Gflops sur l'iteration : 89.23
+Parametre du meilleur résultat : ['O2', 'sse', 29, 128, 6, 29]
+iteration executé en 98.83916997909546s
+
+Iteration num : 5
+Moyenne de Gflops sur l'iteration : 45.471333333333334
+Meilleur Gflops sur l'iteration : 97.8
+Parametre du meilleur résultat : ['O2', 'avx2', 29, 240, 6, 28]
+iteration executé en 141.863023519516s
+
+Iteration num : 6
+Moyenne de Gflops sur l'iteration : 46.17829268292684
+Meilleur Gflops sur l'iteration : 97.8
+Parametre du meilleur résultat : ['O2', 'avx2', 29, 240, 6, 28]
+iteration executé en 127.24087977409363s
+
+Iteration num : 7
+Moyenne de Gflops sur l'iteration : 35.730000000000004
+Meilleur Gflops sur l'iteration : 99.72
+Parametre du meilleur résultat : ['O2', 'avx2', 31, 240, 6, 28]
+iteration executé en 189.64168787002563s
+
+Iteration num : 8
+Moyenne de Gflops sur l'iteration : 41.377948717948726
+Meilleur Gflops sur l'iteration : 99.72
+Parametre du meilleur résultat : ['O2', 'avx2', 31, 240, 6, 28]
+iteration executé en 142.14090704917908s
+
+Iteration num : 9
+Moyenne de Gflops sur l'iteration : 39.425853658536575
+Meilleur Gflops sur l'iteration : 99.72
+Parametre du meilleur résultat : ['O2', 'avx2', 31, 240, 6, 28]
+iteration executé en 152.61953210830688s
+
+Iteration num : 10
+Moyenne de Gflops sur l'iteration : 39.06065217391304
+Meilleur Gflops sur l'iteration : 99.72
+Parametre du meilleur résultat : ['O2', 'avx2', 31, 240, 6, 28]
+iteration executé en 192.11849212646484s
