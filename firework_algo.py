@@ -9,7 +9,8 @@ import time
 
 
 def loc_to_attribut(loc,problem):
-    """parametre list of float in range 512, NO SCORE"""
+    """parametre list of float in
+     range 512, NO SCORE"""
 
     attributs = [
     ["O1", "O2", "O3", "Ofast"],
@@ -17,7 +18,7 @@ def loc_to_attribut(loc,problem):
     [i for i in range(1, 33)],
     [16 * i for i in range(1, round(problem[0] / 16))],
     [i for i in range(1, problem[1] + 1)],
-    [i for i in range(1, problem[2] + 1)],
+    [i for i in range(1, problem[2] + 1)]
     ]
     att = []
     for i in range(len(loc)):
@@ -27,10 +28,10 @@ def loc_to_attribut(loc,problem):
 
 
 saved_config = {}
-eps = 1
+eps = 1E-4
 
 
-def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30):
+def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30,iteration = 5,save_in_file =False, name_plus=""):
     """parametre : 
     n : number of initial fireworks
     a : minimum rate sparks/firework
@@ -45,25 +46,44 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
     firework/spark = [Olevel, avx, nb thread, n1,n2,n3]
     """
 
+    if save_in_file:
+        file_name=f"{problem[0]}_cube_{iteration}_iteration_{name_plus}.txt" #A modifier à chaque exec
+        file=open(file_name,"w")
+        file.close()
+
+    start_time=time.time()
     bests = []
 
     count = 0
     fireworks = initiate(n,problem)
-    fireworks_score = get_spark_score(fireworks,problem, timeout)
-    while count < 5:  # stop criteria, here, the loop went through 5 times
+    if problem[0]==512:
+        fireworks_score = get_spark_score(fireworks,problem, 60)
+    else :
+        fireworks_score = get_spark_score(fireworks,problem, timeout)
+    end_time=time.time()
+    if save_in_file:
+        save_result(file_name,fireworks_score,end_time-start_time,0,problem)
+    while count < iteration:  # stop criteria, here, the loop went through 5 times
+        start_time=time.time()
         sparks_exp = explosion(fireworks_score, a, b, m, A, n, problem)
         sparks_gauss = gaussian_spark(fireworks_score, m_gauss,problem)
         sparks = sparks_exp + sparks_gauss
         sparks_score = get_spark_score(sparks,problem,timeout)
+        sparks_score.append(best_loc(fireworks_score))
         if distance == "euclide":
             fireworks_score = new_fireworks(sparks_score, n, euclide)
 
         count += 1
         best = best_loc(sparks_score)
-        print(loc_to_attribut(best[0],problem), best[1])
+        print(f"Best result of the iteration : {loc_to_attribut(best[0],problem)}, GFlops : {best[1]}")
         bests.append((loc_to_attribut(best[0],problem), best[1]))
 
-    print(bests)
+        end_time=time.time()
+        if save_in_file:
+            save_result(file_name,sparks_score,end_time-start_time,count,problem)
+
+
+    print(f"Best results of each iteration : {bests}")
     best = best_loc(sparks_score)
     return loc_to_attribut(best[0],problem), best[1]
 
@@ -87,9 +107,9 @@ def explosion(fireworks_score, a, b, m, A, n,problem):
 
     best_score = best_loc(fireworks_score)
     worst_score = worst_loc(fireworks_score)
-
-    denom_nb = n * best_score[1] - sum([i[1] for i in fireworks_score]) + eps
+    print(worst_score, eps)
     denom_A = sum([i[1] for i in fireworks_score]) - n * worst_score[1] + eps
+    denom_nb = sum([i[1]-worst_score[1] for i in fireworks_score]) + eps
     for fs in fireworks_score:
         uncapped_n_spark = m * (fs[1] - worst_score[1] + eps) / denom_nb
         if uncapped_n_spark < a * m:
@@ -99,7 +119,8 @@ def explosion(fireworks_score, a, b, m, A, n,problem):
         else:
             number_spark_per_firework.append(round(uncapped_n_spark))
 
-        amplitude_per_firework.append(A * (best_score[1] + fs[1] + eps) / denom_A)
+        amplitude_per_firework.append(A *(best_score[1] + fs[1] + eps) / denom_A)
+
 
     sparks = []
     for f in range(len(fireworks_score)):
@@ -164,7 +185,7 @@ def get_spark_score(sparks,problem,timeout):
             saved_config["".join(str(e) for e in att_val)] = score
         compteur += 1
         if compteur % 10 == 0:
-            print(compteur)
+            print(f"Calcul de la {compteur} spark")
     return score_sparks
 
 
@@ -202,20 +223,26 @@ def best_loc(loc_score):
 def worst_loc(loc_score):
     return min(loc_score, key=lambda item: item[1])
 
+def mean_loc(loc_score):
+    scores=[i[1] for i in loc_score]
+    return sum(scores)/len(scores)
+
+def save_result(file_name,loc_score,exec_time,iteration_number,prob):
+    """write in a file file_name the results of the firework optimisation algo
+    results are : for each iteration, best loc, Gflops of best, means of GFlops, execution time of the iteration
+    Call this function at each iteration"""
+    with open(file_name,"a") as file:
+        if iteration_number==0:
+            file.write("\nInitialisation\n")
+        else :
+            file.write(f"\nIteration num : {iteration_number}\n")
+        file.write(f"Moyenne de Gflops sur l'iteration : {mean_loc(loc_score)}\n")
+        best=best_loc(loc_score)
+        file.write(f"Meilleur Gflops sur l'iteration : {best[1]}\n")
+        file.write(f"Parametre du meilleur résultat : {loc_to_attribut(best[0],prob)}\n")
+        file.write(f"iteration executé en {exec_time}s\n")
 
 
-# print("\n\n\n Plus etendu, plus de sparks")
-# print(firework(5,0.04,0.8,"euclide",50,5,60))
+# firework(6,0.04,0.8,"euclide",45,5,90, problem=[128,128,128],timeout=30,iteration=7,name_plus="A150")
 
-"""
-f1 = main(5,0.04,0.8,"euclide",50,5,40)
-f2 = main(7,0.04,0.8,"euclide",50,5,40) #plus fireworks
-f3 = main(5,0.04,0.8,"euclide",50,5,60) #plus large 
-f4 = main(5,0.04,0.8,"euclide",50,10,40) #plus gauss
-f5 = main(5,0.04,0.8,"euclide",60,5,60) #plus sparks et plus etendu
-"
-fs=[f1,f2,f3,f4,f5]
-
-for i in range(5):
-    print(f"-----f{i}-----")
-    print(fs[i])"""
+#firework(6,0.04,0.8,"euclide",45,5,90, problem=[128,128,128],timeout=30,iteration=7,name_plus="A150")

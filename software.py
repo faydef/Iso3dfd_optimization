@@ -27,7 +27,6 @@ def main():
     parser.add_argument('-n3', metavar='size z', help='Set the n3 parameter; problem size Z ', dest='n3_value')
     parser.add_argument('--method', metavar='FILE', help='choose the optimization method to execute the specified file', dest='file_to_execute')
     parser.add_argument('-N', metavar='Nodes', help='Number of nodes to use in parallel', dest='N_value')
-    parser.add_argument('-N', metavar='Nodes', help='Number of nodes to use in parallel', dest='N_value')
     parser.add_argument('-i', metavar='iteration', help='Number of iteration', dest='I_value',default=10)
     parser.add_argument('-p', metavar='particule', help='Number of particules', dest='P_value',default=10)
     

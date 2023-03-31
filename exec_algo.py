@@ -22,7 +22,7 @@ def execute(bash_command, timeout, output_value="flops"):
 
     #    except subprocess.TimeoutExpired:
     except Exception as e:
-        print("#####algo stopped running: ", e)
+        print("No need to explore this path: ", e)
         result = -99
         time = timeout
 
