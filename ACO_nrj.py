@@ -161,6 +161,6 @@ if __name__ == "__main__":
             float(alpha),
             float(Q),
             int(timeout),
-            psi
+            float(psi)
         )
     )
