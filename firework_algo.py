@@ -31,7 +31,7 @@ saved_config = {}
 eps = 1E-4
 
 
-def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30,iteration = 5,name_plus=""):
+def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30,iteration = 5,save_in_file =False, name_plus=""):
     """parametre : 
     n : number of initial fireworks
     a : minimum rate sparks/firework
@@ -46,10 +46,10 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
     firework/spark = [Olevel, avx, nb thread, n1,n2,n3]
     """
 
-    file_name=f"{problem[0]}_cube_{iteration}_iteration_{name_plus}.txt" #A modifier à chaque exec
-
-    file=open(file_name,"w")
-    file.close()
+    if save_in_file:
+        file_name=f"{problem[0]}_cube_{iteration}_iteration_{name_plus}.txt" #A modifier à chaque exec
+        file=open(file_name,"w")
+        file.close()
 
     start_time=time.time()
     bests = []
@@ -61,7 +61,8 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
     else :
         fireworks_score = get_spark_score(fireworks,problem, timeout)
     end_time=time.time()
-    save_result(file_name,fireworks_score,end_time-start_time,0,problem)
+    if save_in_file:
+        save_result(file_name,fireworks_score,end_time-start_time,0,problem)
     while count < iteration:  # stop criteria, here, the loop went through 5 times
         start_time=time.time()
         sparks_exp = explosion(fireworks_score, a, b, m, A, n, problem)
@@ -74,13 +75,15 @@ def firework(n, a, b, distance, m, m_gauss, A, problem=[512,512,512], timeout=30
 
         count += 1
         best = best_loc(sparks_score)
-        print(loc_to_attribut(best[0],problem), best[1])
+        print(f"Best result of the iteration : {loc_to_attribut(best[0],problem)}, GFlops : {best[1]}")
         bests.append((loc_to_attribut(best[0],problem), best[1]))
 
         end_time=time.time()
-        save_result(file_name,sparks_score,end_time-start_time,count,problem)
+        if save_in_file:
+            save_result(file_name,sparks_score,end_time-start_time,count,problem)
 
-    print(bests)
+
+    print(f"Best results of each iteration : {bests}")
     best = best_loc(sparks_score)
     return loc_to_attribut(best[0],problem), best[1]
 
@@ -182,7 +185,7 @@ def get_spark_score(sparks,problem,timeout):
             saved_config["".join(str(e) for e in att_val)] = score
         compteur += 1
         if compteur % 10 == 0:
-            print(compteur)
+            print(f"Calcul de la {compteur} spark")
     return score_sparks
 
 
