@@ -124,7 +124,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout, psi):
         routes = [
             (ants[0][i], ants[1][i], ants[2][i]) for i in range(min(10, len(ants[0])))
         ]
-        update(routes, liste, dico, rho, alpha, Q)
+        update(routes, liste, dico, rho, alpha, 1000*Q)
         # store the worst path to avoid them
         if len(ants[0]) > 20:
             for i in range(len(ants[0]) - 1, len(ants[0]) - 10, -1):
