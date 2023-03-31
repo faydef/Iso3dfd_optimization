@@ -140,18 +140,13 @@ def mixed(options, timeout, alpha, output_value="GFlops"):
                     score = re.search(f"flops:(.*) {output_value}", score)
                     score = score.group(1)
                     score = float(score.strip())
-                if 'time' in line:
-                    time =  line.rstrip('\n')
-                    time = re.search(f"time:(.*) sec", score)
-                    time = time.group(1)
-                    time = float(time.strip())
         output = alpha*(score/100) + (1-alpha)/(output*100)
 
     #    except subprocess.TimeoutExpired:
     except Exception as e:
         print("#####No need to explore this path: ", e)
         output = -99
-    return output, time
+    return output
 
 
 
