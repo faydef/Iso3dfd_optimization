@@ -27,7 +27,7 @@ def objective_function(path, problem, timeout):
             }
         ),
         timeout,
-    )[0]
+    )
 
 
 # Define the Particle class
@@ -54,11 +54,10 @@ class Particle:
             self.velocity.append(random.uniform(-1, 1))
 
     def evaluate(self, objective_function):
-        start = time.time()
-        self.fitness = objective_function(self.position, self.problem, self.timeout)
-        end = time.time()
+        executed = objective_function(self.position, self.problem, self.timeout)
+        self.fitness = executed[0]
 
-        self.timeout = int(end - start) + 1
+        self.timeout = int(executed[1]) + 1
 
         if self.fitness > self.best_fitness or self.best_fitness == -1:
             self.best_position = self.position

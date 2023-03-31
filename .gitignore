@@ -22,3 +22,9 @@ __pycache__/*
 hostfile
 .*
 tmp/*
+Q_0_005hh.out
+best.out
+observation.out
+slurm-28541.out
+slurm-28575.out
+slurm-28588.out
