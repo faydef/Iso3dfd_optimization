@@ -1,6 +1,6 @@
 from representation import initiate
 from update import update
-from exec_algo import command, execute
+from exec_algo import command, execute, mixed
 import numpy as np
 from random import choices
 from operator import itemgetter
@@ -10,7 +10,7 @@ import time
 # import os
 
 
-def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
+def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout, psi):
     """
     this function is the main function of the ant colony algorithm.
     parameters:
@@ -84,7 +84,8 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
             else:
                 ants[0].append(path)
                 ants[1].append(1)
-                executed = execute(
+                start = time.time()
+                executed = mixed(
                         command(
                             {
                                 "filename": "../iso3dfd-st7/compiled/bin_"
@@ -102,9 +103,11 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout):
                             }
                         ),
                         timeout,
+                        psi,
                     )
-                ants[2].append(executed[0])
-                timer.append(executed[1])
+                end = time.time()
+                ants[2].append(executed)
+                timer.append(end-start)
         # update the timeout
         timeout = 0
         for i in range(len(timer)):
@@ -148,6 +151,7 @@ if __name__ == "__main__":
         alpha,
         Q,
         timeout,
+        psi
     ) = sys.argv
     print(
         ant(
@@ -158,5 +162,6 @@ if __name__ == "__main__":
             float(alpha),
             float(Q),
             int(timeout),
+            psi
         )
     )

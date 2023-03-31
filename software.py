@@ -46,7 +46,7 @@ def main():
                     fitness_line = line
         
             solution_str = solution_line.split(':')[1].strip()
-            solution = list(map(int, solution_str[1:-1].split(',')))
+            solution = list(map(str, solution_str[1:-1].split(',')))
             fitness_str = fitness_line.split(':')[1].strip()
             fitness = float(fitness_str)
             print(f"Fitness value: {fitness}")
