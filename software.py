@@ -17,21 +17,26 @@ def main():
     Defaultc1 = 3.0
     Defaultc2 = 3.0
     Defaultw = 0.5
-    timeout = 40
-    nb_ants = 100
-    nb_particles = 10
-    nb_iteration = 10
+    timeout = 10
+    nb_ants = 10
 
     parser = argparse.ArgumentParser(description='Script to execute a specified file with given parameters')
     parser.add_argument('--optimize', '-o', metavar='proportion', help='The importance of GFLOPS and energy in optimization: 0 for optimizing only energy, and 1 for optimizing only GFLOPS', dest='prop', default=1)
-    parser.add_argument('-n1', metavar='n1', help='Set the n1 parameter; problem size X ', dest='n1_value')
-    parser.add_argument('-n2', metavar='n2', help='Set the n2 parameter; problem size Y ', dest='n2_value')
-    parser.add_argument('-n3', metavar='n3', help='Set the n3 parameter; problem size Z ', dest='n3_value')
+    parser.add_argument('-n1', metavar='size x', help='Set the n1 parameter; problem size X ', dest='n1_value')
+    parser.add_argument('-n2', metavar='size y', help='Set the n2 parameter; problem size Y ', dest='n2_value')
+    parser.add_argument('-n3', metavar='size z', help='Set the n3 parameter; problem size Z ', dest='n3_value')
     parser.add_argument('--method', metavar='FILE', help='choose the optimization method to execute the specified file', dest='file_to_execute')
-    parser.add_argument('-N', metavar='N', help='Number of nodes to use in parallel', dest='N_value')
+    parser.add_argument('-N', metavar='Nodes', help='Number of nodes to use in parallel', dest='N_value')
+    parser.add_argument('-N', metavar='Nodes', help='Number of nodes to use in parallel', dest='N_value')
+    parser.add_argument('-i', metavar='iteration', help='Number of iteration', dest='I_value',default=10)
+    parser.add_argument('-p', metavar='particule', help='Number of particules', dest='P_value',default=10)
+    
 
     args = parser.parse_args()
 
+    nb_particles = int(args.P_value)
+    nb_iteration = int(args.I_value)
+    
     if float(args.prop) < 1:
         if socket.gethostname() == 'john3':
             if args.file_to_execute == 'PSO_nrj':

@@ -4,6 +4,7 @@ import sys
 import time
 from exec_algo import command, execute
 from representation import initiate
+import matplotlib.pyplot as plt
 
 speed = ["O2", "O3", "Ofast"]
 avx = ["avx", "avx2", "avx512"]
@@ -122,6 +123,7 @@ class ParticleSwarmOptimization:
             self.swarm.append(Particle(bounds, c1, c2, w, problem, timeout))
 
     def optimize(self):
+
         for i in range(self.max_iterations):
             for j in range(self.num_particles):
                 self.swarm[j].evaluate(self.objective_function)
@@ -143,10 +145,9 @@ class ParticleSwarmOptimization:
                 self.swarm[j].update_velocity(self.global_best_position)
                 self.swarm[j].update_position(self.bounds)
                 self.swarm[j].timeout = self.timeout_global
-
             print(self.global_best_position, self.global_best_fitness)
 
-        return (self.global_best_position, self.global_best_fitness)
+        return (self.global_best_position, self.global_best_fitness) 
 
 
 # Example usage:
@@ -178,3 +179,4 @@ if __name__ == "__main__":
     solution = optimizer.optimize()
     print("Solution: ", solution[0])
     print("Fitness value: ", solution[1])
+
