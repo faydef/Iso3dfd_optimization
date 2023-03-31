@@ -242,9 +242,9 @@ def save_result(file_name,loc_score,exec_time,iteration_number,prob):
 
 # Best config firework(5,0.04,0.8,"euclide",50,5,60)
 
-firework(6,0.04,0.8,"euclide",45,5,90, problem=[256,256,256],timeout=30,iteration=10,name_plus="A90")
-firework(6,0.04,0.8,"euclide",45,5,120, problem=[256,256,256],timeout=30,iteration=10,name_plus="A120")
-firework(6,0.04,0.8,"euclide",45,5,150, problem=[256,256,256],timeout=30,iteration=10,name_plus="A150")
+firework(6,0.04,0.8,"euclide",45,5,90, problem=[512,512,512],timeout=30,iteration=7,name_plus="A90")
+firework(6,0.04,0.8,"euclide",45,5,120, problem=[512,512,512],timeout=30,iteration=7,name_plus="A120")
+firework(6,0.04,0.8,"euclide",45,5,150, problem=[512,512,512],timeout=30,iteration=7,name_plus="A150")
 #firework(5,0.04,0.8,"euclide",50,5,60, problem=[256,256,256],timeout=30,iteration = 7)
 
 #firework(5,0.04,0.8,"euclide",50,5,60, problem=[512,512,512],timeout=40,iteration=10)
