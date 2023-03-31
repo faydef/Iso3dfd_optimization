@@ -86,7 +86,6 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout, psi):
                 ants[1].append(1)
                 start = time.time()
                 executed = mixed(
-                        command(
                             {
                                 "filename": "../iso3dfd-st7/compiled/bin_"
                                 + path[0]
@@ -101,7 +100,7 @@ def ant(nb_ant, nb_iteration, problem, rho, alpha, Q, timeout, psi):
                                 "dim2": str(path[4]),
                                 "dim3": str(path[5]),
                             }
-                        ),
+                        ,
                         timeout,
                         psi,
                     )
