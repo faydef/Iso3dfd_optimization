@@ -53,7 +53,7 @@ def main():
                 print(f"Fitness value: {fitness}")
                 print(f"Solution: {solution}")
             if args.file_to_execute == 'ACO_nrj':
-                subprocess.run(['python3', "ACO_nrj.py", str(nb_ants), str(nb_iteration), args.n1_value, args.n2_value, args.n3_value, str(timeout), str(Defaultc1), str(Defaultc2), str(Defaultw),args.prop])
+                subprocess.run(['python3', "ACO_nrj.py", str(nb_ants), str(nb_iteration), args.n1_value, args.n2_value, args.n3_value, str(Defaultrho), str(Defaultalpha), str(DefaultQ), str(timeout),args.prop])
     elif float(args.prop) == 1:
         if args.file_to_execute == 'ACO_par':
             filename = "my_script.sh"
