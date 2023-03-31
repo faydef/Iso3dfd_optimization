@@ -142,7 +142,7 @@ def mixed(options, timeout, alpha, output_value="GFlops"):
                     score = float(score.strip())
                 if 'time' in line:
                     time =  line.rstrip('\n')
-                    time = re.search(f"flops:(.*) sec", score)
+                    time = re.search(f"time:(.*) sec", score)
                     time = score.group(1)
                     time = float(score.strip())
         output = alpha*(score/100) + (1-alpha)/(output*100)
