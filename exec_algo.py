@@ -143,8 +143,8 @@ def mixed(options, timeout, alpha, output_value="GFlops"):
                 if 'time' in line:
                     time =  line.rstrip('\n')
                     time = re.search(f"time:(.*) sec", score)
-                    time = score.group(1)
-                    time = float(score.strip())
+                    time = time.group(1)
+                    time = float(time.strip())
         output = alpha*(score/100) + (1-alpha)/(output*100)
 
     #    except subprocess.TimeoutExpired:
