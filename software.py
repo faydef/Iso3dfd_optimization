@@ -18,7 +18,7 @@ def main():
     Defaultc2 = 3.0
     Defaultw = 0.5
     timeout = 40
-    nb_ants = 10
+    nb_ants = 100
     nb_particles = 10
     nb_iteration = 10
 
